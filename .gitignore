@@ -1,0 +1,21 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# local data / build output
+node_modules/
+dist/
+data/
+runs/
+.npm-cache/
+.venv-eval/
+scratch/
+*.db
+*.db-wal
+*.db-shm
+*.log
+.DS_Store
+
+# private evaluation exports
+.private-evals/
