@@ -17,7 +17,7 @@ import { clientLibrary } from "../src/client/library.js";
 
 const doc = [
   "root = Report([answer, changes, timeline, stats, note, chips])",
-  'answer = AnswerCard("Gallium melts at 29.76 °C [1].", [1], ["Gallium"], ["rsc.org"], ["https://www.rsc.org/x"])',
+  'answer = AnswerCard("**Gallium** melts at 29.76 °C [1].\n\n| Tool | Price |\n|---|---|\n| Gallium | 29.76 |", [1], ["Gallium"], ["rsc.org"], ["https://www.rsc.org/x"])',
   'changes = ChangeList("What changed", ["Cursor", "Windsurf"], ["updated", "unchanged"], ["price changed", "no change found"], ["$20", ""], ["$25", ""], ["1,2", ""])',
   'timeline = RecallTimeline("Recovered", "yesterday · Asia/Calcutta", ["LLM compression"], ["Tue 10 Nov"], ["Asia/Calcutta"], [6], ["we discussed LLMLingua"], ["c1"])',
   'stats = StatStrip(["Sources", "Digest"], ["1", "78% smaller"], ["", "vs raw"])',
@@ -28,7 +28,10 @@ const doc = [
 try {
   const html = renderToString(React.createElement(Renderer, { response: doc, library: clientLibrary as never }));
   const checks: Array<[string, boolean]> = [
-    ["answer text", html.includes("Gallium melts")],
+    ["answer text", html.includes("Gallium")],
+    ["markdown bold rendered", html.includes("<strong>Gallium</strong>")],
+    ["markdown table rendered", html.includes("<table") && html.includes("<th")],
+    ["markdown leaked as literal pipes", !html.includes("|---|")],
     ["citation chip", html.includes("cite-chip") && html.includes("rsc.org")],
     ["change row label", html.includes("Cursor")],
     ["change old→new", html.includes("$20") && html.includes("$25")],

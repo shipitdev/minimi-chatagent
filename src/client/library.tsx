@@ -12,6 +12,9 @@
  */
 
 import React from "react";
+import { marked } from "marked";
+// Isomorphic: the same allowlist sanitises in the browser and under SSR/tests.
+import DOMPurify from "isomorphic-dompurify";
 import { z } from "zod";
 import { createLibrary, defineComponent } from "@openuidev/react-lang";
 import { componentSpecs, REPORT_DESCRIPTION, REPORT_NAME } from "../library/schema.js";
@@ -29,31 +32,46 @@ function zip(...cols: Array<Array<unknown>>): Array<Array<unknown>> {
   return rows;
 }
 
-/** Render a body with [n] markers as inline, clickable citation chips. */
+/**
+ * Render an answer.
+ *
+ * The model writes markdown — bold emphasis, bullets, and comparison tables — so
+ * the body is rendered as markdown rather than dropped into a <p>. Two safety
+ * rules apply because the text is model output:
+ *
+ *  - citation markers are turned into anchors *before* parsing, so they survive
+ *    markdown and stay clickable;
+ *  - the rendered HTML is sanitised, which also strips any `javascript:` URL that
+ *    a source or the model might have produced.
+ */
+function renderAnswer(body: string, urls: string[]): string {
+  const withCitations = body.replace(/\[(\d{1,2})\]/g, (_all, n: string) => {
+    const id = Number(n);
+    const url = urls[id - 1];
+    const label = `<span class="cite-num">${id}</span>`;
+    return url
+      ? `<a class="cite-chip" href="${escapeAttr(url)}" target="_blank" rel="noreferrer noopener">${label}</a>`
+      : `<span class="cite-chip">${label}</span>`;
+  });
+  const raw = marked.parse(withCitations, { gfm: true, breaks: false, async: false }) as string;
+  return DOMPurify.sanitize(raw, {
+    ALLOWED_TAGS: [
+      "p", "br", "strong", "em", "del", "code", "pre", "blockquote",
+      "ul", "ol", "li", "h3", "h4", "h5", "hr",
+      "table", "thead", "tbody", "tr", "th", "td", "a", "span",
+    ],
+    ALLOWED_ATTR: ["href", "class", "target", "rel", "colspan", "rowspan"],
+    ALLOWED_URI_REGEXP: /^(?:https?:|mailto:|#)/i,
+  });
+}
+
+function escapeAttr(v: string): string {
+  return v.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
 function CitedBody({ body, urls }: { body: string; urls: string[] }) {
-  const parts = body.split(/(\[\d{1,2}\])/g);
-  return (
-    <p className="answer-body">
-      {parts.map((part, i) => {
-        const m = /^\[(\d{1,2})\]$/.exec(part);
-        if (!m) return <React.Fragment key={i}>{part}</React.Fragment>;
-        const id = Number(m[1]);
-        const url = urls[id - 1];
-        return (
-          <a
-            key={i}
-            className="cite-chip"
-            href={url}
-            target="_blank"
-            rel="noreferrer noopener"
-            title={url ?? `source ${id}`}
-          >
-            {id}
-          </a>
-        );
-      })}
-    </p>
-  );
+  const html = React.useMemo(() => renderAnswer(body, urls), [body, urls]);
+  return <div className="answer-body markdown" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
 const NoteView = ({ body }: { body: string }) => <p className="note">{body}</p>;

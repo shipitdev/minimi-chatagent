@@ -105,6 +105,9 @@ export function App() {
           } else if (event === "reply") {
             const r = data as AgentReply;
             setActiveId(r.conversationId);
+            // The conversation exists on the server by the time the reply lands,
+            // so refresh immediately instead of only in the finally block.
+            void refreshLists();
             setMessages((prev) => [
               ...prev,
               {

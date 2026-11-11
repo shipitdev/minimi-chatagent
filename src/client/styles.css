@@ -117,7 +117,8 @@ body {
   border-radius: var(--radius); padding: 14px 16px;
 }
 .card-title { margin: 0 0 10px; font-size: 13px; font-weight: 650; letter-spacing: -0.01em; }
-.answer-body { margin: 0; white-space: pre-wrap; }
+.answer-body { margin: 0; }
+.answer-body:not(.markdown) { white-space: pre-wrap; }
 .note { margin: 0; color: #b9c4cf; font-size: 14px; white-space: pre-wrap; }
 
 .cite-chip {
@@ -231,3 +232,29 @@ a.cite-chip:hover { background: #1f6feb40; }
   .app { grid-template-columns: 1fr; }
   .sidebar { display: none; }
 }
+
+/* ---- rendered markdown (answers) ---- */
+.markdown p { margin: 0 0 10px; }
+.markdown p:last-child { margin-bottom: 0; }
+.markdown strong { color: #f0f6fc; font-weight: 650; }
+.markdown em { color: #c9d4df; }
+.markdown ul, .markdown ol { margin: 0 0 10px; padding-left: 20px; }
+.markdown li { margin-bottom: 4px; }
+.markdown h3, .markdown h4, .markdown h5 {
+  margin: 16px 0 8px; font-size: 12px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.07em; font-weight: 650;
+}
+.markdown table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12.5px;
+  display: block; overflow-x: auto; max-width: 100%;
+}
+.markdown th, .markdown td {
+  border: 1px solid var(--line); padding: 6px 9px; text-align: left; vertical-align: top;
+}
+.markdown th { background: var(--panel-2); color: var(--text); font-weight: 600; white-space: nowrap; }
+.markdown tr:nth-child(even) td { background: #0e1216; }
+.markdown code { font-family: var(--mono); font-size: 12px; background: #0e1216; padding: 1px 4px; border-radius: 4px; }
+.markdown pre { background: #0e1216; border: 1px solid var(--line); border-radius: 8px; padding: 10px; overflow-x: auto; }
+.markdown blockquote { border-left: 2px solid var(--line); margin: 0 0 10px; padding-left: 10px; color: var(--muted); }
+.markdown hr { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
+a.cite-chip .cite-num { line-height: 1; }
