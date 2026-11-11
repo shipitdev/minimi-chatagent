@@ -1,0 +1,206 @@
+[
+ {
+  "split": "dev",
+  "mode": "replay",
+  "now": "2026-11-11T11:30:00Z",
+  "timezone": "Asia/Kolkata",
+  "restart_before_prompt": false,
+  "id": "f1-verify",
+  "category": "historical_update",
+  "history": [
+   {
+    "id": "starloom-q",
+    "thread_id": "starloom",
+    "timestamp": "2026-11-05T14:30:00Z",
+    "user": "What is the StarLoom Free export limit?",
+    "assistant": "I think it's 100.",
+    "evidence": [
+     {
+      "id": "starloom-old",
+      "url": "https://starloom.example/limits",
+      "title": "StarLoom limits",
+      "excerpt": "StarLoom Free allows exporting 100 records per month.",
+      "aliases": [
+       "starloom"
+      ],
+      "observed_at": "2026-11-05T14:00:00Z",
+      "effective_at": null
+     }
+    ]
+   }
+  ],
+  "prompt": "Verify the free export limit we discussed on November 5 and identify whether a dated change can be established.",
+  "search_fixtures": [
+   {
+    "id": "starloom-new",
+    "url": "https://starloom.example/limits",
+    "title": "StarLoom limits",
+    "excerpt": "StarLoom Free now allows exporting 250 records per month. The change took effect on November 9, 2026.",
+    "aliases": [
+     "starloom"
+    ],
+    "observed_at": "2026-11-11T11:30:00Z",
+    "effective_at": "2026-11-09"
+   }
+  ],
+  "gold": {
+   "expected_route": "historical_update",
+   "required_turn_ids": [
+    "starloom-q"
+   ],
+   "query_entities": [
+    "starloom"
+   ],
+   "criteria": [
+    {
+     "text": "Reports the export limit changed from 100 to 250 per month with the November 9 effective date.",
+     "evidence_ids": [
+      "starloom-old",
+      "starloom-new"
+     ],
+     "acceptable_urls": []
+    }
+   ],
+   "forbidden_claims": [
+    "Says the limit did not change."
+   ]
+  }
+ },
+ {
+  "split": "dev",
+  "mode": "replay",
+  "now": "2026-11-11T11:30:00Z",
+  "timezone": "Asia/Kolkata",
+  "restart_before_prompt": false,
+  "id": "f2-release",
+  "category": "historical_update",
+  "history": [
+   {
+    "id": "pollen-q",
+    "thread_id": "pollen",
+    "timestamp": "2026-11-09T13:30:00Z",
+    "user": "Does PollenAPI support batch retries?",
+    "assistant": "It is in beta.",
+    "evidence": []
+   }
+  ],
+  "prompt": "Which major release did PollenAPI ship after our Monday conversation, if any?",
+  "search_fixtures": [
+   {
+    "id": "pollen-news",
+    "url": "https://pollen.example/changelog",
+    "title": "PollenAPI changelog",
+    "excerpt": "PollenAPI 3.0 shipped on November 10, 2026. It introduces batch retries as a stable feature.",
+    "aliases": [
+     "pollenapi"
+    ],
+    "observed_at": "2026-11-11T11:30:00Z",
+    "effective_at": "2026-11-10"
+   }
+  ],
+  "gold": {
+   "expected_route": "historical_update",
+   "required_turn_ids": [
+    "pollen-q"
+   ],
+   "query_entities": [
+    "pollenapi"
+   ],
+   "criteria": [
+    {
+     "text": "Reports PollenAPI 3.0 shipped on November 10 after the conversation.",
+     "evidence_ids": [
+      "pollen-news"
+     ],
+     "acceptable_urls": []
+    }
+   ],
+   "forbidden_claims": [
+    "Claims no release happened."
+   ]
+  }
+ },
+ {
+  "split": "dev",
+  "mode": "replay",
+  "now": "2026-11-11T11:30:00Z",
+  "timezone": "Asia/Kolkata",
+  "restart_before_prompt": false,
+  "id": "f3-partial",
+  "category": "failure",
+  "history": [],
+  "prompt": "lake + dockdesk team prices pls. if one doesnt load just tell me the other",
+  "search_fixtures": [
+   {
+    "id": "lake-price",
+    "url": "https://lake.example/pricing",
+    "title": "LakeDesk Team pricing",
+    "excerpt": "LakeDesk Team is $16 USD per seat per month on monthly billing.",
+    "aliases": [
+     "lakedesk",
+     "lake"
+    ],
+    "observed_at": "2026-11-11T11:30:00Z",
+    "effective_at": null
+   },
+   {
+    "error": "timeout",
+    "aliases": [
+     "dockdesk"
+    ]
+   }
+  ],
+  "gold": {
+   "expected_route": "research",
+   "required_turn_ids": [],
+   "query_entities": [
+    "LakeDesk",
+    "DockDesk"
+   ],
+   "criteria": [
+    {
+     "text": "Reports LakeDesk Team at $16 per month.",
+     "evidence_ids": [
+      "lake-price"
+     ],
+     "acceptable_urls": []
+    },
+    {
+     "text": "Says DockDesk's price could not be verified because its lookup failed.",
+     "evidence_ids": [],
+     "acceptable_urls": []
+    }
+   ],
+   "forbidden_claims": [
+    "Invents a DockDesk price."
+   ]
+  }
+ },
+ {
+  "split": "dev",
+  "mode": "replay",
+  "now": "2026-11-11T11:30:00Z",
+  "timezone": "Asia/Kolkata",
+  "restart_before_prompt": false,
+  "id": "f4-nothing",
+  "category": "clarification",
+  "history": [],
+  "prompt": "What changed?",
+  "search_fixtures": [],
+  "gold": {
+   "expected_route": "clarify",
+   "required_turn_ids": [],
+   "query_entities": [],
+   "criteria": [
+    {
+     "text": "Asks what to track instead of inventing a list.",
+     "evidence_ids": [],
+     "acceptable_urls": []
+    }
+   ],
+   "forbidden_claims": [
+    "Claims to have checked items that were never tracked."
+   ]
+  }
+ }
+]
