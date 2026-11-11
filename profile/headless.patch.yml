@@ -1,0 +1,41 @@
+# Minimi headless profile overlay (terminal/eval surface, same Minimi plugin).
+# DSH's shipped headless bundle mounts its tools at the host plane, so every
+# stock model-callable tool is disabled here and only web_search remains.
+- id: tool-working-directory
+  disabled: true
+- id: tool-bash
+  disabled: true
+- id: tool-pwsh
+  disabled: true
+- id: tool-jobs
+  disabled: true
+- id: tool-fs
+  disabled: true
+- id: tool-fs-search
+  disabled: true
+- id: tool-skill
+  disabled: true
+- id: tool-subagent-control
+  disabled: true
+- id: tool-subagent
+  disabled: true
+- id: tool-workflow
+  disabled: true
+- id: tool-todo
+  disabled: true
+- id: tool-goal
+  disabled: true
+- id: tool-web
+  disabled: true
+- id: system-prompt
+  config:
+    personaPrefix: 'You are Minimi, a general-purpose research assistant with one tool. Cite sources as clickable Markdown links.'
+- insert:
+    - id: time-context
+      name: '@deepseek-ai/dsh-time-context'
+    - id: minimi
+      name: 'minimi-dsh-plugin'
+- id: plan-mode
+  disabled: true
+- id: tool-subagent-fork
+  disabled: true

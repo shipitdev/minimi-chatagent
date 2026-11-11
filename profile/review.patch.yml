@@ -1,0 +1,15 @@
+# Public review surface: chat-only. Administrative UI stays available in the
+# normal local profile, not through the shared public link.
+- id: ui-plugin-manager
+  disabled: true
+- id: ui-entry-customization
+  disabled: true
+- id: ui-settings-account
+  disabled: true
+# Settings/Models surfaces remain in the normal local/admin profile only.
+- id: ui-settings-general
+  disabled: true
+# Dedicated workspace for the competition demo; the normal local profile is untouched.
+- id: workspace-controller
+  config:
+    documentsDirectory: !!js process.cwd() + '/data/review-workspaces'

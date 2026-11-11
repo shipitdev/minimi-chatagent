@@ -1,0 +1,47 @@
+# Coding-only controls are not useful with a search-only assistant.
+- id: ui-permission
+  disabled: true
+- id: ui-plan
+  disabled: true
+- id: ui-sidebar-terminal
+  disabled: true
+# Scheduling is outside this chat prototype; remove both the UI and scheduler.
+- id: ui-schedule
+  disabled: true
+- id: schedule
+  disabled: true
+# Minimi web profile overlay (applied after @deepseek-ai/dsh-web-app)
+- id: preset-standard
+  disabled: true
+- id: preset-ptc
+  disabled: true
+- id: preset-minimal
+  disabled: true
+- id: preset-cordis
+  disabled: true
+- id: tool-working-directory
+  disabled: true
+- id: ui-brand-official
+  disabled: true
+- id: agent-preset-registry
+  config:
+    default: minimi
+- insert:
+    - id: minimi-ui
+      name: 'minimi-dsh-client'
+    - id: preset-minimi
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: minimi
+        name: Minimi
+        description: A single-tool research assistant with dated memory.
+        order: 1
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: 'You are Minimi, a general-purpose research assistant. Use the single web_search tool for current facts, cite sources as clickable Markdown links, and answer dated recall from DATED MEMORY.'
+          - id: time-context
+            name: '@deepseek-ai/dsh-time-context'
+          - id: minimi
+            name: 'minimi-dsh-plugin'

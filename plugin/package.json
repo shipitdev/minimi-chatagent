@@ -1,0 +1,9 @@
+{
+  "name": "minimi-dsh-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimi host plugin for DeepSeek Harness",
+  "main": "lib/index.js",
+  "exports": { ".": "./lib/index.js" }
+}

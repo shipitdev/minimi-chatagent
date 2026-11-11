@@ -1,0 +1,39 @@
+{
+  "name": "minimi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chat assistant with dated SQLite memory, bounded parallel web search, evidence compression and citations on DeepSeek Harness",
+  "engines": {
+    "node": ">=24.9.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:no-open": "MINIMI_NO_OPEN=1 node scripts/dev.mjs",
+    "start": "MINIMI_NO_OPEN=1 node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "postinstall": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "node tests/e2e.mjs",
+    "test:headless": "node tests/headless.mjs",
+    "bench:digest": "node tests/digest-bench.ts",
+    "demo": "node scripts/review.mjs",
+    "test:public": "node tests/public.mjs",
+    "observability": "node scripts/observability-summary.mjs",
+    "eval:golden": "python3 evals/golden-v2/run.py run --split dev --adapter \"node evals/adapter.mjs\" --out evals/runs/dev.json",
+    "eval:deepeval": ".venv-eval/bin/python evals/deepeval/run_deepeval.py",
+    "langsmith:export": "node evals/langsmith-export.mjs",
+    "eval:golden:all": "for s in dev holdout live; do python3 evals/golden-v2/run.py run --split \"$s\" --adapter \"node evals/adapter.mjs\" --out \"evals/runs/$s.json\" --timeout 180 || exit 1; done",
+    "observability:export": "node evals/observability-export.mjs",
+    "langsmith:feedback": "node evals/langsmith-feedback.mjs"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh": "0.2.2-rc.1",
+    "minimi-dsh-client": "file:client",
+    "minimi-dsh-plugin": "file:plugin"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12",
+    "playwright-core": "^1.65.0"
+  }
+}
