@@ -268,7 +268,13 @@ app.use((err: unknown, _req: express.Request, res: express.Response, _next: expr
   if (!res.headersSent) res.status(500).json({ error: String(err) });
 });
 
-const server = app.listen(config.port, () => {
+export { app };
+
+// On Vercel the platform owns the listener; binding a port would fail the deploy.
+const isServerless = Boolean(process.env.VERCEL);
+export const server = isServerless
+  ? null
+  : app.listen(config.port, () => {
   const usage = emptyUsage();
   console.log(`minimi server listening on http://127.0.0.1:${config.port}`);
   console.log(`  model:  ${config.model}`);
@@ -279,11 +285,11 @@ const server = app.listen(config.port, () => {
   } else if (!config.apiKey) {
     console.warn("  WARNING: DEEPSEEK_API_KEY is not set — /api/chat will return 503.");
   }
-  void usage;
-});
+      void usage;
+    });
 
 function shutdown(): void {
-  server.close(() => {
+  server?.close(() => {
     store.close();
     process.exit(0);
   });

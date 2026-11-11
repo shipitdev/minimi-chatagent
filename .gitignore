@@ -20,3 +20,4 @@ scratch/
 # private evaluation exports
 .private-evals/
 .vercel
+.env*
