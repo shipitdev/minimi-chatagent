@@ -1,157 +1,89 @@
-# minimi
+# MiniChat
 
-A chat agent on **DeepSeek V4.1 Flash** with **exactly one tool — `web_search`** —
-that answers questions, **recovers dated conversations** from durable memory, and
-**re-checks a whole shortlist in parallel** to report what changed, with evidence
-attached to every change.
+**A chat assistant that remembers what you asked, checks current sources, and helps you revisit earlier decisions.**
 
-Answers arrive as **generative UI** ([OpenUI](https://www.openui.com/)) — citation
-ledgers, change tables, recall timelines — not just text.
+MiniChat combines dated SQLite memory with one model-callable tool, `web_search`. Independent lookups run in parallel; a deterministic evidence extractor keeps relevant passages and source links before the model answers. DeepSeek Harness owns the agent loop, sessions, and streaming.
 
-> **Start with [`Design.md`](Design.md).** It explains the architecture, the
-> Coca-Cola port (arXiv [2611.06500](https://arxiv.org/abs/2611.06500)), the
-> tradeoffs, and the measured results.
+The interesting question is a follow-up: *“On Monday we shortlisted five CRM tools. Has anything changed since?”* That requires the right historical conversation, fresh evidence about the same tools, and compatible terms before declaring a change.
 
-```bash
+[Design](DESIGN.md) · [Architecture](architecture.md) · [Decisions and experiments](decisions.md) · [Evaluation results](evals/runs/REPORT.md)
+
+## Run locally
+
+Requires **Node.js 24.9+** and a **DeepSeek API key** with access to the configured model and Search/Fetch services. Tested with Node 24.11.0, npm 11.6.1, and DeepSeek Harness 0.2.2-rc.1. No global DSH installation or separate database server is needed.
+
+```sh
+git clone https://github.com/shipitdev/minimi-chatagent.git
+cd minimi-chatagent
 npm install
-cp .env.example .env      # add DEEPSEEK_API_KEY
-npm run dev               # → http://localhost:5173
+cp .env.example .env
 ```
 
-Requires **Node ≥ 22.5** (uses the built-in `node:sqlite`, so there is nothing to
-compile).
+Set `DEEPSEEK_API_KEY` in `.env`, then start the app:
 
-## No API key? It still runs
-
-```bash
-npm run demo              # dev server on a scripted backend, no network
+```sh
+npm run dev
 ```
 
-Every label in the UI is real; only the model and search calls are scripted, and
-the server says so on boot. This is how the eval harness runs in CI.
+Open the local entry URL printed by the launcher. The default port is **8787**; use the printed authorization link if DSH requires one. `DEEPSEEK_MODEL` defaults to `deepseek-flash`. The key powers chat, Search, and Fetch and remains server-side. Live conversations consume provider usage; this is not an offline model demo.
 
-## What it does
+All configuration placeholders are in [.env.example](.env.example). LangSmith is optional. Local application state lives in ignored `.dsh/` and `data/` directories; the default memory database is `data/minimi.db`. Stop the server with Ctrl+C.
 
-| Ask | What happens |
-|---|---|
-| “What did Coca-Cola report for token reduction?” | plans queries → searches in parallel → digests → answers with `[n]` citations and a source ledger |
-| “What did we discuss yesterday?” | resolves *yesterday* **in your timezone** → returns the matching conversations as a timeline |
-| “Track the pricing of AI coding agents” | builds a shortlist with a baseline snapshot of each item's values |
-| “What changed?” | re-checks **every item in parallel**, diffs the values deterministically, and reports what changed with the citation for each row |
+## What to try
 
-## Commands
+- Ask an ordinary question or request a draft: the agent can answer without searching.
+- Research a current fact and open the citations to inspect its sources.
+- Return in a new session and ask about an earlier discussion or a supported calendar date.
+- Revisit a saved shortlist and ask whether its prices, features, or recommendations still hold.
 
-```bash
-npm run dev              # server (8787) + client (5173), hot reload
-npm run demo             # same, scripted backend, no key needed
-npm run build            # production client bundle
-npm run typecheck        # tsc --noEmit
-npm run test:ui          # renders every component through the real OpenUI runtime
-npm run eval:offline     # 12-item suite on the scripted backend
-npm run eval             # same suite against the live model
-npm run bench:digest     # token savings on realistic-length evidence
-npm run smoke            # one live Flash turn, 10 assertions, real search
-npm run eval:golden -- --split holdout --out runs/golden/holdout.json   # golden set
-npm run eval:citations   # DeepEval groundedness over the golden runs
+Historical questions need actual prior records. An empty checkout cannot reconstruct a conversation it never stored. When the subject or comparison terms are unclear, the appropriate response is clarification or an explicit evidence gap.
+
+## How a research turn works
+
+1. The host selects relevant dated memory and supplies it to DSH.
+2. The model calls `web_search` when fresh evidence is needed.
+3. Host code runs bounded parallel Search requests and selectively fetches pages.
+4. The digest extracts evidence, preserves source references, and identifies gaps.
+5. Change checks compare compatible saved and current observations; the model streams a cited answer.
+
+Default limits are **three queries per call**, **two calls per turn**, and **twelve provider attempts including retries**. The selected-evidence budget is **900 estimated tokens per batch**; report metadata is additional. These limits live in server code. See [architecture.md](architecture.md) for persistence, subject matching, citations, and comparison details.
+
+## Tests and evaluations
+
+| Command | What it runs | Provider calls |
+| --- | --- | --- |
+| `npm test` | Offline memory, date, digest, comparison, tool-boundary, gateway and client checks | None |
+| `npm run bench:digest` | Recorded-corpus compression-size experiment | None |
+| `npm run test:e2e` | DSH browser conversations, citations, change view and restart recall | Live model; live and fixture retrieval |
+| `npm run eval:golden` | Dev split through the standalone evaluation adapter | Live model; fixture retrieval |
+| `npm run eval:golden:all` | Dev, holdout and live golden splits | Live model; live retrieval on live split |
+| `npm run observability` | Local turn-metric summary | None |
+
+Browser tests require Google Chrome. Golden evaluation requires Python 3.10+; LangSmith and DeepEval setup is documented in [evals/README.md](evals/README.md). The optional eval SDK has its own dependencies:
+
+```sh
+npm ci --prefix evals
 ```
 
-## How it is put together
+Saved evidence includes **25/25 offline checks**, a historical **8/8 browser suite**, and **62/64 applicable structural golden passes**. A separate 16-case semantic sample passed **10/16 workflow checks**. The golden adapter reuses product modules but runs a different model loop and routing policy; its structural score is not full website-answer accuracy. Read the [results](evals/runs/REPORT.md) and [experimental limits](decisions.md) before comparing scores.
 
-```
-src/server/
-  index.ts      HTTP + SSE (staged progress for slow turns and re-checks)
-  agent.ts      the four-way pipeline, relevance gate, trace
-  digest.ts     ★ action-preserving digest: clauses, salience, facts, diffs
-  shortlist.ts  parallel re-check, durable/resumable runs, baseline parity
-  memory.ts     durable timezone-aware store (node:sqlite)
-  time.ts       zone-correct day windows, "yesterday" resolution
-  openui.ts     OpenUI prompt generation, deterministic composers, validation
-src/library/    the seven components, shared by server and client
-src/client/     React shell + OpenUI renderers
-evals/          test set, metrics, runner, digest benchmark
-```
+On three recorded inputs, full tool-response size estimates fell **30.0%, 60.2%, and 68.9%**. These are character-based size estimates, not measured billing or answer-quality gains.
 
-## Results (scripted backend, 12 items)
+## Project layout
 
-| Metric | Value |
-|---|---|
-| Pass rate | 100% (12/12) |
-| Recall accuracy (conversation-set exact match) | 100% |
-| Citation validity | 100% |
-| Change detection recall / precision | 100% / 100%, 0 spurious |
-| Token savings, realistic evidence | **61–87%** |
-
-Answer *quality* is not measured by the scripted backend — see
-[`Design.md` §5](Design.md).
-
-## Golden eval
-
-`evals/golden/` is an external 32-case golden set (10 dev / 16 holdout / 6 live)
-driven through the product's real entry point by [`evals/adapter.ts`](evals/adapter.ts):
-it imports history with original ids and timestamps, replays `search_fixtures`
-through the search seam, freezes the clock, honours `restart_before_prompt`, and
-reports routes, selected turn ids, queries, citations and telemetry.
-
-Latest results: [`docs/eval-results.md`](docs/eval-results.md).
-
-| Split | Answered | Route | Required history | Search when needed | Expected sources |
-|---|---|---|---|---|---|
-| dev | 10/10 | 100% | 100% | 100% | 100% |
-| holdout | 16/16 | 100% | 100% | 100% | 100% |
-| live | 6/6 | 100% | – | 100% | 83% |
-
-DeepEval groundedness (DeepSeek judge): faithfulness 0.925 / 0.924 / 0.931.
-
-## Observability (LangSmith)
-
-Tracing is only useful if it is reviewable, so names and metric keys are fixed in
-[`src/server/tracing.ts`](src/server/tracing.ts) and checked by an audit.
-
-| Run name | Type | Emits |
-|---|---|---|
-| `minimi.turn` | chain | all 13 turn metrics below |
-| `minimi.llm.chat` | llm | `input_tokens`, `output_tokens`, `total_tokens`, `cache_hit_tokens`, `cost_usd`, `latency_ms`, `usage_metadata` |
-| `minimi.tool.web_search` | tool | `results`, `cost_usd`, `latency_ms`, `urls` |
-| `minimi.tool.fetch_page` | tool | `results`, `cost_usd`, `latency_ms`, `chars` |
-
-Turn metrics: `route, model_calls, search_calls, input_tokens, output_tokens,
-total_tokens, cache_hit_tokens, cost_usd, latency_ms, citations,
-selected_turn_ids, search_queries, ui_validation`.
-
-```bash
-npm run smoke           # produces a traced turn
-npm run trace:audit     # reads the turns back from LangSmith and fails on any gap
-npm run ls:experiment -- --split holdout   # dataset + experiment with per-case scores
+```text
+plugin/src/   DSH hooks, memory, search, evidence, comparisons, telemetry
+client/       DSH branding and theme
+profile/      Local, headless and optional review profiles
+scripts/      Build, startup, telemetry summary, optional demo gateway
+tests/        Offline checks and browser diagnostics
+evals/        Golden cases, adapter, DeepEval, trace exporters, saved runs
 ```
 
-`trace:audit` re-reads traces from LangSmith (not local state) and fails if a metric
-is missing, a span name is unknown, or the turn's aggregate disagrees with the spans
-beneath it — that last check is what catches an under-reported model call. Traces
-declare `observability_contract`; the audit ignores pre-contract history instead of
-reporting it as a defect.
+## Scope and known limits
 
-`ls:experiment` uploads each split as a dataset and logs an experiment whose
-per-case feedback is `route_match`, `history_recall`, `search_when_needed`,
-`source_coverage` — visible in LangSmith's Datasets & Experiments view.
+This is a **single-user prototype**. Sessions in one profile share recall and subject snapshots. Keyword retrieval, incomplete weekday parsing, subject normalization, qualifier retention, and currency rendering have documented gaps. See the [challenge walkthrough review](docs/challenge-chat-review.md).
 
-## Test set
+`npm run demo` is a separately provisioned laptop/Cloudflare deployment helper; it needs local tunnel credentials, TLS files, and a connector binary that are intentionally absent from the repository. The shared-profile public gateway is not a multi-tenant authorization boundary. Use normal local startup for review.
 
-`evals/testset.jsonl` is JSONL, one item per line, and the runner accepts your own:
-`npm run eval -- --testset mine.jsonl`. Categories: `answer`, `recall`, `change`,
-`honest`, `chat`. Grading is deterministic wherever possible (conversation ids,
-planted value changes, citation resolution) and never asks a model to grade itself.
-
-## Notes
-
-- **Single tool by design.** `web_search` only — and the model is never handed a
-  tool schema. It writes a plan; the harness executes the one tool. ReWOO's failure
-  analysis found 17 of 20 tool-count failures were tool misuse, so a narrow action
-  surface is deliberate.
-- **Timezone-aware.** Instants are UTC ms; the IANA zone is stored beside them, so
-  “yesterday” is per-user and DST-correct.
-- **`node:sqlite` is experimental** in Node 22 and prints a warning at boot. The
-  tradeoff is deliberate: zero native compilation.
-- **`.npmrc` points the npm cache at the project.** The machine this was built on
-  has root-owned files in `~/.npm`, which makes any global-cache write fail with
-  `EPERM`. A project-local cache keeps `npm install` working without a
-  `sudo chown`. Delete `.npmrc` if your global cache is healthy.
+Upstream attribution is preserved in [NOTICE.md](NOTICE.md) and the [DSH license](docs/DSH-LICENSE). Publication checks and their limits are recorded in [CHANGELOG.md](CHANGELOG.md).
