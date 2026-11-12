@@ -158,6 +158,21 @@ export class MemoryStore {
     try { this.db.close() } catch { /* already closed */ }
   }
 
+  /** Erase all Minimi state attached to one DSH session. */
+  deleteSession(sessionId: string): void {
+    this.db.exec('BEGIN')
+    try {
+      this.db.prepare('DELETE FROM turns WHERE session_id = ?').run(sessionId)
+      this.db.prepare('DELETE FROM facts WHERE session_id = ?').run(sessionId)
+      this.db.prepare('DELETE FROM searches WHERE session_id = ?').run(sessionId)
+      this.db.prepare('DELETE FROM snapshots WHERE session_id = ?').run(sessionId)
+      this.db.exec('COMMIT')
+    } catch (error) {
+      try { this.db.exec('ROLLBACK') } catch { /* preserve original error */ }
+      throw error
+    }
+  }
+
   beginTurn(sessionId: string, turn: number, tz: string, startedAt = Date.now()): void {
     this.db.prepare(`
       INSERT INTO turns (session_id, turn, tz, started_at)

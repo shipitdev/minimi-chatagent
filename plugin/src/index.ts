@@ -79,6 +79,85 @@ export function apply(ctx: any): void {
   const store = new MemoryStore()
   const obs = new Observability()
   const budgets = new Map<string, Budget>()
+  const deleteChatPath = '/__minimi/chat/delete'
+
+  function removeSessionFiles(sessionId: string): number {
+    let removed = 0
+    const home = process.env.MINIMI_DSH_HOME ? path.resolve(process.env.MINIMI_DSH_HOME) : path.resolve('.dsh')
+    const walk = (dir: string, depth: number): void => {
+      if (depth > 5) return
+      let entries: fs.Dirent[] = []
+      try { entries = fs.readdirSync(dir, { withFileTypes: true }) } catch { return }
+      for (const entry of entries) {
+        const full = path.join(dir, entry.name)
+        if (entry.name === sessionId || entry.name.startsWith(`${sessionId}.`)) {
+          try { fs.rmSync(full, { recursive: true, force: true }); removed++ } catch { /* best effort */ }
+        } else if (entry.isDirectory()) {
+          walk(full, depth + 1)
+        }
+      }
+    }
+    walk(path.join(home, 'sessions'), 0)
+    walk(path.join(home, 'storages'), 0)
+    return removed
+  }
+
+  function removeObservability(sessionId: string): void {
+    const file = process.env.MINIMI_OBSERVABILITY_FILE
+      ? path.resolve(process.env.MINIMI_OBSERVABILITY_FILE)
+      : path.resolve('data/observability/turns.jsonl')
+    try {
+      if (fs.existsSync(file)) {
+        const kept = fs.readFileSync(file, 'utf8').split(/\r?\n/).filter(Boolean).filter((line) => {
+          try { return JSON.parse(line).session_id !== sessionId } catch { return true }
+        })
+        fs.writeFileSync(file, kept.length ? `${kept.join('\n')}\n` : '')
+      }
+      const turns = path.join(path.dirname(file), 'turns')
+      for (const name of fs.readdirSync(turns)) {
+        if (name === sessionId || name.startsWith(`${sessionId}-`)) {
+          try { fs.rmSync(path.join(turns, name), { force: true }) } catch { /* best effort */ }
+        }
+      }
+    } catch { /* observability must not prevent deletion */ }
+  }
+
+  function deleteChat(sessionId: string): { removedFiles: number } {
+    const removedFiles = removeSessionFiles(sessionId)
+    store.deleteSession(sessionId)
+    removeObservability(sessionId)
+    return { removedFiles }
+  }
+
+  ctx.inject(['webServer', 'connection'], (scope: any) => {
+    scope.effect(() => scope.webServer.register({
+      kind: 'exact',
+      path: deleteChatPath,
+      handler: async (req: any, res: any) => {
+        const rejection = scope.connection.requestRejection(req)
+        if (rejection !== undefined) { res.writeHead(rejection); res.end(); return }
+        if (req.method !== 'POST') { res.writeHead(405, { allow: 'POST' }); res.end(); return }
+        try {
+          let raw = ''
+          for await (const chunk of req) {
+            raw += chunk
+            if (raw.length > 4096) { res.writeHead(413); res.end(); return }
+          }
+          const body = JSON.parse(raw || '{}')
+          const sessionId = typeof body.sessionId === 'string' ? body.sessionId : ''
+          if (!/^session-[A-Za-z0-9-]+$/.test(sessionId)) { res.writeHead(400); res.end('invalid session'); return }
+          const result = deleteChat(sessionId)
+          res.writeHead(200, { 'content-type': 'application/json', 'cache-control': 'no-store' })
+          res.end(JSON.stringify({ ok: true, ...result }))
+        } catch (error) {
+          debugLog('delete chat failed', String(error))
+          res.writeHead(500, { 'content-type': 'application/json' })
+          res.end(JSON.stringify({ ok: false, error: 'delete failed' }))
+        }
+      },
+    }), 'minimi: POST /__minimi/chat/delete')
+  })
+
   const tzBySession = new Map<string, string>()
   const latestUserBySession = new Map<string, string>()
   let latestSessionId: string | null = null
@@ -255,8 +334,20 @@ export function apply(ctx: any): void {
         const userText = latestUserBySession.get(sessionId) ?? ''
         if (!userText.trim()) return ''
         const tz = tzFor(sessionId)
-        const recall = store.recall({ userText, tz, now: Date.now(), excludeSessionId: sessionId, excludeTurn: agent ? ctx.agents.turnBoundaryOf(agent.session).lastTurn : budgets.get(sessionId)?.turn })
+        const turn = agent ? ctx.agents.turnBoundaryOf(agent.session).lastTurn : budgets.get(sessionId)?.turn ?? 0
+        const started = Date.now()
+        const recall = store.recall({ userText, tz, now: Date.now(), excludeSessionId: sessionId, excludeTurn: turn })
         const rendered = renderMemoryContext(recall, tz)
+        obs.recall(sessionId, turn, {
+          query: userText,
+          tz,
+          durationMs: Date.now() - started,
+          window: recall.window,
+          turns: recall.turns.map((t) => ({ sessionId: t.sessionId, turn: t.turn, startedAt: t.startedAt, userText: t.userText })),
+          facts: recall.facts.map((f) => ({ entity: f.entity, attribute: f.attribute, value: f.value, citationId: f.citationId })),
+          snapshots: recall.snapshots.map((s) => ({ subject: s.subject, updatedAt: s.updatedAt })),
+          renderedChars: rendered.length,
+        })
         if (config.debug) {
           writeDebug('last-memory-context.txt', `session=${sessionId}\nturn_user=${userText}\n\n${rendered}`)
         }

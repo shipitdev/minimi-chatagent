@@ -48,6 +48,8 @@ The corrected key now works. Current panel objects:
 
 - Golden project: https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/0c475f47-77ba-434d-8843-32608252c0bb
 - Live project: https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/dffb19cb-00a6-4a55-ac1f-b1e02ab560a2
+- Azure live project (current, metrics-enabled): https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/ba2e4a76-fcbd-4083-983d-c75f04f08167
+- Older Azure live project retained as history: https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/cd08d93e-9b9e-4f2e-b0c5-a8305db8c4ac
 - Golden dataset (64 examples): https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/datasets/c4b4362d-35cd-430e-a8ae-39e586f5e11e
 
 Commands:
@@ -99,6 +101,8 @@ are semantic and intentionally strict about unsupported dates/details; low
 scores are not automatically wrong answers.
 
 ## Live app observability
+
+Live trace trees include `retriever.memory.recall` beside `llm.step.*` and `tool.web_search`. The recall span carries the query, timezone, the three SQLite statements used, resolved date window, selected turn/fact/snapshot records, result counts, and rendered context size.
 
 `plugin/src/observability.ts` writes one JSONL row and one JSON turn file per live
 turn under `data/observability/`: duration, first committed answer text,

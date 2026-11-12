@@ -192,6 +192,23 @@ var MemoryStore = class {
     } catch {
     }
   }
+  /** Erase all Minimi state attached to one DSH session. */
+  deleteSession(sessionId) {
+    this.db.exec("BEGIN");
+    try {
+      this.db.prepare("DELETE FROM turns WHERE session_id = ?").run(sessionId);
+      this.db.prepare("DELETE FROM facts WHERE session_id = ?").run(sessionId);
+      this.db.prepare("DELETE FROM searches WHERE session_id = ?").run(sessionId);
+      this.db.prepare("DELETE FROM snapshots WHERE session_id = ?").run(sessionId);
+      this.db.exec("COMMIT");
+    } catch (error) {
+      try {
+        this.db.exec("ROLLBACK");
+      } catch {
+      }
+      throw error;
+    }
+  }
   beginTurn(sessionId, turn, tz, startedAt = Date.now()) {
     this.db.prepare(`
       INSERT INTO turns (session_id, turn, tz, started_at)
@@ -1663,6 +1680,50 @@ var Observability = class {
       span.outputs = { text: text.slice(0, 500), usage: usage ?? null, interrupted };
     }
   }
+  recall(sessionId, turn, input) {
+    const state = this.turns.get(this.key(sessionId, turn));
+    if (!state) return;
+    const started = new Date(Date.now() - input.durationMs).toISOString();
+    state.spans.push({
+      name: "retriever.memory.recall",
+      start: started,
+      end: (/* @__PURE__ */ new Date()).toISOString(),
+      duration_ms: input.durationMs,
+      inputs: {
+        query: input.query,
+        tz: input.tz,
+        exclude_session_id: sessionId,
+        exclude_turn: turn,
+        sql: [
+          "SELECT * FROM turns ORDER BY started_at DESC LIMIT 400",
+          "SELECT * FROM facts ORDER BY created_at DESC LIMIT 600",
+          "SELECT * FROM snapshots ORDER BY updated_at DESC LIMIT 100"
+        ]
+      },
+      outputs: {
+        window: input.window,
+        turns: input.turns.map((t) => ({
+          session_id: t.sessionId,
+          turn: t.turn,
+          started_at: new Date(t.startedAt).toISOString(),
+          user_text: t.userText.slice(0, 300)
+        })),
+        facts: input.facts.map((f) => ({
+          entity: f.entity,
+          attribute: f.attribute,
+          value: f.value,
+          citation_id: f.citationId
+        })),
+        snapshots: input.snapshots.map((s) => ({
+          subject: s.subject,
+          updated_at: new Date(s.updatedAt).toISOString()
+        })),
+        counts: { turns: input.turns.length, facts: input.facts.length, snapshots: input.snapshots.length },
+        rendered_chars: input.renderedChars,
+        rendered_tokens_est: Math.ceil(input.renderedChars / 4)
+      }
+    });
+  }
   tool(sessionId, turn, input) {
     const state = this.turns.get(this.key(sessionId, turn));
     if (!state) return;
@@ -1772,6 +1833,111 @@ function apply(ctx) {
   const store = new MemoryStore();
   const obs = new Observability();
   const budgets = /* @__PURE__ */ new Map();
+  const deleteChatPath = "/__minimi/chat/delete";
+  function removeSessionFiles(sessionId) {
+    let removed = 0;
+    const home = process.env.MINIMI_DSH_HOME ? path4.resolve(process.env.MINIMI_DSH_HOME) : path4.resolve(".dsh");
+    const walk = (dir, depth) => {
+      if (depth > 5) return;
+      let entries = [];
+      try {
+        entries = fs3.readdirSync(dir, { withFileTypes: true });
+      } catch {
+        return;
+      }
+      for (const entry of entries) {
+        const full = path4.join(dir, entry.name);
+        if (entry.name === sessionId || entry.name.startsWith(`${sessionId}.`)) {
+          try {
+            fs3.rmSync(full, { recursive: true, force: true });
+            removed++;
+          } catch {
+          }
+        } else if (entry.isDirectory()) {
+          walk(full, depth + 1);
+        }
+      }
+    };
+    walk(path4.join(home, "sessions"), 0);
+    walk(path4.join(home, "storages"), 0);
+    return removed;
+  }
+  function removeObservability(sessionId) {
+    const file = process.env.MINIMI_OBSERVABILITY_FILE ? path4.resolve(process.env.MINIMI_OBSERVABILITY_FILE) : path4.resolve("data/observability/turns.jsonl");
+    try {
+      if (fs3.existsSync(file)) {
+        const kept = fs3.readFileSync(file, "utf8").split(/\r?\n/).filter(Boolean).filter((line) => {
+          try {
+            return JSON.parse(line).session_id !== sessionId;
+          } catch {
+            return true;
+          }
+        });
+        fs3.writeFileSync(file, kept.length ? `${kept.join("\n")}
+` : "");
+      }
+      const turns = path4.join(path4.dirname(file), "turns");
+      for (const name2 of fs3.readdirSync(turns)) {
+        if (name2 === sessionId || name2.startsWith(`${sessionId}-`)) {
+          try {
+            fs3.rmSync(path4.join(turns, name2), { force: true });
+          } catch {
+          }
+        }
+      }
+    } catch {
+    }
+  }
+  function deleteChat(sessionId) {
+    const removedFiles = removeSessionFiles(sessionId);
+    store.deleteSession(sessionId);
+    removeObservability(sessionId);
+    return { removedFiles };
+  }
+  ctx.inject(["webServer", "connection"], (scope) => {
+    scope.effect(() => scope.webServer.register({
+      kind: "exact",
+      path: deleteChatPath,
+      handler: async (req, res) => {
+        const rejection = scope.connection.requestRejection(req);
+        if (rejection !== void 0) {
+          res.writeHead(rejection);
+          res.end();
+          return;
+        }
+        if (req.method !== "POST") {
+          res.writeHead(405, { allow: "POST" });
+          res.end();
+          return;
+        }
+        try {
+          let raw = "";
+          for await (const chunk of req) {
+            raw += chunk;
+            if (raw.length > 4096) {
+              res.writeHead(413);
+              res.end();
+              return;
+            }
+          }
+          const body = JSON.parse(raw || "{}");
+          const sessionId = typeof body.sessionId === "string" ? body.sessionId : "";
+          if (!/^session-[A-Za-z0-9-]+$/.test(sessionId)) {
+            res.writeHead(400);
+            res.end("invalid session");
+            return;
+          }
+          const result = deleteChat(sessionId);
+          res.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
+          res.end(JSON.stringify({ ok: true, ...result }));
+        } catch (error) {
+          debugLog("delete chat failed", String(error));
+          res.writeHead(500, { "content-type": "application/json" });
+          res.end(JSON.stringify({ ok: false, error: "delete failed" }));
+        }
+      }
+    }), "minimi: POST /__minimi/chat/delete");
+  });
   const tzBySession = /* @__PURE__ */ new Map();
   const latestUserBySession = /* @__PURE__ */ new Map();
   let latestSessionId = null;
@@ -1947,8 +2113,20 @@ BUDGET: call ${budget.calls}/${config.maxCallsPerTurn}, queries ${budget.queries
         const userText = latestUserBySession.get(sessionId) ?? "";
         if (!userText.trim()) return "";
         const tz = tzFor(sessionId);
-        const recall = store.recall({ userText, tz, now: Date.now(), excludeSessionId: sessionId, excludeTurn: agent ? ctx.agents.turnBoundaryOf(agent.session).lastTurn : budgets.get(sessionId)?.turn });
+        const turn = agent ? ctx.agents.turnBoundaryOf(agent.session).lastTurn : budgets.get(sessionId)?.turn ?? 0;
+        const started = Date.now();
+        const recall = store.recall({ userText, tz, now: Date.now(), excludeSessionId: sessionId, excludeTurn: turn });
         const rendered = renderMemoryContext(recall, tz);
+        obs.recall(sessionId, turn, {
+          query: userText,
+          tz,
+          durationMs: Date.now() - started,
+          window: recall.window,
+          turns: recall.turns.map((t) => ({ sessionId: t.sessionId, turn: t.turn, startedAt: t.startedAt, userText: t.userText })),
+          facts: recall.facts.map((f) => ({ entity: f.entity, attribute: f.attribute, value: f.value, citationId: f.citationId })),
+          snapshots: recall.snapshots.map((s) => ({ subject: s.subject, updatedAt: s.updatedAt })),
+          renderedChars: rendered.length
+        });
         if (config.debug) {
           writeDebug("last-memory-context.txt", `session=${sessionId}
 turn_user=${userText}

@@ -138,6 +138,60 @@ export class Observability {
     }
   }
 
+  recall(sessionId: string, turn: number, input: {
+    query: string
+    tz: string
+    durationMs: number
+    window: { from: number; to: number; label: string } | null
+    turns: Array<{ sessionId: string; turn: number; startedAt: number; userText: string }>
+    facts: Array<{ entity: string; attribute: string; value: string; citationId: string }>
+    snapshots: Array<{ subject: string; updatedAt: number }>
+    renderedChars: number
+  }): void {
+    const state = this.turns.get(this.key(sessionId, turn))
+    if (!state) return
+    const started = new Date(Date.now() - input.durationMs).toISOString()
+    state.spans.push({
+      name: 'retriever.memory.recall',
+      start: started,
+      end: new Date().toISOString(),
+      duration_ms: input.durationMs,
+      inputs: {
+        query: input.query,
+        tz: input.tz,
+        exclude_session_id: sessionId,
+        exclude_turn: turn,
+        sql: [
+          'SELECT * FROM turns ORDER BY started_at DESC LIMIT 400',
+          'SELECT * FROM facts ORDER BY created_at DESC LIMIT 600',
+          'SELECT * FROM snapshots ORDER BY updated_at DESC LIMIT 100',
+        ],
+      },
+      outputs: {
+        window: input.window,
+        turns: input.turns.map((t) => ({
+          session_id: t.sessionId,
+          turn: t.turn,
+          started_at: new Date(t.startedAt).toISOString(),
+          user_text: t.userText.slice(0, 300),
+        })),
+        facts: input.facts.map((f) => ({
+          entity: f.entity,
+          attribute: f.attribute,
+          value: f.value,
+          citation_id: f.citationId,
+        })),
+        snapshots: input.snapshots.map((s) => ({
+          subject: s.subject,
+          updated_at: new Date(s.updatedAt).toISOString(),
+        })),
+        counts: { turns: input.turns.length, facts: input.facts.length, snapshots: input.snapshots.length },
+        rendered_chars: input.renderedChars,
+        rendered_tokens_est: Math.ceil(input.renderedChars / 4),
+      },
+    })
+  }
+
   tool(sessionId: string, turn: number, input: { queries: string[]; attempts: number; citations: number; durationMs: number; error?: string }): void {
     const state = this.turns.get(this.key(sessionId, turn))
     if (!state) return

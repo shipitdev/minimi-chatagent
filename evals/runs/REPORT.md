@@ -18,12 +18,16 @@ Remaining structural misses are partial credit only: h01 source 0.8 and h23-chat
 Live integration is active with the corrected key:
 
 - golden project: 64 trace roots (plus children) at https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/0c475f47-77ba-434d-8843-32608252c0bb
-- live project: public turns uploaded by the supervised watcher at https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/dffb19cb-00a6-4a55-ac1f-b1e02ab560a2
+- local live project: public turns uploaded by the supervised Mac watcher at https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/dffb19cb-00a6-4a55-ac1f-b1e02ab560a2
+- Azure live project: `minimi-live-azure-v2`, exported by `minichat-traces.service` at https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/ba2e4a76-fcbd-4083-983d-c75f04f08167
+- Older Azure live project: retained at https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/projects/p/cd08d93e-9b9e-4f2e-b0c5-a8305db8c4ac
 - golden dataset: 64 reference examples at https://smith.langchain.com/o/b0755f15-5c97-4053-8e80-456075377917/datasets/c4b4362d-35cd-430e-a8ae-39e586f5e11e
 - Feedback: 232 scores attached to golden roots (38 DeepEval + 66 structural + 128 telemetry) (`deepeval.component.contextual_recall`, `deepeval.pipeline.*`, `deepeval.workflow.compliance`, `golden.*`, `telemetry.*`)
 - local traces remain under `evals/runs/traces/` as a fallback
 
 ## Live app observability
+
+Live trace trees include `retriever.memory.recall` with the query, SQLite statements, resolved window, selected turns/facts/snapshots, and rendered-context size, alongside `llm.step.*` and `tool.web_search`.
 
 `plugin/src/observability.ts` writes one JSONL row and one JSON turn file per live turn under `data/observability/`, including duration, first committed answer text, model/tool calls, token split, cost, citations, and spans. `npm run observability` aggregates them. Latest observed aggregate (28 public turns): p50 3,385 ms / p95 14,138 ms, first committed text p50 2,655 ms (27 turns), 223,017 input / 19,008 output tokens, 149,504 cache-hit / 73,513 cache-miss tokens, estimated $0.0251, 20 tool calls, 208 citations, 1 interrupted turn.
 

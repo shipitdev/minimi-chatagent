@@ -2,9 +2,10 @@
 /**
  * Upload live Minimi turn metrics/spans to LangSmith.
  *
- * Reads data/observability/turns.jsonl, creates the `minimi-live` project when
- * needed, and writes one trace tree per turn. `--watch` polls for new turns so a
- * public demo can stream live observability into the LangSmith panel.
+ * Reads data/observability/turns.jsonl, creates the live project when needed,
+ * and writes one trace tree per turn. LLM children carry standard
+ * `usage_metadata` (including cache details and cost) so LangSmith can show
+ * input/output tokens and cost instead of only a chain-level text row.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -16,7 +17,13 @@ const PROJECT = process.env.LANGSMITH_LIVE_PROJECT || 'minimi-live'
 const ENDPOINT = process.env.LANGSMITH_ENDPOINT || 'https://api.smith.langchain.com'
 const KEY = process.env.LANGSMITH_API_KEY || ''
 const FILE = process.env.MINIMI_OBSERVABILITY_FILE || path.resolve(ROOT, '..', 'data/observability/turns.jsonl')
-const STATE = path.resolve(ROOT, '.observability-exported.json')
+const STATE = path.resolve(ROOT, `.observability-exported-${PROJECT.replace(/[^a-zA-Z0-9_.-]/g, '_')}.json`)
+const MODEL = process.env.DEEPEVAL_MODEL || process.env.DEEPSEEK_MODEL || 'deepseek-flash'
+const PRICE = {
+  inputMiss: Number(process.env.MINIMI_PRICE_INPUT_MISS || 0.14) / 1e6,
+  inputHit: Number(process.env.MINIMI_PRICE_INPUT_HIT || 0.028) / 1e6,
+  output: Number(process.env.MINIMI_PRICE_OUTPUT || 0.56) / 1e6,
+}
 
 if (!KEY) {
   console.error('[trace] LANGSMITH_API_KEY is not set; live export disabled')
@@ -53,11 +60,27 @@ function readState() {
 function writeState(set) {
   fs.writeFileSync(STATE, JSON.stringify({ exported: [...set] }, null, 2) + '\n')
 }
-
 function runTypeFor(name) {
   if (name.startsWith('llm.')) return 'llm'
+  if (name.startsWith('retriever.')) return 'retriever'
   if (name.startsWith('tool.')) return 'tool'
   return 'chain'
+}
+
+/** Normalize DSH's split usage into LangSmith's UsageMetadata shape. */
+function usageMetadata(uncachedInput, output, cacheRead = 0, cacheWrite = 0, fixedCost) {
+  const inputTokens = uncachedInput + cacheRead + cacheWrite
+  const inputCost = fixedCost ?? (uncachedInput + cacheWrite) * PRICE.inputMiss + cacheRead * PRICE.inputHit
+  const outputCost = output * PRICE.output
+  return {
+    input_tokens: inputTokens,
+    output_tokens: output,
+    total_tokens: inputTokens + output,
+    input_token_details: { cache_read: cacheRead, cache_creation: cacheWrite },
+    input_cost: Number(inputCost.toFixed(9)),
+    output_cost: Number(outputCost.toFixed(9)),
+    total_cost: Number((inputCost + outputCost).toFixed(9)),
+  }
 }
 
 async function upload(row) {
@@ -71,6 +94,7 @@ async function upload(row) {
       route: row.route,
     },
     metadata: {
+      trace_id: row.trace_id,
       session_id: row.session_id,
       turn: row.turn,
       route: row.route,
@@ -89,16 +113,41 @@ async function upload(row) {
   })
   await root.postRun()
   for (const span of row.spans ?? []) {
+    const llm = span.name.startsWith('llm.')
+    const raw = span.outputs?.usage ?? {}
+    const childUsage = llm
+      ? usageMetadata(
+        Number(raw.inputTokens ?? 0),
+        Number(raw.outputTokens ?? 0),
+        Number(raw.cacheReadTokens ?? 0),
+        Number(raw.cacheWriteTokens ?? 0),
+      )
+      : undefined
+    const childOutputs = { ...(span.outputs ?? {}) }
+    if (childUsage) {
+      childOutputs.usage_metadata = childUsage
+      childOutputs.prompt_tokens = childUsage.input_tokens
+      childOutputs.completion_tokens = childUsage.output_tokens
+      childOutputs.total_tokens = childUsage.total_tokens
+    }
     const child = root.createChild({
       name: span.name,
       run_type: runTypeFor(span.name),
       inputs: span.inputs ?? {},
-      metadata: { duration_ms: span.duration_ms },
+      metadata: {
+        duration_ms: span.duration_ms,
+        ...(llm ? {
+          ls_provider: 'deepseek',
+          ls_model_name: MODEL,
+          ls_model_type: 'chat',
+          usage_metadata: childUsage,
+        } : {}),
+      },
       start_time: span.start,
     })
     await child.postRun()
     await child.end(
-      span.outputs ?? {},
+      childOutputs,
       span.error || undefined,
       span.end ?? undefined,
     )
@@ -114,13 +163,6 @@ async function upload(row) {
     search_attempts: row.search_attempts,
     citations: row.citations,
     interrupted: row.interrupted,
-    usage_metadata: {
-      input_tokens: row.input_tokens,
-      output_tokens: row.output_tokens,
-      cache_read_tokens: row.cache_hit_tokens,
-      cache_write_tokens: 0,
-      input_token_details: { cache_read: row.cache_hit_tokens, cache_creation: 0 },
-    },
     estimated_cost_usd: row.cost_usd,
   }
   await root.end(outputs, row.error || undefined, row.ended_at)

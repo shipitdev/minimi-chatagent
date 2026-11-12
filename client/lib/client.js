@@ -34,6 +34,58 @@ window.__ModuleLoader__.load({
       )
     }
 
+    // Flip this to false after submission to hide the hosted-demo delete control.
+    const DELETE_CHAT_BUTTON = true
+    const DELETE_CHAT_PATH = "/__minimi/chat/delete"
+
+    function DeleteChatButton(props) {
+      const sessionId = props.sessionId
+      const [busy, setBusy] = React.useState(false)
+      if (!DELETE_CHAT_BUTTON || !sessionId) return null
+      const remove = async () => {
+        if (!window.confirm("Delete this chat? This cannot be undone.")) return
+        setBusy(true)
+        try {
+          try { await props.archive(sessionId) } catch { /* the chat can still be deleted from disk */ }
+          const response = await fetch(DELETE_CHAT_PATH, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ sessionId }),
+          })
+          if (!response.ok) throw new Error(`Delete failed (${response.status})`)
+          window.location.href = `/?fresh=${Date.now()}`
+        } catch (error) {
+          setBusy(false)
+          window.alert(error instanceof Error ? error.message : "Delete failed")
+        }
+      }
+      return React.createElement(
+        "button",
+        {
+          type: "button",
+          onClick: remove,
+          disabled: busy,
+          title: "Delete this chat",
+          "aria-label": "Delete chat",
+          style: {
+            marginLeft: "4px",
+            padding: "2px 8px",
+            border: "1px solid var(--dsw-alias-border-l2, currentColor)",
+            borderRadius: "6px",
+            background: "transparent",
+            color: "var(--dsw-alias-state-error-primary, #d9534f)",
+            font: "inherit",
+            fontSize: "12px",
+            lineHeight: "18px",
+            cursor: busy ? "default" : "pointer",
+            opacity: busy ? 0.5 : 1,
+            whiteSpace: "nowrap",
+          },
+        },
+        busy ? "Deleting…" : "Delete chat",
+      )
+    }
+
     function Name() {
       return React.createElement(
         "span",
@@ -106,6 +158,22 @@ window.__ModuleLoader__.load({
       ctx.slots.inject("conversation.hero.brand.mark", () =>
         ctx.slots.register({ name: "conversation.hero.brand.mark" }, Mark),
       )
+
+      if (typeof ctx.inject === "function") ctx.inject(["uiWorkspace"], (workspaceCtx) => {
+        workspaceCtx.slots.inject("conversation.session.header.utilities", () =>
+          workspaceCtx.slots.register(
+            {
+              name: "conversation.session.header.utilities",
+              id: "minimi-delete-chat",
+              order: 100,
+              inject: () => ({
+                archive: (sessionId) => workspaceCtx.uiWorkspace.archiveSession(sessionId, { stopActivity: true }),
+              }),
+            },
+            DeleteChatButton,
+          ),
+        )
+      })
     }
 
     exports.apply = apply
