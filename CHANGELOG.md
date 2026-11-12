@@ -1,5 +1,14 @@
 # Changes
 
+## 2026-11-12 — Ubuntu VM deployment
+
+- Added a Linux DSH/gateway supervisor and systemd units for backend, Cloudflare Tunnel and live trace export, with dedicated service identity, restart policies and scoped runtime binaries.
+- Added daily/10 MB operational-log rotation with seven retained rotations and deployment/rollback instructions.
+- Migrated the competition origin from the Mac to an Ubuntu 24.04 VM; hostname unchanged, listeners remain loopback-only.
+- Started with clean chat state; retained old Mac state and VM acceptance data as private backups rather than deleting evidence.
+- Verified Linux dependency installation, 25/25 offline tests, service-crash recovery, public live chat/search/citations and recall after restart. Final cleaned database: zero turns; fresh public chat opens.
+- All three services are boot-enabled. No full VM reboot was performed because unrelated workloads are present. Origin certificate expires February 9, 2027; automated renewal is not configured.
+
 ## 2026-11-12 — Reviewable commit history and README
 
 - Split the prototype publication into runtime, regression tests, evaluation infrastructure/results, and documentation commits on top of the existing bootstrap commit.

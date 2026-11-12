@@ -1,0 +1,10 @@
+/opt/minichat/app/data/service.log /opt/minichat/app/data/tunnel.log /opt/minichat/app/data/traces.log {
+    daily
+    maxsize 10M
+    rotate 7
+    compress
+    missingok
+    notifempty
+    copytruncate
+    su minichat minichat
+}

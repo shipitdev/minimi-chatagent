@@ -1,0 +1,25 @@
+[Unit]
+Description=MiniChat live trace exporter
+Wants=network-online.target
+After=network-online.target minichat.service
+
+[Service]
+User=minichat
+Group=minichat
+WorkingDirectory=/opt/minichat/app
+EnvironmentFile=/opt/minichat/app/.env
+Environment=PATH=/opt/minichat/runtime/node-v24.11.0-linux-x64/bin:/usr/bin:/bin
+ExecStart=/opt/minichat/runtime/node-v24.11.0-linux-x64/bin/node evals/observability-export.mjs --watch
+Restart=always
+RestartSec=30
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/minichat/app/data /opt/minichat/app/evals
+PrivateTmp=true
+StandardOutput=append:/opt/minichat/app/data/traces.log
+StandardError=append:/opt/minichat/app/data/traces.log
+
+[Install]
+WantedBy=multi-user.target

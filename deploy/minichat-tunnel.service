@@ -1,0 +1,21 @@
+[Unit]
+Description=MiniChat Cloudflare Tunnel
+Wants=network-online.target
+After=network-online.target minichat.service
+
+[Service]
+User=minichat
+Group=minichat
+ExecStart=/opt/minichat/bin/cloudflared --no-autoupdate tunnel --protocol http2 run --token-file /opt/minichat/app/data/private/cloudflared-token
+Restart=always
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+StandardOutput=append:/opt/minichat/app/data/tunnel.log
+StandardError=append:/opt/minichat/app/data/tunnel.log
+
+[Install]
+WantedBy=multi-user.target

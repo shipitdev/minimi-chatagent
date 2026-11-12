@@ -1,0 +1,28 @@
+[Unit]
+Description=MiniChat DSH backend and public gateway
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=minichat
+Group=minichat
+WorkingDirectory=/opt/minichat/app
+EnvironmentFile=/opt/minichat/app/.env
+Environment=PATH=/opt/minichat/runtime/node-v24.11.0-linux-x64/bin:/usr/bin:/bin
+ExecStart=/opt/minichat/runtime/node-v24.11.0-linux-x64/bin/node scripts/serve.mjs
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+KillMode=control-group
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/minichat/app
+StandardOutput=append:/opt/minichat/app/data/service.log
+StandardError=append:/opt/minichat/app/data/service.log
+
+[Install]
+WantedBy=multi-user.target

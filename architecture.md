@@ -60,4 +60,4 @@ The model's verbose subject string can differ from the canonical snapshot key; d
 
 [evals/adapter.mjs](evals/adapter.mjs) imports product modules but uses its own Chat Completions loop, routing policy and live-page prefetch. Frozen-clock fixture replay is useful component evidence, not a production DSH replay. [Browser tests](tests/e2e.mjs) exercise DSH with the live model and a mix of live and fixture retrieval. [Decisions](decisions.md) records the measurements and remaining comparisons.
 
-The public demo uses a temporary laptop-backed gateway and shared owner profile. Local startup does not require that deployment. Visitor isolation and server authorization need further work before broader hosting.
+The public demo runs on an Ubuntu VM with systemd services for the backend/gateway, Cloudflare Tunnel and live trace export. Both application listeners remain loopback-only. See [deployment](deploy/README.md). The gateway still shares an owner profile; visitor isolation and server authorization need further work before broader hosting.

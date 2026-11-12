@@ -84,6 +84,8 @@ evals/        Golden cases, adapter, DeepEval, trace exporters, saved runs
 
 This is a **single-user prototype**. Sessions in one profile share recall and subject snapshots. Keyword retrieval, incomplete weekday parsing, subject normalization, qualifier retention, and currency rendering have documented gaps. See the [challenge walkthrough review](docs/challenge-chat-review.md).
 
-`npm run demo` is a separately provisioned laptop/Cloudflare deployment helper; it needs local tunnel credentials, TLS files, and a connector binary that are intentionally absent from the repository. The shared-profile public gateway is not a multi-tenant authorization boundary. Use normal local startup for review.
+The competition backend now runs under systemd on an Ubuntu VM; see [deployment and operations](deploy/README.md).
+
+`npm run demo` is the older, separately provisioned laptop/Cloudflare deployment helper; it needs local tunnel credentials, TLS files, and a connector binary that are intentionally absent from the repository. The shared-profile public gateway is not a multi-tenant authorization boundary. Use normal local startup for review.
 
 Upstream attribution is preserved in [NOTICE.md](NOTICE.md) and the [DSH license](docs/DSH-LICENSE). Publication checks and their limits are recorded in [CHANGELOG.md](CHANGELOG.md).
