@@ -1,0 +1,179 @@
+{
+  "caseId": "d13-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "768e2c70-a167-48aa-a70e-449280ae0d33",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:55.533Z",
+    "inputs": {
+      "prompt": "junipersync whats the transfer cap again per workspace? when does it reset?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "d13-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "c68c645f-91cc-49a4-9ee6-c06968a553bd",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:55.533Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:55.533Z"
+      },
+      {
+        "id": "91636979-5d1b-4acd-8af7-fa0c589ac083",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:55.533Z",
+        "inputs": {
+          "user_text": "junipersync whats the transfer cap again per workspace? when does it reset?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:55.535Z"
+      },
+      {
+        "id": "36988bdf-4f1e-4b2d-8020-d1a2ab3aceeb",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:55.536Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Junipersync transfer cap per workspace reset\"], \"intent\": \"recall\"}"
+            }
+          ],
+          "usage": {
+            "input": 1130,
+            "output": 60,
+            "cacheHit": 896,
+            "cacheMiss": 234
+          },
+          "cost_usd": 0.00009144800000000001,
+          "latency_ms": 1434
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:56.970Z"
+      },
+      {
+        "id": "229164f6-9ed5-4851-8a3b-6e68e29a7c32",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:20:56.970Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Junipersync transfer cap per workspace reset"
+            }
+          ],
+          "intent": "recall",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 2,
+          "facts": 0,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 366
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:56.975Z"
+      },
+      {
+        "id": "fa5cb372-92e5-4240-b3dc-f47872c1b69c",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:56.975Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "The cap I can confirm is **100 GB of transfer per workspace on the Basic plan** [S1](https://juniper-help.example/pricing).\n\nI couldn't find anything on when that quota resets — the source only states the cap, not the reset period (monthly, billing-cycle, etc.). If you tell me your plan tier, I can check whether the reset terms differ there.\n\n(One thing to ignore: a second result mentions 500 GB, but that's local disk space used by downloads, not transfer quota [S2](https://juniper-noise.example/pricing).)\n\n**Sources**\n- [S1](https://juniper-help.example/pricing) — Juniper Help, pricing/quota page\n- [S2](https://juniper-noise.example/pricing) — Juniper Noise, pricing page",
+          "tool_calls": [],
+          "usage": {
+            "input": 1589,
+            "output": 174,
+            "cacheHit": 1408,
+            "cacheMiss": 181
+          },
+          "cost_usd": 0.000162204,
+          "latency_ms": 1765
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:58.740Z"
+      }
+    ],
+    "outputs": {
+      "answer": "The cap I can confirm is **100 GB of transfer per workspace on the Basic plan** [S1](https://juniper-help.example/pricing).\n\nI couldn't find anything on when that quota resets — the source only states the cap, not the reset period (monthly, billing-cycle, etc.). If you tell me your plan tier, I can check whether the reset terms differ there.\n\n(One thing to ignore: a second result mentions 500 GB, but that's local disk space used by downloads, not transfer quota [S2](https://juniper-noise.example/pricing).)\n\n**Sources**\n- [S1](https://juniper-help.example/pricing) — Juniper Help, pricing/quota page\n- [S2](https://juniper-noise.example/pricing) — Juniper Noise, pricing page",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2719,
+      "output_tokens": 234,
+      "cost_usd": 0.000254,
+      "search_queries": [
+        "Junipersync transfer cap per workspace reset"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:58.741Z"
+  },
+  "run": null,
+  "traceId": "768e2c70-a167-48aa-a70e-449280ae0d33"
+}

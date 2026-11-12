@@ -1,0 +1,198 @@
+{
+  "caseId": "h28-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "c57d0a04-1416-4938-85a1-22032eb3c623",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:36.276Z",
+    "inputs": {
+      "prompt": "Which major release did PollenAPI ship after our Monday conversation, if any?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h28-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "72c0d5e3-e506-4d9e-a2a8-3cf4714eb82c",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:36.276Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:36.276Z"
+      },
+      {
+        "id": "7bee8eea-60f4-4c35-abd1-b0dc91959e99",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:36.276Z",
+        "inputs": {
+          "user_text": "Which major release did PollenAPI ship after our Monday conversation, if any?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "pollen-mon"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:36.279Z"
+      },
+      {
+        "id": "3b6e8dfe-99e0-4ac7-a6a8-3a357bb48d12",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:36.279Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"PollenAPI major release changelog November 2026\", \"subject\": \"PollenAPI major release after 2026-11-09\"}, {\"query\": \"PollenAPI release notes latest version\", \"subject\": \"PollenAPI latest version\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1239,
+            "output": 108,
+            "cacheHit": 768,
+            "cacheMiss": 471
+          },
+          "cost_usd": 0.00014792400000000002,
+          "latency_ms": 1356
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:37.635Z"
+      },
+      {
+        "id": "cff04947-c31e-4325-a790-3fce8bfb226b",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:37.635Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "PollenAPI major release changelog November 2026",
+              "subject": "PollenAPI major release after 2026-11-09",
+              "fetch": false
+            },
+            {
+              "query": "PollenAPI release notes latest version",
+              "subject": "PollenAPI latest version",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 4,
+          "facts": 0,
+          "missing": [
+            "no usable claim-sized evidence for \"PollenAPI major release changelog November 2026\"",
+            "no value found that is tied to subject \"PollenAPI major release after 2026-11-09\"",
+            "evidence gap for \"PollenAPI major release changelog November 2026\"",
+            "no usable claim-sized evidence for \"PollenAPI release notes latest version\"",
+            "no value found that is tied to subject \"PollenAPI latest version\"",
+            "evidence gap for \"PollenAPI release notes latest version\""
+          ],
+          "attempts": 4,
+          "evidence_tokens": 660
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:37.640Z"
+      },
+      {
+        "id": "8be74e94-57cd-4e79-8e0d-f5a1b166440d",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:37.640Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I can't confirm any major PollenAPI release since our Monday (9 Nov 2026) conversation — the search returned no usable release or changelog evidence.\n\nWhat I can say:\n\n- **No baseline to compare against.** Our Monday exchange only recorded that batch retries were \"in beta\"; it captured no version number or release state, so there's nothing to measure a change from.\n- **No current release data found.** Searches for a PollenAPI changelog and release notes returned no claim-sized evidence; the only pages surfaced were pricing pages, which don't address releases [S1](https://pollen-ga.example/pricing) [S2](https://pollen-roadmap.example/pricing).\n\nSo the honest answer is: unknown, not \"no release.\" If you can point me to PollenAPI's changelog or release-notes URL, I can check it directly.\n\n**Sources**\n- [S1](https://pollen-ga.example/pricing)\n- [S2](https://pollen-roadmap.example/pricing)",
+          "tool_calls": [],
+          "usage": {
+            "input": 2048,
+            "output": 219,
+            "cacheHit": 1280,
+            "cacheMiss": 768
+          },
+          "cost_usd": 0.00026599999999999996,
+          "latency_ms": 1692
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:39.332Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I can't confirm any major PollenAPI release since our Monday (9 Nov 2026) conversation — the search returned no usable release or changelog evidence.\n\nWhat I can say:\n\n- **No baseline to compare against.** Our Monday exchange only recorded that batch retries were \"in beta\"; it captured no version number or release state, so there's nothing to measure a change from.\n- **No current release data found.** Searches for a PollenAPI changelog and release notes returned no claim-sized evidence; the only pages surfaced were pricing pages, which don't address releases [S1](https://pollen-ga.example/pricing) [S2](https://pollen-roadmap.example/pricing).\n\nSo the honest answer is: unknown, not \"no release.\" If you can point me to PollenAPI's changelog or release-notes URL, I can check it directly.\n\n**Sources**\n- [S1](https://pollen-ga.example/pricing)\n- [S2](https://pollen-roadmap.example/pricing)",
+      "route": "historical_update",
+      "citations": 2,
+      "selected_turn_ids": [
+        "pollen-mon"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3287,
+      "output_tokens": 327,
+      "cost_usd": 0.000414,
+      "search_queries": [
+        "PollenAPI major release changelog November 2026",
+        "PollenAPI release notes latest version"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:39.333Z"
+  },
+  "run": null,
+  "traceId": "c57d0a04-1416-4938-85a1-22032eb3c623"
+}

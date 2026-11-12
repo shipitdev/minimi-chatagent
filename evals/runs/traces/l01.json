@@ -1,0 +1,187 @@
+{
+  "caseId": "l01",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "8221e520-e234-4794-be31-1b0421778f91",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:49:02.536Z",
+    "inputs": {
+      "prompt": "Look up Project Minimi's Mac app. What are Cotton and Melody each for? Cite Minimi.",
+      "mode": "live",
+      "timezone": "Asia/Kolkata",
+      "now": null,
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "l01",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "fc6d454d-f411-4137-ad40-ba4e008d33e0",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:02.536Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:02.536Z"
+      },
+      {
+        "id": "e6d409da-1d6d-4712-85cc-240dc20e28b4",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:02.536Z",
+        "inputs": {
+          "user_text": "Look up Project Minimi's Mac app. What are Cotton and Melody each for? Cite Minimi.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T19:49:02.525Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:02.538Z"
+      },
+      {
+        "id": "c4a8161d-6e2b-418e-9261-b861216e6c8d",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:03.008Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I'll look that up.",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Project Minimi Mac app Cotton Melody\", \"Minimi app Cotton feature\", \"Minimi app Melody feature\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1149,
+            "output": 84,
+            "cacheHit": 384,
+            "cacheMiss": 765
+          },
+          "cost_usd": 0.000164892,
+          "latency_ms": 843
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:03.851Z"
+      },
+      {
+        "id": "f2781fc8-177a-41ab-89b7-df9b4cd52422",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:49:03.851Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Project Minimi Mac app Cotton Melody"
+            },
+            {
+              "query": "Minimi app Cotton feature"
+            },
+            {
+              "query": "Minimi app Melody feature"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 30,
+          "facts": 16,
+          "missing": [],
+          "attempts": 3,
+          "evidence_tokens": 2136
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:04.317Z"
+      },
+      {
+        "id": "8a1f1a0d-c642-448a-a06e-bf6f6248db15",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:04.317Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "In Minimi 2.0 (launched September 24, 2026), the two AI cats split the work: **Cotton remembers, and Melody chases commitments.**\n\n- **Cotton** — the memory side. It's the original cat (Minimi 1.0 was billed as \"Your Ambient Memory layer for Claude\"), and in 2.0 it's the one \"who remembers\" — personal context captured on your Mac [S5](https://chatgate.ai/en/post/minimi-2-0#1). Minimi's own site frames this as memory that \"lives on your Mac, where it's safest,\" claiming 54% vs. 36% prior state of the art on the BEAM long-term memory benchmark [S12](https://www.projectminimi.com/memory).\n- **Melody** — the follow-through side, introduced in 2.0 as \"the Closer\": it tracks down open loops such as promises made in chat channels and overlooked follow-ups, and per the launch framing \"never lets you miss your commitments\" [S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) [S5](https://chatgate.ai/en/post/minimi-2-0#1).\n\nOne caveat on sourcing: the clearest descriptions of the Cotton/Melody split come from launch coverage and the Product Hunt listing as reported by third parties, not from a dedicated feature page on projectminimi.com — the official site page I found covers the memory capability rather than naming both cats [S12](https://www.projectminimi.com/memory).\n\n**Sources**\n- [S5](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops (2026-09-23)\n- [S12](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well (projectminimi.com)\n- [S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) — Minimi 2.0 coverage (2026-09-23)",
+          "tool_calls": [],
+          "usage": {
+            "input": 3660,
+            "output": 480,
+            "cacheHit": 1152,
+            "cacheMiss": 2508
+          },
+          "cost_usd": 0.000652176,
+          "latency_ms": 2744
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:07.061Z"
+      }
+    ],
+    "outputs": {
+      "answer": "In Minimi 2.0 (launched September 24, 2026), the two AI cats split the work: **Cotton remembers, and Melody chases commitments.**\n\n- **Cotton** — the memory side. It's the original cat (Minimi 1.0 was billed as \"Your Ambient Memory layer for Claude\"), and in 2.0 it's the one \"who remembers\" — personal context captured on your Mac [S5](https://chatgate.ai/en/post/minimi-2-0#1). Minimi's own site frames this as memory that \"lives on your Mac, where it's safest,\" claiming 54% vs. 36% prior state of the art on the BEAM long-term memory benchmark [S12](https://www.projectminimi.com/memory).\n- **Melody** — the follow-through side, introduced in 2.0 as \"the Closer\": it tracks down open loops such as promises made in chat channels and overlooked follow-ups, and per the launch framing \"never lets you miss your commitments\" [S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) [S5](https://chatgate.ai/en/post/minimi-2-0#1).\n\nOne caveat on sourcing: the clearest descriptions of the Cotton/Melody split come from launch coverage and the Product Hunt listing as reported by third parties, not from a dedicated feature page on projectminimi.com — the official site page I found covers the memory capability rather than naming both cats [S12](https://www.projectminimi.com/memory).\n\n**Sources**\n- [S5](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops (2026-09-23)\n- [S12](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well (projectminimi.com)\n- [S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) — Minimi 2.0 coverage (2026-09-23)",
+      "route": "research",
+      "citations": 3,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 4809,
+      "output_tokens": 564,
+      "cost_usd": 0.000817,
+      "search_queries": [
+        "Project Minimi Mac app Cotton Melody",
+        "Minimi app Cotton feature",
+        "Minimi app Melody feature"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:49:07.062Z"
+  },
+  "run": null,
+  "traceId": "8221e520-e234-4794-be31-1b0421778f91"
+}

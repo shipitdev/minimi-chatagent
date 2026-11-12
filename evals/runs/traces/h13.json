@@ -1,0 +1,182 @@
+{
+  "caseId": "h13",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "e3a8ac60-baed-4f7c-8304-e82bd6bec628",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:32.703Z",
+    "inputs": {
+      "prompt": "What does HarborStack Pro cost today?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h13",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "d85c5534-c070-4041-a720-d6733db77a80",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:32.704Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:32.704Z"
+      },
+      {
+        "id": "6fc4afa7-dc44-4420-8a38-b512cbb4ad3c",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:32.704Z",
+        "inputs": {
+          "user_text": "What does HarborStack Pro cost today?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "today"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:32.705Z"
+      },
+      {
+        "id": "99fb7273-289a-4df7-a933-2e991dce97e2",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:32.705Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"HarborStack Pro pricing\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1122,
+            "output": 57,
+            "cacheHit": 896,
+            "cacheMiss": 226
+          },
+          "cost_usd": 0.00008864800000000001,
+          "latency_ms": 943
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:33.648Z"
+      },
+      {
+        "id": "b13848c7-84ee-4a18-aaaa-3151c39ddb7a",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:33.648Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "HarborStack Pro pricing"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 0,
+          "facts": 0,
+          "missing": [
+            "search failed for \"HarborStack Pro pricing\": timeout",
+            "evidence gap for \"HarborStack Pro pricing\""
+          ],
+          "attempts": 1,
+          "evidence_tokens": 225
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:33.649Z"
+      },
+      {
+        "id": "6fcf7465-7e05-4126-af20-401c6dd302e4",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:33.650Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I couldn't confirm HarborStack Pro's current price: my search for \"HarborStack Pro pricing\" timed out and returned no usable sources, so I have no verified figure to give you.\n\nTwo things would help me get you an answer:\n\n1. **Confirm the product** — \"HarborStack\" isn't a name I can reliably match to a vendor. Is it a hosting/infrastructure platform, a developer tool, or something else? A vendor domain would settle it.\n2. **Which Pro tier and billing basis** — monthly vs. annual, per-seat vs. per-usage, and region/currency all change the number.\n\nIf you can share the vendor's site or a link to their pricing page, I'll pull the current figure and cite it.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1407,
+            "output": 160,
+            "cacheHit": 1152,
+            "cacheMiss": 255
+          },
+          "cost_usd": 0.000157556,
+          "latency_ms": 1553
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:35.203Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I couldn't confirm HarborStack Pro's current price: my search for \"HarborStack Pro pricing\" timed out and returned no usable sources, so I have no verified figure to give you.\n\nTwo things would help me get you an answer:\n\n1. **Confirm the product** — \"HarborStack\" isn't a name I can reliably match to a vendor. Is it a hosting/infrastructure platform, a developer tool, or something else? A vendor domain would settle it.\n2. **Which Pro tier and billing basis** — monthly vs. annual, per-seat vs. per-usage, and region/currency all change the number.\n\nIf you can share the vendor's site or a link to their pricing page, I'll pull the current figure and cite it.",
+      "route": "research",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2529,
+      "output_tokens": 217,
+      "cost_usd": 0.000246,
+      "search_queries": [
+        "HarborStack Pro pricing"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:35.204Z"
+  },
+  "run": null,
+  "traceId": "e3a8ac60-baed-4f7c-8304-e82bd6bec628"
+}

@@ -1,0 +1,183 @@
+{
+  "caseId": "h08",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "91b7b31e-cd99-42c1-89f6-5321bac98c2b",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:22.381Z",
+    "inputs": {
+      "prompt": "Can I use CloverNote Pro offline on Mac?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h08",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "0c2c8615-1176-4927-88fa-7d602e718c76",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:22.381Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:22.381Z"
+      },
+      {
+        "id": "c61d3ce7-d06b-48b0-be32-4e2baee41051",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:22.381Z",
+        "inputs": {
+          "user_text": "Can I use CloverNote Pro offline on Mac?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:22.382Z"
+      },
+      {
+        "id": "7139c00d-35eb-459c-b784-aa05e8cd6de4",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:22.383Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"CloverNote Pro offline mode Mac\", \"CloverNote Pro Mac app offline support\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1125,
+            "output": 68,
+            "cacheHit": 896,
+            "cacheMiss": 229
+          },
+          "cost_usd": 0.000095228,
+          "latency_ms": 932
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:23.315Z"
+      },
+      {
+        "id": "8290bb40-9f81-4517-8561-5d9ee9696e91",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:23.315Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "CloverNote Pro offline mode Mac"
+            },
+            {
+              "query": "CloverNote Pro Mac app offline support"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 4,
+          "facts": 0,
+          "missing": [],
+          "attempts": 4,
+          "evidence_tokens": 578
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:23.321Z"
+      },
+      {
+        "id": "38fdcd4f-372d-4de2-9a0c-f0b8ca00745a",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:23.321Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Yes — partly. According to Clover's support documentation, editing in CloverNote Pro on Mac works offline; only syncing to your account requires an internet connection [S2](https://clover-support.example/pricing).\n\nSo you can open and edit notes without a connection, but changes won't sync across devices until you're back online. I couldn't find details on whether offline access requires a prior sign-in or how long offline editing is permitted — the support page doesn't cover that.\n\n**Sources**\n- [S2](https://clover-support.example/pricing) — Clover Support, published 2026-11-11",
+          "tool_calls": [],
+          "usage": {
+            "input": 1817,
+            "output": 130,
+            "cacheHit": 1152,
+            "cacheMiss": 665
+          },
+          "cost_usd": 0.000198156,
+          "latency_ms": 1416
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:24.737Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Yes — partly. According to Clover's support documentation, editing in CloverNote Pro on Mac works offline; only syncing to your account requires an internet connection [S2](https://clover-support.example/pricing).\n\nSo you can open and edit notes without a connection, but changes won't sync across devices until you're back online. I couldn't find details on whether offline access requires a prior sign-in or how long offline editing is permitted — the support page doesn't cover that.\n\n**Sources**\n- [S2](https://clover-support.example/pricing) — Clover Support, published 2026-11-11",
+      "route": "research",
+      "citations": 1,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2942,
+      "output_tokens": 198,
+      "cost_usd": 0.000293,
+      "search_queries": [
+        "CloverNote Pro offline mode Mac",
+        "CloverNote Pro Mac app offline support"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:24.739Z"
+  },
+  "run": null,
+  "traceId": "91b7b31e-cd99-42c1-89f6-5321bac98c2b"
+}

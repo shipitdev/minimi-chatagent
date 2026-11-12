@@ -1,0 +1,122 @@
+{
+  "caseId": "h19-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "97c1ba98-3586-4d39-8caf-e97cab7da3de",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:55.329Z",
+    "inputs": {
+      "prompt": "quick remind me what i still gotta do from review, just mine",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h19-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "c52b1651-8851-48eb-8aa7-981d88239770",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:55.330Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:55.330Z"
+      },
+      {
+        "id": "7020c31f-5673-48e8-a4df-5a0dfbf6ab74",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:55.330Z",
+        "inputs": {
+          "user_text": "quick remind me what i still gotta do from review, just mine",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "review-2",
+            "review-1"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:55.332Z"
+      },
+      {
+        "id": "6cf1e3a6-ab37-455a-9cc6-4859532f47d5",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:55.333Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "From your own notes, two items are still on you:\n\n- **Accessibility notes** — still open as of 10 Nov.\n- **Release note** — you said you'd sent it on 10 Nov, so that one looks done.\n\nThe **migration checklist** is Dev's, not yours.\n\nOne caveat: my records only go back to 6 Nov, so if there were review items assigned before that, I don't have them. Want me to note anything else you're carrying?",
+          "tool_calls": [],
+          "usage": {
+            "input": 1277,
+            "output": 103,
+            "cacheHit": 1024,
+            "cacheMiss": 253
+          },
+          "cost_usd": 0.000121772,
+          "latency_ms": 1594
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:56.927Z"
+      }
+    ],
+    "outputs": {
+      "answer": "From your own notes, two items are still on you:\n\n- **Accessibility notes** — still open as of 10 Nov.\n- **Release note** — you said you'd sent it on 10 Nov, so that one looks done.\n\nThe **migration checklist** is Dev's, not yours.\n\nOne caveat: my records only go back to 6 Nov, so if there were review items assigned before that, I don't have them. Want me to note anything else you're carrying?",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "review-2",
+        "review-1"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1277,
+      "output_tokens": 103,
+      "cost_usd": 0.000122,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:56.928Z"
+  },
+  "run": null,
+  "traceId": "97c1ba98-3586-4d39-8caf-e97cab7da3de"
+}

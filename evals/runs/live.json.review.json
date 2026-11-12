@@ -1,0 +1,76 @@
+{
+  "l01": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "l02": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "l03": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "l04": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "l05": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "l06": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  }
+}

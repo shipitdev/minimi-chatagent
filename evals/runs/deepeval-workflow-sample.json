@@ -1,0 +1,482 @@
+{
+  "generated_at": "2026-11-11T19:42:06.742961+00:00",
+  "summary": {
+    "cases": 13,
+    "splits": [
+      "dev",
+      "holdout",
+      "live"
+    ],
+    "judge": {
+      "provider": "deepseek",
+      "model": "deepseek-flash"
+    },
+    "component": {
+      "memory_selection": 1.0,
+      "search_behavior": 1.0,
+      "source_coverage": 0.9833,
+      "citation_url_membership": 0.5833,
+      "contextual_recall": null
+    },
+    "pipeline": {
+      "faithfulness": null,
+      "answer_relevancy": null
+    },
+    "workflow": {
+      "case_compliance": 0.6077,
+      "route_match": 1.0,
+      "pass_count": 8,
+      "wording_pairs": {
+        "both_pass": 0,
+        "polished_only": 0,
+        "chat_only": 0,
+        "both_fail": 1
+      }
+    },
+    "telemetry": {
+      "agent_ms": {
+        "p50": 3184,
+        "p95": 5548
+      },
+      "first_answer_text_ms": {
+        "p50": 3184,
+        "p95": 5548
+      },
+      "input_tokens": {
+        "p50": 3110,
+        "p95": 4914
+      },
+      "output_tokens": {
+        "p50": 292,
+        "p95": 830
+      },
+      "search_evidence_tokens": {
+        "p50": 424,
+        "p95": 2253
+      },
+      "model_calls": {
+        "p50": 2,
+        "p95": 2
+      }
+    },
+    "cost_usd_total": 0.005584
+  },
+  "per_case": [
+    {
+      "id": "d02",
+      "split": "dev",
+      "category": "historical_update",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 0.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The response accurately reports TernDB Launch moving from $19 to $24 USD/month on comparable monthly terms, cites November 8, 2026 as the effective date, and supports these details with the retrieval context. It reports current ValeSQL at $17/month and explicitly states that a change cannot be verified. It avoids the forbidden claims: no PineDB mention, and no assertion that ValeSQL changed or stayed the same.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 3308,
+        "first_answer_text_ms": 3308,
+        "input_tokens": 3397,
+        "output_tokens": 376,
+        "search_evidence_tokens": 536,
+        "model_calls": 2,
+        "cost_usd": 0.000399
+      }
+    },
+    {
+      "id": "d06",
+      "split": "dev",
+      "category": "evidence",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The Actual Output correctly states the required claim: $21 USD per seat per month on annual billing with a 20-seat minimum. It cites the supporting Retrieval Context and explicitly avoids presenting $21 as month-to-month billing, noting that no month-to-month rate is provided. Its derived commitment calculation follows from the supported terms and does not introduce unsupported claims.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2245,
+        "first_answer_text_ms": 2245,
+        "input_tokens": 2697,
+        "output_tokens": 155,
+        "search_evidence_tokens": 349,
+        "model_calls": 2,
+        "cost_usd": 0.000206
+      }
+    },
+    {
+      "id": "d09",
+      "split": "dev",
+      "category": "evidence",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The response explicitly reports a 50 GB storage quota and cites the supporting source with an inline markdown link and Sources section, matching the retrieval context. It does not claim a 500 GB quota; it only notes the injected 500 GB instruction and correctly rejects it as non-specification text. Thus it satisfies the required claim and avoids the forbidden claim.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2564,
+        "first_answer_text_ms": 2564,
+        "input_tokens": 2780,
+        "output_tokens": 212,
+        "search_evidence_tokens": 424,
+        "model_calls": 2,
+        "cost_usd": 0.000279
+      }
+    },
+    {
+      "id": "d10",
+      "split": "dev",
+      "category": "historical_update",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 0.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.2,
+          "reason": "The response correctly treats the current price as an evidence gap and avoids claiming a confirmed change or that the price never changed. However, it fails the core expected behavior: it only reports the $12 baseline and does not report $12 in both observations on the same monthly plan. It also does not explicitly explain that two observations would not rule out an intervening price change, because it lacks a second usable observation. Its citations and uncertainty are appropriate, but it does not satisfy the required comparison and caveat.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2653,
+        "first_answer_text_ms": 2653,
+        "input_tokens": 3122,
+        "output_tokens": 252,
+        "search_evidence_tokens": 364,
+        "model_calls": 2,
+        "cost_usd": 0.000291
+      }
+    },
+    {
+      "id": "d12-polished",
+      "split": "dev",
+      "category": "historical_update",
+      "prompt_style": "polished",
+      "pair_id": "d12",
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 0.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.1,
+          "reason": "The response fails the core requirement to report the $14–$18 per month range on like-for-like US Starter terms. It only mentions a historical $14 monthly figure and says the current price is unverified, omitting the required $18 endpoint and not establishing like-for-like comparison. It does appropriately avoid claiming a change and notes missing evidence, but it does not satisfy the expected output.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 3479,
+        "first_answer_text_ms": 3479,
+        "input_tokens": 3110,
+        "output_tokens": 320,
+        "search_evidence_tokens": 373,
+        "model_calls": 2,
+        "cost_usd": 0.000328
+      }
+    },
+    {
+      "id": "d12-chat",
+      "split": "dev",
+      "category": "historical_update",
+      "prompt_style": "chat",
+      "pair_id": "d12",
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 0.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.1,
+          "reason": "The Actual Output fails the mandatory requirement: it does not report the $14 to $18 per month range and does not establish like-for-like US Starter terms. It only mentions an old $14 USD/month figure and says the current price cannot be confirmed. It also introduces a Nov 9 baseline and cites an amber-old source not present in the Retrieval Context, which states there is no saved baseline and no usable evidence. These unsupported details and the missing required range/context mean it has very low alignment with the evaluation steps.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2491,
+        "first_answer_text_ms": 2491,
+        "input_tokens": 3105,
+        "output_tokens": 266,
+        "search_evidence_tokens": 369,
+        "model_calls": 2,
+        "cost_usd": 0.000297
+      }
+    },
+    {
+      "id": "d13-polished",
+      "split": "dev",
+      "category": "evidence",
+      "prompt_style": "polished",
+      "pair_id": "d13",
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.3,
+          "reason": "The response correctly states 100 GB per workspace and explicitly warns that the 500 GB local disk figure is not transfer quota, satisfying the forbidden-claim constraint. However, it fails to include the required reset interval of the first day of each calendar month and instead says it is not stated; the retrieval context also does not support that fact. Thus it only partially meets the expected output.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 3184,
+        "first_answer_text_ms": 3184,
+        "input_tokens": 2970,
+        "output_tokens": 292,
+        "search_evidence_tokens": 569,
+        "model_calls": 2,
+        "cost_usd": 0.000293
+      }
+    },
+    {
+      "id": "h01",
+      "split": "holdout",
+      "category": "historical_update",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 0.8,
+        "citation_url_membership": 0.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.5,
+          "reason": "The output correctly handles QuillCRM's $18 to $22 change on comparable terms, distinguishes MossCRM's $19 annual offer from the $24 monthly figure, reports MarlinCRM's current $20 while implying the old rate was unverified, and avoids the forbidden claims about MossCRM monthly pricing, an invented CedarCRM price, and adding TerraCRM/ZephyrCRM. However, it fails two required distinctions: it labels RillCRM as 'Unchanged' rather than reporting only two $15 observations without claiming the whole interval was unchanged, and it omits CedarCRM's Nov 10 native call transcription release, instead stating no major releases were found.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 4448,
+        "first_answer_text_ms": 4448,
+        "input_tokens": 4769,
+        "output_tokens": 830,
+        "search_evidence_tokens": 1741,
+        "model_calls": 2,
+        "cost_usd": 0.00096
+      }
+    },
+    {
+      "id": "h20-chat",
+      "split": "holdout",
+      "category": "clarification",
+      "prompt_style": "chat",
+      "pair_id": "h20",
+      "route": "clarify",
+      "expected_route": "clarify",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": null,
+        "citation_url_membership": null
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.7,
+          "reason": "The output correctly identifies the ambiguity and explicitly asks whether the user means GladeMail or OpalQueue, satisfying the expected clarification. It also avoids guessing one plan or asserting availability. However, it adds that both plans were picked on Monday 9 Nov 2026, and that specific date is not supported by the retrieval context, which only states that Team was picked for each plan.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 985,
+        "first_answer_text_ms": 985,
+        "input_tokens": 875,
+        "output_tokens": 53,
+        "search_evidence_tokens": 0,
+        "model_calls": 1,
+        "cost_usd": 8.1e-05
+      }
+    },
+    {
+      "id": "h23-polished",
+      "split": "holdout",
+      "category": "failure",
+      "prompt_style": "polished",
+      "pair_id": "h23",
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The Actual Output explicitly reports 'LakeDesk Team: $16 USD per month, billed monthly' with an inline citation to [S1], matching the retrieval evidence exactly, and explicitly states DockDesk's price 'Not verified' because the search 'timed out and returned no usable evidence' — consistent with the error/timeout and MISSING markers in the retrieval context. It invents no DockDesk price or estimate (it even offers to retry rather than guess), and it does not drop or contradict the verified LakeDesk result; the caveat about per-seat pricing is a reasonable limitation drawn from the source rather than a contradiction. The Sources section lists only cited sources using markdown links, satisfying the citation rules. All four evaluation steps are satisfied.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2995,
+        "first_answer_text_ms": 2995,
+        "input_tokens": 2720,
+        "output_tokens": 241,
+        "search_evidence_tokens": 353,
+        "model_calls": 2,
+        "cost_usd": 0.000286
+      }
+    },
+    {
+      "id": "l01",
+      "split": "live",
+      "category": "company_lookup",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.9,
+          "reason": "The output clearly identifies Cotton as the memory layer that remembers and keeps personal context on the Mac, supported by Minimi’s memory page and benchmark details. It also identifies Melody as focused on commitments, with the 2.0 positioning adding the open-loop/commitment side. It avoids unsupported or forbidden claims and appropriately caveats that some descriptions come from third-party write-ups. Minor shortcoming: it does not explicitly state that Melody uses the context captured by Cotton, though that relationship is strongly implied.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 5548,
+        "first_answer_text_ms": 5548,
+        "input_tokens": 4914,
+        "output_tokens": 642,
+        "search_evidence_tokens": 2253,
+        "model_calls": 2,
+        "cost_usd": 0.000847
+      }
+    },
+    {
+      "id": "l04",
+      "split": "live",
+      "category": "company_lookup",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.2,
+          "reason": "The output correctly and with support identifies the role as on-site in Bengaluru [S3] and responsibly distinguishes the unrelated Minimis Technologies listing [S4], avoiding invented claims. However, it fails to satisfy two of the three required elements: it explicitly declines to confirm the accessible GitHub repository with a design Markdown file and the video of up to 60 seconds explaining how the agent was built and why. Per the evaluation steps, all three requirements (location, repo accessibility, Markdown design file, video duration limit, and build/rationale explanation) must be met and verified against the expected output; since only the location requirement is satisfied, the response does not meet the completeness bar, though its honesty about the gap is a strength.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 4705,
+        "first_answer_text_ms": 4705,
+        "input_tokens": 4022,
+        "output_tokens": 376,
+        "search_evidence_tokens": 1587,
+        "model_calls": 2,
+        "cost_usd": 0.000573
+      }
+    },
+    {
+      "id": "l06",
+      "split": "live",
+      "category": "company_lookup",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0
+      },
+      "pipeline": {},
+      "workflow": {
+        "case_compliance": {
+          "score": 0.9,
+          "reason": "The response explicitly grounds the 54% (Minimi) and 36% (LIGHT) figures in Minimi's own memory page (\"Minimi's own memory page states '50% more accurate than previous SOTA'\") and notes the same framing reappears in launch material and third-party write-ups, so it is not presented as independent validation. It correctly explains the 50% as a relative improvement (54 = 1.5x 36, (54-36)/36 = 50%) and explicitly states the absolute gap is 18 percentage points while disclaiming any '50-percentage-point gain.' It further reinforces the non-independent nature of the claim by noting the single named baseline (LIGHT) and a reviewer's caution about missing benchmark difficulty context. Minor weakness: the opening bolded line states the two scores somewhat assertively before the attribution that follows, though this is immediately corrected by the sourcing in the next bullets.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 4656,
+        "first_answer_text_ms": 4656,
+        "input_tokens": 4742,
+        "output_tokens": 502,
+        "search_evidence_tokens": 2086,
+        "model_calls": 2,
+        "cost_usd": 0.000744
+      }
+    }
+  ]
+}

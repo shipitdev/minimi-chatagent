@@ -1,0 +1,187 @@
+{
+  "caseId": "h21-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "4d3d46df-ea83-4531-865f-4f75bb31bd8d",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:59.633Z",
+    "inputs": {
+      "prompt": "Verify the free export limit we discussed on November 5 and identify whether a dated change can be established.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h21-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "baa0de26-b7f6-4771-a59c-9650372a7e29",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:59.633Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:59.634Z"
+      },
+      {
+        "id": "cfbc000c-22ac-4541-961c-0e8c0a021f38",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:59.634Z",
+        "inputs": {
+          "user_text": "Verify the free export limit we discussed on November 5 and identify whether a dated change can be established.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "star-old"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "November 5"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:59.635Z"
+      },
+      {
+        "id": "e2efb5e8-6726-469e-a865-2f31566db792",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:59.636Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"StarLoom Free plan export limit\", \"subject\": \"StarLoom Free export limit\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1292,
+            "output": 74,
+            "cacheHit": 640,
+            "cacheMiss": 652
+          },
+          "cost_usd": 0.00015064,
+          "latency_ms": 1318
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:00.954Z"
+      },
+      {
+        "id": "6141aaf6-988c-4daf-98ac-87c9e4d48e52",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:00.954Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "StarLoom Free plan export limit",
+              "subject": "StarLoom Free export limit",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 0,
+          "missing": [
+            "no value found that is tied to subject \"StarLoom Free export limit\""
+          ],
+          "attempts": 2,
+          "evidence_tokens": 361
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:00.966Z"
+      },
+      {
+        "id": "2811d0fb-78b2-4000-8ec5-6e2db76e5cc7",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:00.966Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**No dated change can be established.** The current StarLoom pricing page says Free allows **40 exports per workspace per month** [S1](https://star-current.example/pricing), but there is no saved baseline to compare it against, so I can't confirm a change from the November 5 figure.\n\nTwo things to keep separate:\n\n- **What we discussed on Nov 5:** I said \"I think it's 100\" — that was my own recollection, not a checked source, so it isn't a verified baseline.\n- **What the current page says:** 40 exports per workspace per month, retrieved 2026-11-11 [S1](https://star-current.example/pricing). The page carries no revision date, so there's no way to tell when (or whether) the limit changed.\n\nSo the honest reading is: the current documented limit is 40, my earlier \"100\" was unverified and appears wrong, but a *dated* change can't be proven — only that today's value differs from an unchecked memory. If you want a real change record, I can save today's 40 as a baseline and re-check later.\n\n**Sources**\n- [S1](https://star-current.example/pricing) — StarLoom pricing page, retrieved 2026-11-11",
+          "tool_calls": [],
+          "usage": {
+            "input": 1729,
+            "output": 270,
+            "cacheHit": 1280,
+            "cacheMiss": 449
+          },
+          "cost_usd": 0.0002499,
+          "latency_ms": 2033
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:02.999Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**No dated change can be established.** The current StarLoom pricing page says Free allows **40 exports per workspace per month** [S1](https://star-current.example/pricing), but there is no saved baseline to compare it against, so I can't confirm a change from the November 5 figure.\n\nTwo things to keep separate:\n\n- **What we discussed on Nov 5:** I said \"I think it's 100\" — that was my own recollection, not a checked source, so it isn't a verified baseline.\n- **What the current page says:** 40 exports per workspace per month, retrieved 2026-11-11 [S1](https://star-current.example/pricing). The page carries no revision date, so there's no way to tell when (or whether) the limit changed.\n\nSo the honest reading is: the current documented limit is 40, my earlier \"100\" was unverified and appears wrong, but a *dated* change can't be proven — only that today's value differs from an unchecked memory. If you want a real change record, I can save today's 40 as a baseline and re-check later.\n\n**Sources**\n- [S1](https://star-current.example/pricing) — StarLoom pricing page, retrieved 2026-11-11",
+      "route": "historical_update",
+      "citations": 1,
+      "selected_turn_ids": [
+        "star-old"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3021,
+      "output_tokens": 344,
+      "cost_usd": 0.000401,
+      "search_queries": [
+        "StarLoom Free plan export limit"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:03.001Z"
+  },
+  "run": null,
+  "traceId": "4d3d46df-ea83-4531-865f-4f75bb31bd8d"
+}

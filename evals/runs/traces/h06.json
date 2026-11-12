@@ -1,0 +1,122 @@
+{
+  "caseId": "h06",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "b53fc2b8-dc70-4d83-babe-9ff5ae0fc84f",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:16.664Z",
+    "inputs": {
+      "prompt": "When is the final deadline I agreed to send the Atlas draft?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h06",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "fa05142d-1a8d-4d6e-8c6f-58ce2faf7795",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:16.664Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:16.665Z"
+      },
+      {
+        "id": "15c6d5b8-39d5-415c-8896-3f6eb573155d",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:16.665Z",
+        "inputs": {
+          "user_text": "When is the final deadline I agreed to send the Atlas draft?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "atlas-new",
+            "atlas-old"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:16.667Z"
+      },
+      {
+        "id": "c597ff7d-6d09-4f75-bfef-d9f6c08d4c66",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:16.667Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "The final deadline you agreed to is **Monday, 10 AM IST** — you moved it there from the original Friday 5 PM IST commitment.\n\n- Thu, 05 Nov 2026: you promised Friday at 5 PM IST for the Atlas draft.\n- Fri, 06 Nov 2026: you moved the deadline to Monday at 10 AM IST.\n\nThat Monday would be **09 Nov 2026**, which has already passed relative to today (11 Nov 2026).",
+          "tool_calls": [],
+          "usage": {
+            "input": 1276,
+            "output": 100,
+            "cacheHit": 640,
+            "cacheMiss": 636
+          },
+          "cost_usd": 0.00016296,
+          "latency_ms": 1414
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:18.081Z"
+      }
+    ],
+    "outputs": {
+      "answer": "The final deadline you agreed to is **Monday, 10 AM IST** — you moved it there from the original Friday 5 PM IST commitment.\n\n- Thu, 05 Nov 2026: you promised Friday at 5 PM IST for the Atlas draft.\n- Fri, 06 Nov 2026: you moved the deadline to Monday at 10 AM IST.\n\nThat Monday would be **09 Nov 2026**, which has already passed relative to today (11 Nov 2026).",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "atlas-new",
+        "atlas-old"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1276,
+      "output_tokens": 100,
+      "cost_usd": 0.000163,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:18.082Z"
+  },
+  "run": null,
+  "traceId": "b53fc2b8-dc70-4d83-babe-9ff5ae0fc84f"
+}

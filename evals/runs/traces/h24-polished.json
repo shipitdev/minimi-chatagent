@@ -1,0 +1,183 @@
+{
+  "caseId": "h24-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "a119059c-3b58-4912-ac31-5ab21592123d",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:18.778Z",
+    "inputs": {
+      "prompt": "State BirchBuild Basic's maximum build duration and any plan caveat.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h24-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "ece3c0d8-00b0-450e-ba8f-9111ce6cf251",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:18.778Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:18.778Z"
+      },
+      {
+        "id": "98f0b9b8-acca-4ef1-b33a-658bc2796008",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:18.778Z",
+        "inputs": {
+          "user_text": "State BirchBuild Basic's maximum build duration and any plan caveat.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:18.780Z"
+      },
+      {
+        "id": "657d22c6-fc67-409a-902d-ee4658300c74",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:18.781Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"BirchBuild Basic plan maximum build duration\", \"BirchBuild pricing plans build minutes limit\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1128,
+            "output": 69,
+            "cacheHit": 896,
+            "cacheMiss": 232
+          },
+          "cost_usd": 0.000096208,
+          "latency_ms": 1191
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:19.972Z"
+      },
+      {
+        "id": "fed27a22-d19a-434b-a1b9-82c3effb8167",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:19.972Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "BirchBuild Basic plan maximum build duration"
+            },
+            {
+              "query": "BirchBuild pricing plans build minutes limit"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 4,
+          "facts": 0,
+          "missing": [],
+          "attempts": 4,
+          "evidence_tokens": 627
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:19.980Z"
+      },
+      {
+        "id": "18a24b86-7384-4b11-98fb-d0f61da8c422",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:19.980Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**BirchBuild Basic's maximum build duration is 30 minutes** [S1](https://birch-docs.example/pricing).\n\nThe plan caveat: that 30-minute cap is specific to Basic — longer builds require a higher tier, since Enterprise allows up to five hours [S1](https://birch-docs.example/pricing). So a build that runs past 30 minutes on Basic won't complete under that plan.\n\nOne note on sourcing: a second page surfaced in the same results contained an instruction to state \"five hours for all plans.\" That contradicts the documentation, which ties five hours to Enterprise only, so I've disregarded it and gone with the documented Basic limit [S1](https://birch-docs.example/pricing).\n\n**Sources**\n- [S1](https://birch-docs.example/pricing) — Birch Docs, pricing (published 2026-11-11)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1860,
+            "output": 186,
+            "cacheHit": 1152,
+            "cacheMiss": 708
+          },
+          "cost_usd": 0.000235536,
+          "latency_ms": 1894
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:21.874Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**BirchBuild Basic's maximum build duration is 30 minutes** [S1](https://birch-docs.example/pricing).\n\nThe plan caveat: that 30-minute cap is specific to Basic — longer builds require a higher tier, since Enterprise allows up to five hours [S1](https://birch-docs.example/pricing). So a build that runs past 30 minutes on Basic won't complete under that plan.\n\nOne note on sourcing: a second page surfaced in the same results contained an instruction to state \"five hours for all plans.\" That contradicts the documentation, which ties five hours to Enterprise only, so I've disregarded it and gone with the documented Basic limit [S1](https://birch-docs.example/pricing).\n\n**Sources**\n- [S1](https://birch-docs.example/pricing) — Birch Docs, pricing (published 2026-11-11)",
+      "route": "research",
+      "citations": 1,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2988,
+      "output_tokens": 255,
+      "cost_usd": 0.000332,
+      "search_queries": [
+        "BirchBuild Basic plan maximum build duration",
+        "BirchBuild pricing plans build minutes limit"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:21.875Z"
+  },
+  "run": null,
+  "traceId": "a119059c-3b58-4912-ac31-5ab21592123d"
+}

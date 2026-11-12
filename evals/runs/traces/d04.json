@@ -1,0 +1,122 @@
+{
+  "caseId": "d04",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "53317cb8-3e9e-4efb-8970-fd6b7e5649e5",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:27.051Z",
+    "inputs": {
+      "prompt": "What did I promise Mira, and by when?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d04",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "7fd2a429-3d09-4098-a7a2-b6cb0869b4ec",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:27.051Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:27.052Z"
+      },
+      {
+        "id": "af4b74bf-e112-48e9-ae2c-8078fe5390af",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:27.052Z",
+        "inputs": {
+          "user_text": "What did I promise Mira, and by when?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "mira-peer",
+            "mira"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:27.054Z"
+      },
+      {
+        "id": "964c635e-354d-4626-9e16-9af42252e920",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:27.054Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "You told Mira you'd send her the **staging migration checklist by Friday at 4 PM** — that was on Monday, 9 Nov 2026, so the deadline is **Friday, 13 November 2026, 4:00 PM**.\n\nSeparately, Mira said she'd send *you* the budget sheet \"tomorrow\" (i.e., Tuesday, 10 Nov 2026) — that's her commitment, not yours.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1276,
+            "output": 93,
+            "cacheHit": 1024,
+            "cacheMiss": 252
+          },
+          "cost_usd": 0.000116032,
+          "latency_ms": 1467
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:28.521Z"
+      }
+    ],
+    "outputs": {
+      "answer": "You told Mira you'd send her the **staging migration checklist by Friday at 4 PM** — that was on Monday, 9 Nov 2026, so the deadline is **Friday, 13 November 2026, 4:00 PM**.\n\nSeparately, Mira said she'd send *you* the budget sheet \"tomorrow\" (i.e., Tuesday, 10 Nov 2026) — that's her commitment, not yours.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "mira-peer",
+        "mira"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1276,
+      "output_tokens": 93,
+      "cost_usd": 0.000116,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:28.522Z"
+  },
+  "run": null,
+  "traceId": "53317cb8-3e9e-4efb-8970-fd6b7e5649e5"
+}

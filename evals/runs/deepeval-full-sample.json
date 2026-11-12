@@ -1,0 +1,208 @@
+{
+  "generated_at": "2026-11-11T19:40:17.929047+00:00",
+  "summary": {
+    "cases": 3,
+    "splits": [
+      "dev"
+    ],
+    "judge": {
+      "provider": "deepseek",
+      "model": "deepseek-flash"
+    },
+    "component": {
+      "memory_selection": 1.0,
+      "search_behavior": 1.0,
+      "source_coverage": null,
+      "citation_url_membership": 0.0,
+      "contextual_recall": 0.8333
+    },
+    "pipeline": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7
+    },
+    "workflow": {
+      "case_compliance": 0.7,
+      "route_match": 1.0,
+      "pass_count": 2,
+      "wording_pairs": {
+        "both_pass": 0,
+        "polished_only": 0,
+        "chat_only": 0,
+        "both_fail": 0
+      }
+    },
+    "telemetry": {
+      "agent_ms": {
+        "p50": 1431,
+        "p95": 1483
+      },
+      "first_answer_text_ms": {
+        "p50": 1431,
+        "p95": 1483
+      },
+      "input_tokens": {
+        "p50": 1276,
+        "p95": 1357
+      },
+      "output_tokens": {
+        "p50": 85,
+        "p95": 93
+      },
+      "search_evidence_tokens": {
+        "p50": 0,
+        "p95": 0
+      },
+      "model_calls": {
+        "p50": 1,
+        "p95": 1
+      }
+    },
+    "cost_usd_total": 0.000323
+  },
+  "per_case": [
+    {
+      "id": "d01",
+      "split": "dev",
+      "category": "dated_memory",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "recall",
+      "expected_route": "recall",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": null,
+        "citation_url_membership": 0.0,
+        "contextual_recall": {
+          "score": 0.5,
+          "reason": "The score is 0.50 because sentence 1 is supported by node 1 in retrieval context, which directly covers the TernDB and ValeSQL Postgres hosting comparison, but sentence 2's constraint about the 3 November question and PineDB cannot be attributed to any node in retrieval context.",
+          "success": true
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, meaning the actual output is fully faithful to the retrieval context.",
+          "success": true
+        },
+        "answer_relevancy": {
+          "score": 0.6,
+          "reason": "The score is 0.60 because the response includes irrelevant details about a pricing source URL and the absence of a confirmed old price for ValeSQL, which do not address what the user asked on 3 November; it earns partial credit for at least engaging with the request rather than being entirely off-topic.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The response correctly identifies the 3 November question as a Postgres hosting comparison between TernDB and ValeSQL for a US Launch plan. It uses only evidence present in the Retrieval Context, including TernDB’s $19/month monthly billing and ValeSQL being shortlisted without a confirmed old price. It does not state or imply that the question was about PineDB, satisfying all requirements.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 1431,
+        "first_answer_text_ms": 1431,
+        "input_tokens": 1357,
+        "output_tokens": 85,
+        "search_evidence_tokens": 0,
+        "model_calls": 1,
+        "cost_usd": 0.000109
+      }
+    },
+    {
+      "id": "d03",
+      "split": "dev",
+      "category": "dated_memory",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "recall",
+      "expected_route": "recall",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": null,
+        "citation_url_membership": null,
+        "contextual_recall": {
+          "score": 1.0,
+          "reason": "The score is 1 because sentence 1 is fully supported by node 1 in retrieval context, which directly quotes the request to review the database migration checklist. Great match!",
+          "success": true
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions; the actual output is fully faithful to the retrieval context. Great job!",
+          "success": true
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the response is fully relevant to the input, with no irrelevant statements; it directly addresses the question asked.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 0.4,
+          "reason": "The output correctly recalls the request to review the database migration checklist and does not include the forbidden landing-page claim. However, it introduces unsupported details such as the specific date, time, timezone, session name, turn number, and the claim that this is the only record from that date, none of which are supported by the retrieval context. Because all claims must be supported, the evaluation criteria are not fully satisfied.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 729,
+        "first_answer_text_ms": 729,
+        "input_tokens": 1274,
+        "output_tokens": 62,
+        "search_evidence_tokens": 0,
+        "model_calls": 1,
+        "cost_usd": 9.8e-05
+      }
+    },
+    {
+      "id": "d04",
+      "split": "dev",
+      "category": "commitment",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "recall",
+      "expected_route": "recall",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": null,
+        "citation_url_membership": null,
+        "contextual_recall": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because sentence 1 is fully supported by node 2 in retrieval context, which states the user promised Mira the staging migration checklist by Friday at 4 PM. Great match!",
+          "success": true
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, meaning the actual output is fully faithful to the retrieval context. Great job!",
+          "success": true
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "reason": "The score is 0.50 because the output partly engages with the topic of commitments and timing, but it is not higher since it describes Mira's separate commitment and its timing rather than stating what the user promised Mira and by when.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 0.7,
+          "reason": "The response correctly identifies that the user promised Mira the staging migration checklist by Friday at 4 PM and explicitly distinguishes Mira’s own commitment about the budget sheet, so it avoids misattribution. However, it adds specific calendar dates and date conversions that are not supported by the retrieval context, violating the requirement that every claim be grounded in the provided evidence.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 1483,
+        "first_answer_text_ms": 1483,
+        "input_tokens": 1276,
+        "output_tokens": 93,
+        "search_evidence_tokens": 0,
+        "model_calls": 1,
+        "cost_usd": 0.000116
+      }
+    }
+  ]
+}

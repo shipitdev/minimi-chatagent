@@ -1,0 +1,183 @@
+{
+  "caseId": "l02",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "f5baa695-583e-4b74-9089-347143e02857",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:49:07.178Z",
+    "inputs": {
+      "prompt": "Does Project Minimi say Cotton takes screenshots? How does it read what is on the Mac screen?",
+      "mode": "live",
+      "timezone": "Asia/Kolkata",
+      "now": null,
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "l02",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "18f7d9ca-0c20-4e5a-935c-6767df02268b",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:07.178Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:07.178Z"
+      },
+      {
+        "id": "0d66c227-f2ec-4aa9-9dda-97ca8148595f",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:07.178Z",
+        "inputs": {
+          "user_text": "Does Project Minimi say Cotton takes screenshots? How does it read what is on the Mac screen?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T19:49:07.166Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:07.179Z"
+      },
+      {
+        "id": "793e5ca9-c649-47d3-9531-41512cc6e10b",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:07.594Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Project Minimi Cotton screenshots Mac screen reading\", \"Cotton app Mac screen capture accessibility API\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1153,
+            "output": 70,
+            "cacheHit": 512,
+            "cacheMiss": 641
+          },
+          "cost_usd": 0.00014327600000000002,
+          "latency_ms": 644
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:08.238Z"
+      },
+      {
+        "id": "cbd04e42-e750-4e67-a520-96f31513d93a",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:49:08.239Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Project Minimi Cotton screenshots Mac screen reading"
+            },
+            {
+              "query": "Cotton app Mac screen capture accessibility API"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 20,
+          "facts": 12,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 1810
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:08.666Z"
+      },
+      {
+        "id": "7a227568-1db2-44c8-800c-e0170aac1cc3",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:08.666Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**No — per the vendor's own description, Minimi does not take screenshots.** It reads what's on your Mac screen through macOS **Accessibility** APIs instead of capturing images.\n\n**Cotton's role:** Cotton is the memory side of Minimi 2.0 — it accumulates the context of what you read, hear, and do on your Mac into a private, on-device memory layer (Melody, the other character, tracks unfinished commitments) [S5](https://www.nextfor.ai/products/minimi-2-0-2), [S9](https://chatgate.ai/en/post/minimi-2-0#1).\n\n**How it reads the screen:** A review of the product states that the official site says it reads screen content via macOS Accessibility rather than screenshots; microphone and system-audio capture require separate permissions, and the policy notes that recording other people's conversations requires any legally required consent [S8](https://aitrovex.com/zh-hans/tool/minimi). Memories are stored as embeddings in a local vector database on your Mac, and the company says nothing is kept on its servers or used for training [S5](https://www.nextfor.ai/products/minimi-2-0-2), [S2](https://www.projectminimi.com/memory).\n\nTwo caveats:\n- The Accessibility-vs-screenshot wording comes from a third-party summary of the site, not a direct quote from the vendor page I retrieved; the official memory page I checked only says memory stays on your Mac and that it uses \"the same permissions as WisprFlow\" [S2](https://www.projectminimi.com/memory).\n- The search digest was truncated, so I can't rule out that the site elsewhere mentions optional screenshot-based features.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — minimi memory page\n- [S5](https://www.nextfor.ai/products/minimi-2-0-2) — minimi 2.0 features overview\n- [S8](https://aitrovex.com/zh-hans/tool/minimi) — aitrovex product summary (Accessibility vs. screenshots)\n- [S9](https://chatgate.ai/en/post/minimi-2-0#1) — chatgate.ai on minimi 2.0",
+          "tool_calls": [],
+          "usage": {
+            "input": 3185,
+            "output": 487,
+            "cacheHit": 1152,
+            "cacheMiss": 2033
+          },
+          "cost_usd": 0.000589596,
+          "latency_ms": 2776
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:11.442Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**No — per the vendor's own description, Minimi does not take screenshots.** It reads what's on your Mac screen through macOS **Accessibility** APIs instead of capturing images.\n\n**Cotton's role:** Cotton is the memory side of Minimi 2.0 — it accumulates the context of what you read, hear, and do on your Mac into a private, on-device memory layer (Melody, the other character, tracks unfinished commitments) [S5](https://www.nextfor.ai/products/minimi-2-0-2), [S9](https://chatgate.ai/en/post/minimi-2-0#1).\n\n**How it reads the screen:** A review of the product states that the official site says it reads screen content via macOS Accessibility rather than screenshots; microphone and system-audio capture require separate permissions, and the policy notes that recording other people's conversations requires any legally required consent [S8](https://aitrovex.com/zh-hans/tool/minimi). Memories are stored as embeddings in a local vector database on your Mac, and the company says nothing is kept on its servers or used for training [S5](https://www.nextfor.ai/products/minimi-2-0-2), [S2](https://www.projectminimi.com/memory).\n\nTwo caveats:\n- The Accessibility-vs-screenshot wording comes from a third-party summary of the site, not a direct quote from the vendor page I retrieved; the official memory page I checked only says memory stays on your Mac and that it uses \"the same permissions as WisprFlow\" [S2](https://www.projectminimi.com/memory).\n- The search digest was truncated, so I can't rule out that the site elsewhere mentions optional screenshot-based features.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — minimi memory page\n- [S5](https://www.nextfor.ai/products/minimi-2-0-2) — minimi 2.0 features overview\n- [S8](https://aitrovex.com/zh-hans/tool/minimi) — aitrovex product summary (Accessibility vs. screenshots)\n- [S9](https://chatgate.ai/en/post/minimi-2-0#1) — chatgate.ai on minimi 2.0",
+      "route": "research",
+      "citations": 4,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 4338,
+      "output_tokens": 557,
+      "cost_usd": 0.000733,
+      "search_queries": [
+        "Project Minimi Cotton screenshots Mac screen reading",
+        "Cotton app Mac screen capture accessibility API"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:49:11.443Z"
+  },
+  "run": null,
+  "traceId": "f5baa695-583e-4b74-9089-347143e02857"
+}

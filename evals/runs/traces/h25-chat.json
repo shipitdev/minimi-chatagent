@@ -1,0 +1,189 @@
+{
+  "caseId": "h25-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "e8a6a726-efee-4ddc-999a-4944e23390bc",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:28.470Z",
+    "inputs": {
+      "prompt": "micaledger starter from the 9th still $12 usd? same US monthly plan",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h25-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "0fb1af4a-9895-4000-b841-567239471618",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:28.470Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:28.470Z"
+      },
+      {
+        "id": "b18517fc-dc70-4a92-a9ec-133d3cee7bb7",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:28.470Z",
+        "inputs": {
+          "user_text": "micaledger starter from the 9th still $12 usd? same US monthly plan",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "mica-turn"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "the 9th"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:28.472Z"
+      },
+      {
+        "id": "408edd0d-d001-4d66-b903-732c0fba7b08",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:28.472Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"MicaLedger Starter US monthly price\", \"subject\": \"MicaLedger Starter US monthly price\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1339,
+            "output": 82,
+            "cacheHit": 640,
+            "cacheMiss": 699
+          },
+          "cost_usd": 0.0001617,
+          "latency_ms": 764
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:29.236Z"
+      },
+      {
+        "id": "e2cf3c67-be9b-403d-b22d-aad485bc0ac4",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:29.236Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "MicaLedger Starter US monthly price",
+              "subject": "MicaLedger Starter US monthly price",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 0,
+          "missing": [
+            "no usable claim-sized evidence for \"MicaLedger Starter US monthly price\"",
+            "no value found that is tied to subject \"MicaLedger Starter US monthly price\"",
+            "evidence gap for \"MicaLedger Starter US monthly price\""
+          ],
+          "attempts": 2,
+          "evidence_tokens": 364
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:29.240Z"
+      },
+      {
+        "id": "2dd9b367-5407-429b-af57-f064452b0048",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:29.240Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I can't confirm the current price — the fresh check didn't return a usable US Starter price.\n\n- **Baseline (9 Nov 2026):** MicaLedger Starter, US, monthly was **$12 USD** [mica-old](https://mica-old.example/pricing).\n- **Now (11 Nov 2026):** no usable evidence for that plan. The only page returned was a Mica EU pricing page, which doesn't give a US Starter monthly figure [S1](https://mica-eu.example/pricing).\n\nSo there's no evidence of a change, but also no confirmation it's still $12 — the comparison can't be established either way. If you want, I can retry with a different query (e.g. the US pricing page directly).\n\n**Sources**\n- [mica-old](https://mica-old.example/pricing)\n- [S1](https://mica-eu.example/pricing)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1788,
+            "output": 197,
+            "cacheHit": 1408,
+            "cacheMiss": 380
+          },
+          "cost_usd": 0.000202944,
+          "latency_ms": 1633
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:30.873Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I can't confirm the current price — the fresh check didn't return a usable US Starter price.\n\n- **Baseline (9 Nov 2026):** MicaLedger Starter, US, monthly was **$12 USD** [mica-old](https://mica-old.example/pricing).\n- **Now (11 Nov 2026):** no usable evidence for that plan. The only page returned was a Mica EU pricing page, which doesn't give a US Starter monthly figure [S1](https://mica-eu.example/pricing).\n\nSo there's no evidence of a change, but also no confirmation it's still $12 — the comparison can't be established either way. If you want, I can retry with a different query (e.g. the US pricing page directly).\n\n**Sources**\n- [mica-old](https://mica-old.example/pricing)\n- [S1](https://mica-eu.example/pricing)",
+      "route": "historical_update",
+      "citations": 2,
+      "selected_turn_ids": [
+        "mica-turn"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3127,
+      "output_tokens": 279,
+      "cost_usd": 0.000365,
+      "search_queries": [
+        "MicaLedger Starter US monthly price"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:30.875Z"
+  },
+  "run": null,
+  "traceId": "e8a6a726-efee-4ddc-999a-4944e23390bc"
+}

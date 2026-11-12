@@ -1,0 +1,116 @@
+{
+  "caseId": "d14-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "10924873-c64e-4ffa-8fa1-e1986a42600a",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:58.854Z",
+    "inputs": {
+      "prompt": "Rewrite this message in a warmer tone: I need the review by noon.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "d14-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "1fc327e0-eec8-4baf-83b7-fac319eb9610",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:58.854Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:58.854Z"
+      },
+      {
+        "id": "9fd4e02b-e610-4138-8435-28faaf8cfb14",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:58.854Z",
+        "inputs": {
+          "user_text": "Rewrite this message in a warmer tone: I need the review by noon.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:58.855Z"
+      },
+      {
+        "id": "5b682e46-a64e-4ea9-9261-e21ef5f05c16",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:58.856Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Here's a warmer version:\n\n\"Could you please have the review to me by noon? I'd really appreciate it—thank you!\"\n\nA couple of alternatives depending on how warm you want to go:\n\n- **Slightly warmer:** \"I'd love to have the review by noon if that works for you—thanks so much!\"\n- **Warmer still:** \"Whenever you get a chance this morning, could you send the review my way by noon? Thanks a lot—I really appreciate your help with this.\"",
+          "tool_calls": [],
+          "usage": {
+            "input": 1124,
+            "output": 103,
+            "cacheHit": 896,
+            "cacheMiss": 228
+          },
+          "cost_usd": 0.000114688,
+          "latency_ms": 1475
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:00.331Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Here's a warmer version:\n\n\"Could you please have the review to me by noon? I'd really appreciate it—thank you!\"\n\nA couple of alternatives depending on how warm you want to go:\n\n- **Slightly warmer:** \"I'd love to have the review by noon if that works for you—thanks so much!\"\n- **Warmer still:** \"Whenever you get a chance this morning, could you send the review my way by noon? Thanks a lot—I really appreciate your help with this.\"",
+      "route": "direct",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 1,
+      "input_tokens": 1124,
+      "output_tokens": 103,
+      "cost_usd": 0.000115,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:00.331Z"
+  },
+  "run": null,
+  "traceId": "10924873-c64e-4ffa-8fa1-e1986a42600a"
+}

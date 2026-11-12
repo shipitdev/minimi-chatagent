@@ -1,0 +1,179 @@
+{
+  "caseId": "l06",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "dc6bcb32-5e53-4f08-9d6d-51665924d2c0",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:49:24.484Z",
+    "inputs": {
+      "prompt": "Project Minimi says its memory is 50% more accurate. What two scores does it report, and what does the 50% mean?",
+      "mode": "live",
+      "timezone": "Asia/Kolkata",
+      "now": null,
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "l06",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "53754d68-65b7-4b84-91cf-b1f2723308f1",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:24.484Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:24.484Z"
+      },
+      {
+        "id": "9066776f-a273-416c-8178-aafb97cb700c",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:24.484Z",
+        "inputs": {
+          "user_text": "Project Minimi says its memory is 50% more accurate. What two scores does it report, and what does the 50% mean?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T19:49:24.474Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:24.485Z"
+      },
+      {
+        "id": "7f9bf465-ef93-4c7c-87fd-8620e407c00e",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:24.916Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Project Minimi memory 50% more accurate benchmark scores\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1161,
+            "output": 62,
+            "cacheHit": 512,
+            "cacheMiss": 649
+          },
+          "cost_usd": 0.000139916,
+          "latency_ms": 582
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:25.498Z"
+      },
+      {
+        "id": "50b50244-8b57-4286-b12c-7e3559b907cd",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:49:25.498Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Project Minimi memory 50% more accurate benchmark scores"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 10,
+          "facts": 24,
+          "missing": [],
+          "attempts": 1,
+          "evidence_tokens": 1685
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:25.924Z"
+      },
+      {
+        "id": "56e8fc22-a96e-4669-b1ed-2e4a1c1bd177",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:25.924Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**The two scores:** Minimi 54% vs. LIGHT (BEAM) 36%, measured on BEAM, the ICLR 2026 benchmark for long-term memory [S2](https://www.projectminimi.com/memory).\n\n**What the 50% means:** It's a relative improvement over the previous state of the art, not a 50-point gap. 54 ÷ 36 = 1.5, so Minimi's score is 50% higher than LIGHT's — the absolute difference is 18 percentage points [S2](https://www.projectminimi.com/memory). Minimi's own framing is \"50% more accurate than previous SOTA\" [S2](https://www.projectminimi.com/memory), echoed in its launch material (\"beat the published benchmark of 0.36 (BEAM) by 50%\") [S4](https://www.producthunt.com/p/shram/minimi-3).\n\nTwo caveats worth noting: the claim is a vendor self-report, and third-party write-ups note that the underlying evaluation details (harness, dataset split, scoring method) aren't published alongside the headline number [S9](https://ustack.app/products/minimi). Also, \"54% accurate\" is a low absolute score — the 50% figure is flattering precisely because the baseline is low.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — Minimi memory page (54% vs 36%, BEAM ICLR 2026)\n- [S4](https://www.producthunt.com/p/shram/minimi-3) — Product Hunt launch thread\n- [S9](https://ustack.app/products/minimi) — ustack.app product listing (notes limited evaluation detail)",
+          "tool_calls": [],
+          "usage": {
+            "input": 3118,
+            "output": 375,
+            "cacheHit": 1152,
+            "cacheMiss": 1966
+          },
+          "cost_usd": 0.000517496,
+          "latency_ms": 2381
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:28.305Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**The two scores:** Minimi 54% vs. LIGHT (BEAM) 36%, measured on BEAM, the ICLR 2026 benchmark for long-term memory [S2](https://www.projectminimi.com/memory).\n\n**What the 50% means:** It's a relative improvement over the previous state of the art, not a 50-point gap. 54 ÷ 36 = 1.5, so Minimi's score is 50% higher than LIGHT's — the absolute difference is 18 percentage points [S2](https://www.projectminimi.com/memory). Minimi's own framing is \"50% more accurate than previous SOTA\" [S2](https://www.projectminimi.com/memory), echoed in its launch material (\"beat the published benchmark of 0.36 (BEAM) by 50%\") [S4](https://www.producthunt.com/p/shram/minimi-3).\n\nTwo caveats worth noting: the claim is a vendor self-report, and third-party write-ups note that the underlying evaluation details (harness, dataset split, scoring method) aren't published alongside the headline number [S9](https://ustack.app/products/minimi). Also, \"54% accurate\" is a low absolute score — the 50% figure is flattering precisely because the baseline is low.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — Minimi memory page (54% vs 36%, BEAM ICLR 2026)\n- [S4](https://www.producthunt.com/p/shram/minimi-3) — Product Hunt launch thread\n- [S9](https://ustack.app/products/minimi) — ustack.app product listing (notes limited evaluation detail)",
+      "route": "research",
+      "citations": 3,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 4279,
+      "output_tokens": 437,
+      "cost_usd": 0.000657,
+      "search_queries": [
+        "Project Minimi memory 50% more accurate benchmark scores"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:49:28.306Z"
+  },
+  "run": null,
+  "traceId": "dc6bcb32-5e53-4f08-9d6d-51665924d2c0"
+}

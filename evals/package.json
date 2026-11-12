@@ -1,0 +1,9 @@
+{
+  "name": "minimi-evals",
+  "private": true,
+  "type": "module",
+  "description": "Golden-v2 adapter, LangSmith tracing, and evaluation support",
+  "dependencies": {
+    "langsmith": "0.12.0"
+  }
+}

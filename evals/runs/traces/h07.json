@@ -1,0 +1,198 @@
+{
+  "caseId": "h07",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "913ab326-756b-466c-b2f4-bfcefa53560b",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:18.194Z",
+    "inputs": {
+      "prompt": "You told me on Nov 4 that NorthLake offers free backups. Is that still correct?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h07",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "6fe97691-a200-413a-b512-eaf576e1aa89",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:18.194Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:18.195Z"
+      },
+      {
+        "id": "0bdbedc4-603f-4b72-9f18-6e6592adf237",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:18.195Z",
+        "inputs": {
+          "user_text": "You told me on Nov 4 that NorthLake offers free backups. Is that still correct?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "north-old-turn"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "Nov 4"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:18.197Z"
+      },
+      {
+        "id": "0edc7551-cb38-4f28-9624-3b8a9041702a",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:18.198Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I'll check the current NorthLake backup terms against what I told you on Nov 4.",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"NorthLake free backups pricing\", \"subject\": \"NorthLake free backups\"}, {\"query\": \"NorthLake backup policy included free\", \"subject\": \"NorthLake backup policy\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1283,
+            "output": 113,
+            "cacheHit": 640,
+            "cacheMiss": 643
+          },
+          "cost_usd": 0.00017122,
+          "latency_ms": 1381
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:19.579Z"
+      },
+      {
+        "id": "c50cb227-df85-47e6-bd4e-b342583992db",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:19.579Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "NorthLake free backups pricing",
+              "subject": "NorthLake free backups",
+              "fetch": false
+            },
+            {
+              "query": "NorthLake backup policy included free",
+              "subject": "NorthLake backup policy",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 2,
+          "facts": 0,
+          "missing": [
+            "no usable claim-sized evidence for \"NorthLake free backups pricing\"",
+            "no value found that is tied to subject \"NorthLake free backups\"",
+            "evidence gap for \"NorthLake free backups pricing\"",
+            "no usable claim-sized evidence for \"NorthLake backup policy included free\"",
+            "no value found that is tied to subject \"NorthLake backup policy\"",
+            "evidence gap for \"NorthLake backup policy included free\""
+          ],
+          "attempts": 4,
+          "evidence_tokens": 544
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:19.583Z"
+      },
+      {
+        "id": "56574740-7921-44f5-bef3-8b083f2ad726",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:19.583Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I can't confirm it either way right now — the search returned no usable content, so there's no evidence of a change.\n\nWhat I can say:\n\n- **What I told you on Nov 4:** Yes, NorthLake offers free backups (my answer in our Nov 4 session).\n- **What I can verify today:** Nothing. The only page returned was a pricing page dated 2026-11-11, but no claim-sized text was retrieved from it, so I have no current statement about NorthLake backups to compare against [S1](https://north-current.example/pricing).\n\nSo this is **not** a confirmed change — it's an evidence gap. My Nov 4 answer stands as the last thing I actually verified, and I have no basis to say it's still correct or that it's now wrong.\n\nIf you want a firm answer, the quickest route is to check the backups section of NorthLake's pricing page directly, or tell me the exact plan/tier you're on (free backups are often tier-dependent) and I'll search again with that detail.\n\n**Sources**\n- [S1](https://north-current.example/pricing) — North Current pricing page, published 2026-11-11 (no usable backup claim retrieved)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1919,
+            "output": 261,
+            "cacheHit": 1280,
+            "cacheMiss": 639
+          },
+          "cost_usd": 0.00027146,
+          "latency_ms": 2682
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:22.265Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I can't confirm it either way right now — the search returned no usable content, so there's no evidence of a change.\n\nWhat I can say:\n\n- **What I told you on Nov 4:** Yes, NorthLake offers free backups (my answer in our Nov 4 session).\n- **What I can verify today:** Nothing. The only page returned was a pricing page dated 2026-11-11, but no claim-sized text was retrieved from it, so I have no current statement about NorthLake backups to compare against [S1](https://north-current.example/pricing).\n\nSo this is **not** a confirmed change — it's an evidence gap. My Nov 4 answer stands as the last thing I actually verified, and I have no basis to say it's still correct or that it's now wrong.\n\nIf you want a firm answer, the quickest route is to check the backups section of NorthLake's pricing page directly, or tell me the exact plan/tier you're on (free backups are often tier-dependent) and I'll search again with that detail.\n\n**Sources**\n- [S1](https://north-current.example/pricing) — North Current pricing page, published 2026-11-11 (no usable backup claim retrieved)",
+      "route": "historical_update",
+      "citations": 1,
+      "selected_turn_ids": [
+        "north-old-turn"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3202,
+      "output_tokens": 374,
+      "cost_usd": 0.000443,
+      "search_queries": [
+        "NorthLake free backups pricing",
+        "NorthLake backup policy included free"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:22.266Z"
+  },
+  "run": null,
+  "traceId": "913ab326-756b-466c-b2f4-bfcefa53560b"
+}

@@ -1,0 +1,187 @@
+{
+  "caseId": "h22-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "40ce93d0-1cfb-42e7-8078-8baab584b0d3",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:06.446Z",
+    "inputs": {
+      "prompt": "Did QuartzForms increase its export limit this month? Resolve the conflicting evidence where possible.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h22-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "89709bbd-4bc6-4c5a-9d8a-0fbf562fdead",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:06.446Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:06.446Z"
+      },
+      {
+        "id": "f5273865-b6c2-48a3-b1b9-e041e7c39a05",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:06.446Z",
+        "inputs": {
+          "user_text": "Did QuartzForms increase its export limit this month? Resolve the conflicting evidence where possible.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "this month"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:06.448Z"
+      },
+      {
+        "id": "3ea6b5ff-e8b2-450d-9e9a-0d4f83092c2f",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:06.449Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"QuartzForms export limit\", \"QuartzForms export limit increase November 2026\", \"QuartzForms pricing export limit changelog\"], \"intent\": \"change\"}"
+            }
+          ],
+          "usage": {
+            "input": 1133,
+            "output": 79,
+            "cacheHit": 896,
+            "cacheMiss": 237
+          },
+          "cost_usd": 0.00010250800000000002,
+          "latency_ms": 1159
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:07.608Z"
+      },
+      {
+        "id": "406c77e8-0cfb-4f6f-ac3c-6013c536e32a",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:07.608Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "QuartzForms export limit"
+            },
+            {
+              "query": "QuartzForms export limit increase November 2026"
+            },
+            {
+              "query": "QuartzForms pricing export limit changelog"
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 6,
+          "facts": 3,
+          "missing": [],
+          "attempts": 6,
+          "evidence_tokens": 724
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:07.616Z"
+      },
+      {
+        "id": "2c481a82-cbf7-453f-87e4-a8d72482217e",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:07.616Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**Yes — for the Pro tier.** QuartzForms' official Pro release note says that effective November 6, 2026, exports increased from 200 to 500 per month [S2](https://quartz-change.example/pricing).\n\n**Resolving the conflict:** the two figures aren't actually contradictory once you check dates. The 200/month figure comes from the Pro help article, which was last updated October 21 — before the change took effect [S1](https://quartz-help.example/pricing). So the help article is simply stale, not a competing policy. The release note is the newer, authoritative statement.\n\nTwo caveats:\n- The evidence covers the **Pro tier only**; I found nothing on whether other tiers (Free, Team, Enterprise) changed.\n- The help article hasn't been refreshed as of today (November 11), so users reading it will still see 200 — worth flagging to support if you're relying on it for documentation.\n\n**Sources**\n- [S2](https://quartz-change.example/pricing) — QuartzForms official Pro release note (published 2026-11-11)\n- [S1](https://quartz-help.example/pricing) — QuartzForms Pro help article (last updated 2026-10-21)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1982,
+            "output": 267,
+            "cacheHit": 1152,
+            "cacheMiss": 830
+          },
+          "cost_usd": 0.00029797600000000004,
+          "latency_ms": 2152
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:09.768Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**Yes — for the Pro tier.** QuartzForms' official Pro release note says that effective November 6, 2026, exports increased from 200 to 500 per month [S2](https://quartz-change.example/pricing).\n\n**Resolving the conflict:** the two figures aren't actually contradictory once you check dates. The 200/month figure comes from the Pro help article, which was last updated October 21 — before the change took effect [S1](https://quartz-help.example/pricing). So the help article is simply stale, not a competing policy. The release note is the newer, authoritative statement.\n\nTwo caveats:\n- The evidence covers the **Pro tier only**; I found nothing on whether other tiers (Free, Team, Enterprise) changed.\n- The help article hasn't been refreshed as of today (November 11), so users reading it will still see 200 — worth flagging to support if you're relying on it for documentation.\n\n**Sources**\n- [S2](https://quartz-change.example/pricing) — QuartzForms official Pro release note (published 2026-11-11)\n- [S1](https://quartz-help.example/pricing) — QuartzForms Pro help article (last updated 2026-10-21)",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 3115,
+      "output_tokens": 346,
+      "cost_usd": 0.0004,
+      "search_queries": [
+        "QuartzForms export limit",
+        "QuartzForms export limit increase November 2026",
+        "QuartzForms pricing export limit changelog"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:09.769Z"
+  },
+  "run": null,
+  "traceId": "40ce93d0-1cfb-42e7-8078-8baab584b0d3"
+}

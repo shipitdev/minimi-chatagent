@@ -1,0 +1,122 @@
+{
+  "caseId": "d11-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "00155bca-5ebc-45ce-a58d-1247f0cdc8c6",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:44.699Z",
+    "inputs": {
+      "prompt": "what do i still owe leena btw? when'd i say i'd send it?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d11-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "02ac9ebc-794a-488b-9670-9569b7a525b9",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:44.699Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:44.699Z"
+      },
+      {
+        "id": "7b114ccf-18ae-4bd2-8679-53ca268e9f14",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:44.699Z",
+        "inputs": {
+          "user_text": "what do i still owe leena btw? when'd i say i'd send it?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "leena-b",
+            "leena-a"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:44.702Z"
+      },
+      {
+        "id": "32c61ee0-a1a0-497d-828a-ef5f08de6fd9",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:44.702Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "You still owe Leena the **API examples**, and you said you'd send them **Thursday at 3 PM**.\n\nFrom your earlier notes:\n- **Mon, 9 Nov 2026:** you promised Leena the API examples by Thursday at 3 PM, plus a draft diagram that day.\n- **Tue, 10 Nov 2026:** you sent her the diagram; the examples were still outstanding.\n\nSo the diagram is done — the API examples are the open item, due Thursday, 12 Nov 2026 at 3 PM.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1287,
+            "output": 112,
+            "cacheHit": 1152,
+            "cacheMiss": 135
+          },
+          "cost_usd": 0.000113876,
+          "latency_ms": 1296
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:45.998Z"
+      }
+    ],
+    "outputs": {
+      "answer": "You still owe Leena the **API examples**, and you said you'd send them **Thursday at 3 PM**.\n\nFrom your earlier notes:\n- **Mon, 9 Nov 2026:** you promised Leena the API examples by Thursday at 3 PM, plus a draft diagram that day.\n- **Tue, 10 Nov 2026:** you sent her the diagram; the examples were still outstanding.\n\nSo the diagram is done — the API examples are the open item, due Thursday, 12 Nov 2026 at 3 PM.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "leena-b",
+        "leena-a"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1287,
+      "output_tokens": 112,
+      "cost_usd": 0.000114,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:45.999Z"
+  },
+  "run": null,
+  "traceId": "00155bca-5ebc-45ce-a58d-1247f0cdc8c6"
+}

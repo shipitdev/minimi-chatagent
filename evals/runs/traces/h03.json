@@ -1,0 +1,120 @@
+{
+  "caseId": "h03",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "b0978dba-2d7f-4e13-96a9-e77b934e7525",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:11.670Z",
+    "inputs": {
+      "prompt": "What did I ask yesterday, in my timezone?",
+      "mode": "replay",
+      "timezone": "America/Los_Angeles",
+      "now": "2026-11-11T18:30:00Z",
+      "history_turns": 3
+    },
+    "metadata": {
+      "case_id": "h03",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "5679e599-b530-4fbf-b00d-bc1b94186495",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:11.671Z",
+        "inputs": {
+          "history_turns": 3,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 3,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:11.671Z"
+      },
+      {
+        "id": "7be22c90-c78a-4291-8f5a-5d400a268b69",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:11.671Z",
+        "inputs": {
+          "user_text": "What did I ask yesterday, in my timezone?",
+          "tz": "America/Los_Angeles",
+          "now": "2026-11-11T18:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "la-local"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "yesterday"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:11.673Z"
+      },
+      {
+        "id": "747e5544-64e1-4191-b8c7-1cd0ded71619",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:11.674Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Yesterday (Nov 10, in your timezone) you asked one thing: **\"Where is the analytics export?\"** — at 11:30 PM. I answered that it was in the shared folder.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1275,
+            "output": 43,
+            "cacheHit": 512,
+            "cacheMiss": 763
+          },
+          "cost_usd": 0.000145236,
+          "latency_ms": 1152
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:12.826Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Yesterday (Nov 10, in your timezone) you asked one thing: **\"Where is the analytics export?\"** — at 11:30 PM. I answered that it was in the shared folder.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "la-local"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1275,
+      "output_tokens": 43,
+      "cost_usd": 0.000145,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:12.827Z"
+  },
+  "run": null,
+  "traceId": "b0978dba-2d7f-4e13-96a9-e77b934e7525"
+}

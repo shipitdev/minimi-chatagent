@@ -1,0 +1,120 @@
+{
+  "caseId": "h27-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "f0facbea-25dd-49dd-b16f-56afdf0814da",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:34.967Z",
+    "inputs": {
+      "prompt": "one line recap of our notes pls, no looking stuff up",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h27-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "f49d972c-48e2-480b-b784-aea328b8b267",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:34.967Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:34.968Z"
+      },
+      {
+        "id": "b57fff43-476f-4c7e-ada6-1aeaac7070c9",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:34.968Z",
+        "inputs": {
+          "user_text": "one line recap of our notes pls, no looking stuff up",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "pilot"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:34.969Z"
+      },
+      {
+        "id": "86084e9e-df06-4587-9792-71e44e4bf284",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:34.970Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Yesterday (10 Nov) you noted: the pilot stays internal until signoff, then it opens to customers.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1235,
+            "output": 22,
+            "cacheHit": 1024,
+            "cacheMiss": 211
+          },
+          "cost_usd": 0.00007053200000000001,
+          "latency_ms": 1193
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:36.163Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Yesterday (10 Nov) you noted: the pilot stays internal until signoff, then it opens to customers.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "pilot"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1235,
+      "output_tokens": 22,
+      "cost_usd": 0.000071,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:36.164Z"
+  },
+  "run": null,
+  "traceId": "f0facbea-25dd-49dd-b16f-56afdf0814da"
+}

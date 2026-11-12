@@ -1,0 +1,186 @@
+{
+  "caseId": "h23-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "f8eab051-d413-43ff-ace8-de57d241c04b",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:13.031Z",
+    "inputs": {
+      "prompt": "Verify the current Team prices for LakeDesk and DockDesk. Report partial results if a vendor is unavailable.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h23-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "54de58ce-91bb-40ef-af13-bb2a316f7fb6",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:13.031Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:13.031Z"
+      },
+      {
+        "id": "e75ebb57-f6ce-40a5-a545-a5c3703ff124",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:13.031Z",
+        "inputs": {
+          "user_text": "Verify the current Team prices for LakeDesk and DockDesk. Report partial results if a vendor is unavailable.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:13.032Z"
+      },
+      {
+        "id": "e29a9759-ed65-4b46-98ac-aa831c8ad0eb",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:13.033Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"LakeDesk Team plan price per user per month\", \"DockDesk Team plan price per user per month\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1137,
+            "output": 74,
+            "cacheHit": 896,
+            "cacheMiss": 241
+          },
+          "cost_usd": 0.00010026800000000001,
+          "latency_ms": 1332
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:14.365Z"
+      },
+      {
+        "id": "6182da11-ed8f-4365-af9b-f606781b1b64",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:14.365Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "LakeDesk Team plan price per user per month"
+            },
+            {
+              "query": "DockDesk Team plan price per user per month"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 1,
+          "missing": [
+            "search failed for \"DockDesk Team plan price per user per month\": timeout",
+            "evidence gap for \"DockDesk Team plan price per user per month\""
+          ],
+          "attempts": 3,
+          "evidence_tokens": 353
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:14.372Z"
+      },
+      {
+        "id": "a2ceb2eb-3b74-45b2-845d-9eaef677295f",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:14.372Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**Partial result — LakeDesk confirmed, DockDesk unavailable.**\n\n- **LakeDesk Team:** $16 USD per month, billed monthly, as published 2026-11-11 [S1](https://lake-price.example/pricing). Note the source states a flat monthly price and does not specify per-seat pricing, so I can't confirm whether that figure is per user.\n- **DockDesk Team:** Not verified. The search for DockDesk's Team pricing timed out and returned no usable evidence, so I have no price to report for it.\n\nIf you want, I can retry DockDesk in a follow-up search.\n\n**Sources**\n- [S1](https://lake-price.example/pricing) — LakeDesk pricing page (published 2026-11-11)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1583,
+            "output": 167,
+            "cacheHit": 1152,
+            "cacheMiss": 431
+          },
+          "cost_usd": 0.000186116,
+          "latency_ms": 1638
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:16.010Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**Partial result — LakeDesk confirmed, DockDesk unavailable.**\n\n- **LakeDesk Team:** $16 USD per month, billed monthly, as published 2026-11-11 [S1](https://lake-price.example/pricing). Note the source states a flat monthly price and does not specify per-seat pricing, so I can't confirm whether that figure is per user.\n- **DockDesk Team:** Not verified. The search for DockDesk's Team pricing timed out and returned no usable evidence, so I have no price to report for it.\n\nIf you want, I can retry DockDesk in a follow-up search.\n\n**Sources**\n- [S1](https://lake-price.example/pricing) — LakeDesk pricing page (published 2026-11-11)",
+      "route": "research",
+      "citations": 1,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2720,
+      "output_tokens": 241,
+      "cost_usd": 0.000286,
+      "search_queries": [
+        "LakeDesk Team plan price per user per month",
+        "DockDesk Team plan price per user per month"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:16.012Z"
+  },
+  "run": null,
+  "traceId": "f8eab051-d413-43ff-ace8-de57d241c04b"
+}

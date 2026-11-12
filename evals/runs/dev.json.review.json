@@ -1,0 +1,180 @@
+{
+  "d01": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d02": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d03": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d04": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d05": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d06": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d07": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d08": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d09": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d10": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d11-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d11-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d12-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d12-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d13-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d13-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d14-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "d14-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  }
+}

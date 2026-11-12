@@ -1,0 +1,183 @@
+{
+  "caseId": "h10",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "4b7c1a4b-2e67-4a44-bf14-d9c04ab3f3dd",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:27.378Z",
+    "inputs": {
+      "prompt": "How many seats are included with SpruceChat Plus today?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h10",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "825cbb33-6c37-4108-9b40-8ea017eaaefc",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:27.378Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:27.378Z"
+      },
+      {
+        "id": "a77ebbce-7de5-4bb6-8a32-b45433188557",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:27.378Z",
+        "inputs": {
+          "user_text": "How many seats are included with SpruceChat Plus today?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "today"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:27.380Z"
+      },
+      {
+        "id": "20add545-5b95-4943-9113-ecb57a2d4f09",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:27.381Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"SpruceChat Plus seats included\", \"SpruceChat Plus pricing seats per plan\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1126,
+            "output": 67,
+            "cacheHit": 896,
+            "cacheMiss": 230
+          },
+          "cost_usd": 0.000094808,
+          "latency_ms": 1063
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:28.444Z"
+      },
+      {
+        "id": "473e72c4-7d82-4cc3-a320-cad5a9e47504",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:28.444Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "SpruceChat Plus seats included"
+            },
+            {
+              "query": "SpruceChat Plus pricing seats per plan"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 4,
+          "facts": 0,
+          "missing": [],
+          "attempts": 4,
+          "evidence_tokens": 561
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:28.452Z"
+      },
+      {
+        "id": "8472af9c-dbb4-4247-9129-c09f51edbf89",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:28.452Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I can't give you a single number, because the two current SpruceChat sources disagree:\n\n- **10 seats** — SpruceChat Plus terms page, updated November 10, 2026 [S1](https://spruce-terms.example/pricing)\n- **15 seats** — SpruceChat official help center, retrieved November 11, 2026 [S2](https://spruce-help.example/pricing)\n\nBoth were retrieved today, so this isn't an old-vs-new discrepancy; it's a live conflict between the terms page and the help center. The terms page is the more likely authoritative one for contractual seat counts, but I'd confirm with SpruceChat support before relying on either figure for a purchase or renewal decision.\n\n**Sources**\n- [S1](https://spruce-terms.example/pricing) — Spruce Terms, published 2026-11-11\n- [S2](https://spruce-help.example/pricing) — Spruce Help, published 2026-11-11",
+          "tool_calls": [],
+          "usage": {
+            "input": 1824,
+            "output": 212,
+            "cacheHit": 1152,
+            "cacheMiss": 672
+          },
+          "cost_usd": 0.000245056,
+          "latency_ms": 1743
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:30.195Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I can't give you a single number, because the two current SpruceChat sources disagree:\n\n- **10 seats** — SpruceChat Plus terms page, updated November 10, 2026 [S1](https://spruce-terms.example/pricing)\n- **15 seats** — SpruceChat official help center, retrieved November 11, 2026 [S2](https://spruce-help.example/pricing)\n\nBoth were retrieved today, so this isn't an old-vs-new discrepancy; it's a live conflict between the terms page and the help center. The terms page is the more likely authoritative one for contractual seat counts, but I'd confirm with SpruceChat support before relying on either figure for a purchase or renewal decision.\n\n**Sources**\n- [S1](https://spruce-terms.example/pricing) — Spruce Terms, published 2026-11-11\n- [S2](https://spruce-help.example/pricing) — Spruce Help, published 2026-11-11",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2950,
+      "output_tokens": 279,
+      "cost_usd": 0.00034,
+      "search_queries": [
+        "SpruceChat Plus seats included",
+        "SpruceChat Plus pricing seats per plan"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:30.196Z"
+  },
+  "run": null,
+  "traceId": "4b7c1a4b-2e67-4a44-bf14-d9c04ab3f3dd"
+}

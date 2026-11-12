@@ -1,0 +1,187 @@
+{
+  "caseId": "h16",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "903d17da-c7aa-491e-acc5-d4853f716d53",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:39.047Z",
+    "inputs": {
+      "prompt": "Did DriftStore's retention change since we looked at it on November 3?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h16",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "6ff4d4e8-ecbd-4911-a3be-73e9c6b47000",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:39.047Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:39.048Z"
+      },
+      {
+        "id": "cc228ceb-8da1-4634-8a28-91a7d5b7ec17",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:39.048Z",
+        "inputs": {
+          "user_text": "Did DriftStore's retention change since we looked at it on November 3?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "drift-ask"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "November 3"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:39.050Z"
+      },
+      {
+        "id": "215e65c6-598a-4039-95f1-48e3189ba537",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:39.050Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"DriftStore Standard retention days pricing\", \"subject\": \"DriftStore Standard retention\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1337,
+            "output": 73,
+            "cacheHit": 640,
+            "cacheMiss": 697
+          },
+          "cost_usd": 0.00015638000000000002,
+          "latency_ms": 1315
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:40.365Z"
+      },
+      {
+        "id": "6bea50db-ddb7-447f-80ac-bb795aa553ab",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:40.365Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "DriftStore Standard retention days pricing",
+              "subject": "DriftStore Standard retention",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 0,
+          "missing": [
+            "no value found that is tied to subject \"DriftStore Standard retention\""
+          ],
+          "attempts": 2,
+          "evidence_tokens": 354
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:40.368Z"
+      },
+      {
+        "id": "fcdbe548-9e38-4cd3-969a-d2d2e286b133",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:40.368Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Yes — the current page shows a different value than what we recorded on November 3.\n\n- **November 3, 2026:** DriftStore Standard retention was **30 days** ([drift-old](https://drift-old.example/pricing)).\n- **November 11, 2026:** the pricing page now lists DriftStore Standard retention as **45 days** ([S1](https://drift-current.example/pricing)).\n\nOne caveat: the search tool's automated change check didn't match the new value to the \"DriftStore Standard retention\" subject and reported no saved baseline, so it couldn't formally confirm the change. The comparison above is based on the two page readings themselves — same product and tier name, but different domains (drift-old.example vs. drift-current.example), so if those are separate deployments or regions, treat the difference as unconfirmed.\n\n**Sources**\n- [drift-old.example/pricing](https://drift-old.example/pricing)\n- [drift-current.example/pricing](https://drift-current.example/pricing)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1763,
+            "output": 219,
+            "cacheHit": 1408,
+            "cacheMiss": 355
+          },
+          "cost_usd": 0.000211764,
+          "latency_ms": 1544
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:41.912Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Yes — the current page shows a different value than what we recorded on November 3.\n\n- **November 3, 2026:** DriftStore Standard retention was **30 days** ([drift-old](https://drift-old.example/pricing)).\n- **November 11, 2026:** the pricing page now lists DriftStore Standard retention as **45 days** ([S1](https://drift-current.example/pricing)).\n\nOne caveat: the search tool's automated change check didn't match the new value to the \"DriftStore Standard retention\" subject and reported no saved baseline, so it couldn't formally confirm the change. The comparison above is based on the two page readings themselves — same product and tier name, but different domains (drift-old.example vs. drift-current.example), so if those are separate deployments or regions, treat the difference as unconfirmed.\n\n**Sources**\n- [drift-old.example/pricing](https://drift-old.example/pricing)\n- [drift-current.example/pricing](https://drift-current.example/pricing)",
+      "route": "historical_update",
+      "citations": 2,
+      "selected_turn_ids": [
+        "drift-ask"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3100,
+      "output_tokens": 292,
+      "cost_usd": 0.000368,
+      "search_queries": [
+        "DriftStore Standard retention days pricing"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:41.913Z"
+  },
+  "run": null,
+  "traceId": "903d17da-c7aa-491e-acc5-d4853f716d53"
+}

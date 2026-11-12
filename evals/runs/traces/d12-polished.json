@@ -1,0 +1,189 @@
+{
+  "caseId": "d12-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "34de5f5a-bb84-43c5-a199-e26f4f9b964e",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:46.105Z",
+    "inputs": {
+      "prompt": "Recheck AmberQueue's current Starter monthly price against our November 9 conversation.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "d12-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "a656fd39-b467-4c06-a171-d8f63759943d",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:46.105Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:46.106Z"
+      },
+      {
+        "id": "eccca8a4-0ff3-4452-959c-8e05eabbe2fa",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:46.106Z",
+        "inputs": {
+          "user_text": "Recheck AmberQueue's current Starter monthly price against our November 9 conversation.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "amber-turn"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "November 9"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:46.107Z"
+      },
+      {
+        "id": "13940461-5428-4f1f-9fa3-33ed7bb1cfea",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:46.108Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"AmberQueue Starter plan pricing US monthly\", \"subject\": \"AmberQueue Starter monthly price (US)\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1336,
+            "output": 77,
+            "cacheHit": 1152,
+            "cacheMiss": 184
+          },
+          "cost_usd": 0.00010113599999999999,
+          "latency_ms": 1408
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:47.516Z"
+      },
+      {
+        "id": "7d9e8b4e-e960-4681-8c02-0d0293d80ad8",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:20:47.516Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "AmberQueue Starter plan pricing US monthly",
+              "subject": "AmberQueue Starter monthly price (US)",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 0,
+          "missing": [
+            "no usable claim-sized evidence for \"AmberQueue Starter plan pricing US monthly\"",
+            "no value found that is tied to subject \"AmberQueue Starter monthly price (US)\"",
+            "evidence gap for \"AmberQueue Starter plan pricing US monthly\""
+          ],
+          "attempts": 2,
+          "evidence_tokens": 373
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:47.520Z"
+      },
+      {
+        "id": "00eedca8-8f20-47bc-afc3-9f6271a0b5f3",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:47.520Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I couldn't confirm a current price, so I can't establish whether anything changed.\n\n**What we had (Nov 9, 2026):** AmberQueue US Starter was **$14 USD per month** on monthly billing, per the pricing page we checked then ([amber-old](https://amber-old.example/pricing)).\n\n**What I found now:** The current pricing page ([S1](https://amber-new.example/pricing)) was retrieved today (2026-11-11), but the search returned no usable price value for the Starter plan. The change check also reports no saved baseline for this subject, so no comparison can be made.\n\nSo: no evidence of a change, and no evidence of no change — the current figure is simply unverified. If you can paste the Starter line from the current pricing page, or tell me the region/billing basis you care about (US monthly vs. annual), I can pin it down.\n\n**Sources**\n- [amber-old — AmberQueue pricing (Nov 9 baseline)](https://amber-old.example/pricing)\n- [S1 — AmberQueue pricing (retrieved 2026-11-11)](https://amber-new.example/pricing)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1774,
+            "output": 243,
+            "cacheHit": 1408,
+            "cacheMiss": 366
+          },
+          "cost_usd": 0.00022674400000000002,
+          "latency_ms": 2052
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:49.572Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I couldn't confirm a current price, so I can't establish whether anything changed.\n\n**What we had (Nov 9, 2026):** AmberQueue US Starter was **$14 USD per month** on monthly billing, per the pricing page we checked then ([amber-old](https://amber-old.example/pricing)).\n\n**What I found now:** The current pricing page ([S1](https://amber-new.example/pricing)) was retrieved today (2026-11-11), but the search returned no usable price value for the Starter plan. The change check also reports no saved baseline for this subject, so no comparison can be made.\n\nSo: no evidence of a change, and no evidence of no change — the current figure is simply unverified. If you can paste the Starter line from the current pricing page, or tell me the region/billing basis you care about (US monthly vs. annual), I can pin it down.\n\n**Sources**\n- [amber-old — AmberQueue pricing (Nov 9 baseline)](https://amber-old.example/pricing)\n- [S1 — AmberQueue pricing (retrieved 2026-11-11)](https://amber-new.example/pricing)",
+      "route": "historical_update",
+      "citations": 2,
+      "selected_turn_ids": [
+        "amber-turn"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3110,
+      "output_tokens": 320,
+      "cost_usd": 0.000328,
+      "search_queries": [
+        "AmberQueue Starter plan pricing US monthly"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:49.573Z"
+  },
+  "run": null,
+  "traceId": "34de5f5a-bb84-43c5-a199-e26f4f9b964e"
+}

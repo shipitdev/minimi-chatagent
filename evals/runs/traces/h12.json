@@ -1,0 +1,120 @@
+{
+  "caseId": "h12",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "25975dfb-a56a-4876-9b02-c45eb088a2fa",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:31.251Z",
+    "inputs": {
+      "prompt": "Did you already email the new shortlist to Mira?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h12",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "ef603cef-1e34-4f08-a182-b8c5e24bf5b4",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:31.251Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:31.252Z"
+      },
+      {
+        "id": "641cc135-b287-43ec-8343-5778d95d1f31",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:31.252Z",
+        "inputs": {
+          "user_text": "Did you already email the new shortlist to Mira?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "mira-send"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:31.253Z"
+      },
+      {
+        "id": "bba8a317-ecb3-4a14-b96f-f818ddbc0291",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:31.254Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "No — I didn't email anything to Mira. I don't have email or sending capability; I can only search the web and draft text.\n\nWhat I do have is a note from yesterday (Tue, 10 Nov 2026, 5:30 PM IST) where you asked me to remind you to send Mira the new shortlist. That was a reminder for you, not an action I took.\n\nSo the shortlist is still unsent as far as I know. Want me to draft the email text for you to send?",
+          "tool_calls": [],
+          "usage": {
+            "input": 1235,
+            "output": 109,
+            "cacheHit": 640,
+            "cacheMiss": 595
+          },
+          "cost_usd": 0.00016226,
+          "latency_ms": 1334
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:32.588Z"
+      }
+    ],
+    "outputs": {
+      "answer": "No — I didn't email anything to Mira. I don't have email or sending capability; I can only search the web and draft text.\n\nWhat I do have is a note from yesterday (Tue, 10 Nov 2026, 5:30 PM IST) where you asked me to remind you to send Mira the new shortlist. That was a reminder for you, not an action I took.\n\nSo the shortlist is still unsent as far as I know. Want me to draft the email text for you to send?",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "mira-send"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1235,
+      "output_tokens": 109,
+      "cost_usd": 0.000162,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:32.588Z"
+  },
+  "run": null,
+  "traceId": "25975dfb-a56a-4876-9b02-c45eb088a2fa"
+}

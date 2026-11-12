@@ -1,0 +1,247 @@
+{
+  "caseId": "h01",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "5e7c47c6-a8ba-47ab-8cdf-900f662d17ee",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:05.590Z",
+    "inputs": {
+      "prompt": "On Monday we shortlisted five CRMs for a 20-person team. Any pricing changes or major releases since then?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h01",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "a785ed4d-4ae7-402a-9041-10ba4bd0bdf1",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:05.590Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 6
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:05.590Z"
+      },
+      {
+        "id": "f5aa0dc9-3504-48a2-8bd4-fc2839f0fca8",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:05.590Z",
+        "inputs": {
+          "user_text": "On Monday we shortlisted five CRMs for a 20-person team. Any pricing changes or major releases since then?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "crm-monday",
+            "crm-friday"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:05.592Z"
+      },
+      {
+        "id": "c7a70232-5988-4711-b6e1-d07d94630ed2",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:05.592Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"QuillCRM Team plan pricing USD per seat per month monthly billing\", \"subject\": \"QuillCRM Team pricing\"}, {\"query\": \"MossCRM Team plan pricing USD per seat per month monthly billing\", \"subject\": \"MossCRM Team pricing\"}, {\"query\": \"RillCRM Team plan pricing USD per seat per month monthly billing\", \"subject\": \"RillCRM Team pricing\"}]}"
+            },
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"MarlinCRM Team plan pricing USD per seat per month monthly billing\", \"subject\": \"MarlinCRM Team pricing\"}, {\"query\": \"CedarCRM Team plan pricing USD per seat per month monthly billing\", \"subject\": \"CedarCRM Team pricing\"}, {\"query\": \"QuillCRM MossCRM RillCRM MarlinCRM CedarCRM major release announcement November 2026\", \"subject\": \"CRM major releases\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1511,
+            "output": 273,
+            "cacheHit": 640,
+            "cacheMiss": 871
+          },
+          "cost_usd": 0.00029274,
+          "latency_ms": 1437
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:07.029Z"
+      },
+      {
+        "id": "ae1640a6-8d45-4964-b10a-632ea99c4a04",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:07.030Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "QuillCRM Team plan pricing USD per seat per month monthly billing",
+              "subject": "QuillCRM Team pricing",
+              "fetch": false
+            },
+            {
+              "query": "MossCRM Team plan pricing USD per seat per month monthly billing",
+              "subject": "MossCRM Team pricing",
+              "fetch": false
+            },
+            {
+              "query": "RillCRM Team plan pricing USD per seat per month monthly billing",
+              "subject": "RillCRM Team pricing",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 3,
+          "facts": 3,
+          "missing": [],
+          "attempts": 6,
+          "evidence_tokens": 697
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:07.040Z"
+      },
+      {
+        "id": "c9e8c328-0157-4cb3-b0f7-118076aea90b",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:07.040Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "MarlinCRM Team plan pricing USD per seat per month monthly billing",
+              "subject": "MarlinCRM Team pricing",
+              "fetch": false
+            },
+            {
+              "query": "CedarCRM Team plan pricing USD per seat per month monthly billing",
+              "subject": "CedarCRM Team pricing",
+              "fetch": false
+            },
+            {
+              "query": "QuillCRM MossCRM RillCRM MarlinCRM CedarCRM major release announcement November 2026",
+              "subject": "CRM major releases",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 9,
+          "facts": 1,
+          "missing": [
+            "no value found that is tied to subject \"CedarCRM Team pricing\"",
+            "no value found that is tied to subject \"CRM major releases\""
+          ],
+          "attempts": 6,
+          "evidence_tokens": 1044
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:07.042Z"
+      },
+      {
+        "id": "b343dbc6-6d9f-45de-a7d0-ca1bd45b5fa6",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:07.042Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 5,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**Short answer:** QuillCRM's Team price has risen from $18 to $22 per seat/month on the same basis (US, 20 seats, monthly billing). RillCRM is unchanged at $15. MossCRM's new $19 figure is on annual billing, so it can't be compared with the $24 monthly figure we recorded. MarlinCRM now shows a verified $20; CedarCRM's price is still unverified. I found no evidence of major releases for any of the five.\n\n**Pricing, as of 11 Nov 2026 (USD/seat/month, US, 20 seats)**\n\n| CRM | Monday's figure | Today | Status |\n|---|---|---|---|\n| QuillCRM | $18 monthly [quill-old](https://quill-old.example/pricing) | $22 monthly [S1](https://quill-current.example/pricing) | **Increased $4** — same basis |\n| RillCRM | $15 monthly [rill-old](https://rill-old.example/pricing) | $15 monthly [S3](https://rill-current.example/pricing) | Unchanged |\n| MossCRM | $24 monthly [moss-old](https://moss-old.example/pricing) | $19/seat/month, **billed annually** [S2](https://moss-annual.example/pricing) | Not comparable — different billing basis |\n| MarlinCRM | Unverified | $20 monthly [S1](https://marlin-current.example/pricing) | Now verified (first confirmed figure, not a change) |\n| CedarCRM | Unverified | No price found | Still unverified |\n\nOn MossCRM: the $19 is an advertised price on annual billing, so it isn't a like-for-like drop from $24 monthly. To compare it with the others, you'd need Moss's monthly rate or the annual total including any commitment terms.\n\n**Major releases:** nothing found. The searches returned no release announcements for any of the five CRMs, so I can't confirm or rule out recent launches.\n\n**Sources**\n- [S1](https://quill-current.example/pricing) — QuillCRM current pricing\n- [S2](https://moss-annual.example/pricing) — MossCRM annual-billing pricing\n- [S3](https://rill-current.example/pricing) — RillCRM current pricing\n- [S1](https://marlin-current.example/pricing) — MarlinCRM current pricing\n- [quill-old](https://quill-old.example/pricing), [moss-old](https://moss-old.example/pricing), [rill-old](https://rill-old.example/pricing) — Monday's recorded figures",
+          "tool_calls": [],
+          "usage": {
+            "input": 3258,
+            "output": 557,
+            "cacheHit": 896,
+            "cacheMiss": 2362
+          },
+          "cost_usd": 0.000667688,
+          "latency_ms": 2982
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:10.024Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**Short answer:** QuillCRM's Team price has risen from $18 to $22 per seat/month on the same basis (US, 20 seats, monthly billing). RillCRM is unchanged at $15. MossCRM's new $19 figure is on annual billing, so it can't be compared with the $24 monthly figure we recorded. MarlinCRM now shows a verified $20; CedarCRM's price is still unverified. I found no evidence of major releases for any of the five.\n\n**Pricing, as of 11 Nov 2026 (USD/seat/month, US, 20 seats)**\n\n| CRM | Monday's figure | Today | Status |\n|---|---|---|---|\n| QuillCRM | $18 monthly [quill-old](https://quill-old.example/pricing) | $22 monthly [S1](https://quill-current.example/pricing) | **Increased $4** — same basis |\n| RillCRM | $15 monthly [rill-old](https://rill-old.example/pricing) | $15 monthly [S3](https://rill-current.example/pricing) | Unchanged |\n| MossCRM | $24 monthly [moss-old](https://moss-old.example/pricing) | $19/seat/month, **billed annually** [S2](https://moss-annual.example/pricing) | Not comparable — different billing basis |\n| MarlinCRM | Unverified | $20 monthly [S1](https://marlin-current.example/pricing) | Now verified (first confirmed figure, not a change) |\n| CedarCRM | Unverified | No price found | Still unverified |\n\nOn MossCRM: the $19 is an advertised price on annual billing, so it isn't a like-for-like drop from $24 monthly. To compare it with the others, you'd need Moss's monthly rate or the annual total including any commitment terms.\n\n**Major releases:** nothing found. The searches returned no release announcements for any of the five CRMs, so I can't confirm or rule out recent launches.\n\n**Sources**\n- [S1](https://quill-current.example/pricing) — QuillCRM current pricing\n- [S2](https://moss-annual.example/pricing) — MossCRM annual-billing pricing\n- [S3](https://rill-current.example/pricing) — RillCRM current pricing\n- [S1](https://marlin-current.example/pricing) — MarlinCRM current pricing\n- [quill-old](https://quill-old.example/pricing), [moss-old](https://moss-old.example/pricing), [rill-old](https://rill-old.example/pricing) — Monday's recorded figures",
+      "route": "historical_update",
+      "citations": 7,
+      "selected_turn_ids": [
+        "crm-monday",
+        "crm-friday"
+      ],
+      "model_calls": 2,
+      "input_tokens": 4769,
+      "output_tokens": 830,
+      "cost_usd": 0.00096,
+      "search_queries": [
+        "QuillCRM Team plan pricing USD per seat per month monthly billing",
+        "MossCRM Team plan pricing USD per seat per month monthly billing",
+        "RillCRM Team plan pricing USD per seat per month monthly billing",
+        "MarlinCRM Team plan pricing USD per seat per month monthly billing",
+        "CedarCRM Team plan pricing USD per seat per month monthly billing",
+        "QuillCRM MossCRM RillCRM MarlinCRM CedarCRM major release announcement November 2026"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:10.025Z"
+  },
+  "run": null,
+  "traceId": "5e7c47c6-a8ba-47ab-8cdf-900f662d17ee"
+}

@@ -1,0 +1,225 @@
+{
+  "golden_v2": {
+    "cases": 64,
+    "answered": 64,
+    "whole_case_structural_pass": 62,
+    "splits": {
+      "dev": {
+        "cases": 18,
+        "answered": 18,
+        "structural": {
+          "route": {
+            "n": 18,
+            "mean": 1.0
+          },
+          "required_history": {
+            "n": 10,
+            "mean": 1.0
+          },
+          "search_when_needed": {
+            "n": 18,
+            "mean": 1.0
+          },
+          "entity_search_coverage": {
+            "n": 9,
+            "mean": 1.0
+          },
+          "expected_source_coverage": {
+            "n": 8,
+            "mean": 1.0
+          }
+        },
+        "telemetry": {
+          "agent_ms": {
+            "n": 18,
+            "p50": 2245,
+            "p95": 3479
+          },
+          "first_answer_text_ms": {
+            "n": 18,
+            "p50": 2245,
+            "p95": 3479
+          },
+          "input_tokens": {
+            "n": 18,
+            "p50": 1357,
+            "p95": 3397
+          },
+          "output_tokens": {
+            "n": 18,
+            "p50": 136,
+            "p95": 376
+          },
+          "search_evidence_tokens": {
+            "n": 18,
+            "p50": 0,
+            "p95": 569
+          },
+          "model_calls": {
+            "n": 18,
+            "p50": 1,
+            "p95": 2
+          }
+        }
+      },
+      "holdout": {
+        "cases": 40,
+        "answered": 40,
+        "structural": {
+          "route": {
+            "n": 40,
+            "mean": 1.0
+          },
+          "required_history": {
+            "n": 23,
+            "mean": 1.0
+          },
+          "search_when_needed": {
+            "n": 40,
+            "mean": 1.0
+          },
+          "entity_search_coverage": {
+            "n": 22,
+            "mean": 0.977
+          },
+          "expected_source_coverage": {
+            "n": 21,
+            "mean": 0.99
+          }
+        },
+        "telemetry": {
+          "agent_ms": {
+            "n": 40,
+            "p50": 2370,
+            "p95": 4084
+          },
+          "first_answer_text_ms": {
+            "n": 40,
+            "p50": 2370,
+            "p95": 4084
+          },
+          "input_tokens": {
+            "n": 40,
+            "p50": 2636,
+            "p95": 3406
+          },
+          "output_tokens": {
+            "n": 40,
+            "p50": 198,
+            "p95": 496
+          },
+          "search_evidence_tokens": {
+            "n": 40,
+            "p50": 305,
+            "p95": 660
+          },
+          "model_calls": {
+            "n": 40,
+            "p50": 2,
+            "p95": 2
+          }
+        }
+      },
+      "live": {
+        "cases": 6,
+        "answered": 6,
+        "structural": {
+          "route": {
+            "n": 6,
+            "mean": 1.0
+          },
+          "search_when_needed": {
+            "n": 6,
+            "mean": 1.0
+          },
+          "expected_source_coverage": {
+            "n": 6,
+            "mean": 1.0
+          }
+        },
+        "telemetry": {
+          "agent_ms": {
+            "n": 6,
+            "p50": 4153,
+            "p95": 4574
+          },
+          "first_answer_text_ms": {
+            "n": 6,
+            "p50": 4153,
+            "p95": 4574
+          },
+          "input_tokens": {
+            "n": 6,
+            "p50": 4322,
+            "p95": 4889
+          },
+          "output_tokens": {
+            "n": 6,
+            "p50": 437,
+            "p95": 626
+          },
+          "search_evidence_tokens": {
+            "n": 6,
+            "p50": 1806,
+            "p95": 2191
+          },
+          "model_calls": {
+            "n": 6,
+            "p50": 2,
+            "p95": 2
+          }
+        }
+      }
+    },
+    "telemetry_total": {
+      "input_tokens": 154168,
+      "output_tokens": 14613,
+      "cost_usd": 0.018785
+    },
+    "langsmith": {
+      "enabled": false,
+      "error": "HTTP 403 from https://api.smith.langchain.com key preflight",
+      "local_traces": 64
+    },
+    "deepeval_sample": {
+      "cases": 16,
+      "component": {
+        "contextual_recall": 0.7292
+      },
+      "pipeline": {
+        "faithfulness": 0.9762,
+        "answer_relevancy": 0.8433
+      },
+      "workflow": {
+        "case_compliance": 0.625,
+        "pass_count": 10,
+        "route_match": 1.0,
+        "judged": 16,
+        "wording_pairs": {
+          "both_pass": 0,
+          "polished_only": 0,
+          "chat_only": 0,
+          "both_fail": 1
+        }
+      },
+      "case_ids": [
+        "d01",
+        "d02",
+        "d03",
+        "d04",
+        "d06",
+        "d09",
+        "d10",
+        "d12-chat",
+        "d12-polished",
+        "d13-polished",
+        "h01",
+        "h20-chat",
+        "h23-polished",
+        "l01",
+        "l04",
+        "l06"
+      ]
+    }
+  }
+}

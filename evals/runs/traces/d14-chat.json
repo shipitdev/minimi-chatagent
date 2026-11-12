@@ -1,0 +1,116 @@
+{
+  "caseId": "d14-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "385422e0-56d4-4868-b130-698212e93538",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:00.444Z",
+    "inputs": {
+      "prompt": "make this nicer pls: need the review by noon",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "d14-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "50ab2acd-616c-44a6-a0ad-7ed8e9a0fd01",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:00.444Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:00.444Z"
+      },
+      {
+        "id": "d8665ccf-efa1-4530-88f9-fae7e613938f",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:00.444Z",
+        "inputs": {
+          "user_text": "make this nicer pls: need the review by noon",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:00.446Z"
+      },
+      {
+        "id": "c0a44dac-4977-4dce-bedd-5d508e4a2ac7",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:00.446Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Here's a nicer version:\n\n> Could you please have the review ready by noon?\n\nA few alternatives depending on tone:\n\n- **Polite/standard:** \"Could you please have the review to me by noon?\"\n- **Softer, less demanding:** \"Would it be possible to get the review by noon?\"\n- **Short and friendly:** \"Just a heads-up — I'll need the review by noon, please.\"\n- **More formal:** \"Please ensure the review is completed and shared by noon.\"\n\nIf you tell me who it's going to (a colleague, a manager, a client) and how firm you want it to sound, I can tune it further.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1120,
+            "output": 136,
+            "cacheHit": 896,
+            "cacheMiss": 224
+          },
+          "cost_usd": 0.00013260800000000002,
+          "latency_ms": 1284
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:01.730Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Here's a nicer version:\n\n> Could you please have the review ready by noon?\n\nA few alternatives depending on tone:\n\n- **Polite/standard:** \"Could you please have the review to me by noon?\"\n- **Softer, less demanding:** \"Would it be possible to get the review by noon?\"\n- **Short and friendly:** \"Just a heads-up — I'll need the review by noon, please.\"\n- **More formal:** \"Please ensure the review is completed and shared by noon.\"\n\nIf you tell me who it's going to (a colleague, a manager, a client) and how firm you want it to sound, I can tune it further.",
+      "route": "direct",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 1,
+      "input_tokens": 1120,
+      "output_tokens": 136,
+      "cost_usd": 0.000133,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:01.731Z"
+  },
+  "run": null,
+  "traceId": "385422e0-56d4-4868-b130-698212e93538"
+}

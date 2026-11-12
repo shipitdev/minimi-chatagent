@@ -1,0 +1,120 @@
+{
+  "caseId": "d03",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "e5c3af8e-7d3e-4e3f-b342-7f839395f043",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:26.227Z",
+    "inputs": {
+      "prompt": "What did I ask on Nov 3, in my local time?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d03",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "1cbf6d1a-18fd-4d26-8764-765bc6d86bf4",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:26.228Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:26.228Z"
+      },
+      {
+        "id": "3018721b-8de5-45bd-b529-947e770909e7",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:26.228Z",
+        "inputs": {
+          "user_text": "What did I ask on Nov 3, in my local time?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "india-late"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "Nov 3"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:26.231Z"
+      },
+      {
+        "id": "0144a320-2657-4151-b963-f881c30c1d40",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:26.231Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "On Nov 3, 2026, at 2:00 AM your local time (Asia/Kolkata), you asked: **\"Can you review the database migration checklist?\"** — in a session named \"migratio,\" turn 1.\n\nThat's the only record I have from that date.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1274,
+            "output": 62,
+            "cacheHit": 1024,
+            "cacheMiss": 250
+          },
+          "cost_usd": 0.00009839199999999999,
+          "latency_ms": 713
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:26.944Z"
+      }
+    ],
+    "outputs": {
+      "answer": "On Nov 3, 2026, at 2:00 AM your local time (Asia/Kolkata), you asked: **\"Can you review the database migration checklist?\"** — in a session named \"migratio,\" turn 1.\n\nThat's the only record I have from that date.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "india-late"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1274,
+      "output_tokens": 62,
+      "cost_usd": 0.000098,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:26.945Z"
+  },
+  "run": null,
+  "traceId": "e5c3af8e-7d3e-4e3f-b342-7f839395f043"
+}

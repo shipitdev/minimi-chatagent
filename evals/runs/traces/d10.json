@@ -1,0 +1,189 @@
+{
+  "caseId": "d10",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "c7058f8f-5da4-46a7-a470-4a218ea49a3b",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:40.804Z",
+    "inputs": {
+      "prompt": "Did EmberDocs Team pricing change between our Nov 2 comparison and now?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "d10",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "dad28eb6-cfd2-411a-a0d4-160cd7d89d47",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:40.804Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:40.804Z"
+      },
+      {
+        "id": "597db609-6e24-41ec-a569-f9bce3448023",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:40.804Z",
+        "inputs": {
+          "user_text": "Did EmberDocs Team pricing change between our Nov 2 comparison and now?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "ember-turn"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "Nov 2"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:40.806Z"
+      },
+      {
+        "id": "78ed71e9-ade8-4540-a0a1-055072518108",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:40.806Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"EmberDocs Team pricing monthly plan price\", \"subject\": \"EmberDocs Team monthly price\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1345,
+            "output": 75,
+            "cacheHit": 1152,
+            "cacheMiss": 193
+          },
+          "cost_usd": 0.000101276,
+          "latency_ms": 1139
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:41.945Z"
+      },
+      {
+        "id": "190ec345-74c1-4705-b3f4-9e32ad382f3f",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:20:41.945Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "EmberDocs Team pricing monthly plan price",
+              "subject": "EmberDocs Team monthly price",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 0,
+          "missing": [
+            "no usable claim-sized evidence for \"EmberDocs Team pricing monthly plan price\"",
+            "no value found that is tied to subject \"EmberDocs Team monthly price\"",
+            "evidence gap for \"EmberDocs Team pricing monthly plan price\""
+          ],
+          "attempts": 2,
+          "evidence_tokens": 364
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:41.953Z"
+      },
+      {
+        "id": "c91e6bb9-3136-401a-8656-8719dd782d4f",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:41.953Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I can't establish whether EmberDocs Team pricing changed — the current check came back without a usable price.\n\n- **Baseline (Nov 2, 2026):** EmberDocs Team was $12 USD/month on monthly billing [ember-old](https://ember-old.example/pricing).\n- **Now (Nov 11, 2026):** A current pricing page exists [S1](https://ember-new.example/pricing), but no price value was retrievable from it, so there's nothing to compare against.\n\nSo this is an evidence gap, not a confirmed change. If you can share the current Team price (or a screenshot of the page), I can tell you directly whether it moved from $12.\n\n**Sources**\n- [ember-old](https://ember-old.example/pricing)\n- [S1](https://ember-new.example/pricing)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1777,
+            "output": 177,
+            "cacheHit": 1408,
+            "cacheMiss": 369
+          },
+          "cost_usd": 0.00019020400000000002,
+          "latency_ms": 1492
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:43.445Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I can't establish whether EmberDocs Team pricing changed — the current check came back without a usable price.\n\n- **Baseline (Nov 2, 2026):** EmberDocs Team was $12 USD/month on monthly billing [ember-old](https://ember-old.example/pricing).\n- **Now (Nov 11, 2026):** A current pricing page exists [S1](https://ember-new.example/pricing), but no price value was retrievable from it, so there's nothing to compare against.\n\nSo this is an evidence gap, not a confirmed change. If you can share the current Team price (or a screenshot of the page), I can tell you directly whether it moved from $12.\n\n**Sources**\n- [ember-old](https://ember-old.example/pricing)\n- [S1](https://ember-new.example/pricing)",
+      "route": "historical_update",
+      "citations": 2,
+      "selected_turn_ids": [
+        "ember-turn"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3122,
+      "output_tokens": 252,
+      "cost_usd": 0.000291,
+      "search_queries": [
+        "EmberDocs Team pricing monthly plan price"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:43.446Z"
+  },
+  "run": null,
+  "traceId": "c7058f8f-5da4-46a7-a470-4a218ea49a3b"
+}

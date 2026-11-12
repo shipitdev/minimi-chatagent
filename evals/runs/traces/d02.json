@@ -1,0 +1,191 @@
+{
+  "caseId": "d02",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "b345ddb9-ec1a-496f-b064-96caf59b2c40",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:22.815Z",
+    "inputs": {
+      "prompt": "Last Tuesday I asked about Postgres hosting. Has pricing changed since then? I mean the comparison on Nov 3.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d02",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "899e27f4-1b72-49e5-8e9e-f20293be259e",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:22.816Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:22.816Z"
+      },
+      {
+        "id": "b09d6414-673f-41d6-9f59-8f86e26ccca2",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:22.816Z",
+        "inputs": {
+          "user_text": "Last Tuesday I asked about Postgres hosting. Has pricing changed since then? I mean the comparison on Nov 3.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "pg-nov3"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "Nov 3"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:22.818Z"
+      },
+      {
+        "id": "ca940c92-9b4e-495e-98c8-f61195d55cf5",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:22.818Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"TernDB Launch plan pricing US monthly billing\", \"subject\": \"TernDB Launch US monthly price\"}, {\"query\": \"ValeSQL Postgres hosting pricing Launch plan US\", \"subject\": \"ValeSQL Launch US monthly price\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1376,
+            "output": 104,
+            "cacheHit": 1152,
+            "cacheMiss": 224
+          },
+          "cost_usd": 0.00012185600000000002,
+          "latency_ms": 1160
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:23.978Z"
+      },
+      {
+        "id": "46bdb8be-76b3-4c94-956a-87951d5485ee",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:20:23.978Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "TernDB Launch plan pricing US monthly billing",
+              "subject": "TernDB Launch US monthly price",
+              "fetch": false
+            },
+            {
+              "query": "ValeSQL Postgres hosting pricing Launch plan US",
+              "subject": "ValeSQL Launch US monthly price",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 2,
+          "facts": 3,
+          "missing": [],
+          "attempts": 4,
+          "evidence_tokens": 536
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:23.987Z"
+      },
+      {
+        "id": "09a457ac-8e8c-46f3-9311-c6404172d62d",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:23.988Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Yes — TernDB's price has changed since Nov 3. ValeSQL's can't be confirmed as a change.\n\n**TernDB Launch (US, monthly billing):** $19/month on Nov 3 → **$24/month** now, with the pricing update effective November 8, 2026 [S1](https://tern-current.example/pricing). That's a $5/month increase (+26%). Old value: [tern-old](https://tern-old.example/pricing).\n\n**ValeSQL Launch (US, monthly billing):** currently **$17/month** [S2](https://vale-current.example/pricing). I have no confirmed Nov 3 price for ValeSQL — it was only shortlisted, never priced — and the current page carries no historical prices, so I can't say whether it changed.\n\nNet effect on the comparison: ValeSQL is now $7/month cheaper than TernDB on the same basis (US, Launch, monthly billing), versus an unverified gap before.\n\n**Sources**\n- [S1](https://tern-current.example/pricing) — TernDB current pricing\n- [S2](https://vale-current.example/pricing) — ValeSQL current pricing\n- [tern-old](https://tern-old.example/pricing) — TernDB pricing as of Nov 3",
+          "tool_calls": [],
+          "usage": {
+            "input": 2021,
+            "output": 272,
+            "cacheHit": 1408,
+            "cacheMiss": 613
+          },
+          "cost_usd": 0.000277564,
+          "latency_ms": 2123
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:26.110Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Yes — TernDB's price has changed since Nov 3. ValeSQL's can't be confirmed as a change.\n\n**TernDB Launch (US, monthly billing):** $19/month on Nov 3 → **$24/month** now, with the pricing update effective November 8, 2026 [S1](https://tern-current.example/pricing). That's a $5/month increase (+26%). Old value: [tern-old](https://tern-old.example/pricing).\n\n**ValeSQL Launch (US, monthly billing):** currently **$17/month** [S2](https://vale-current.example/pricing). I have no confirmed Nov 3 price for ValeSQL — it was only shortlisted, never priced — and the current page carries no historical prices, so I can't say whether it changed.\n\nNet effect on the comparison: ValeSQL is now $7/month cheaper than TernDB on the same basis (US, Launch, monthly billing), versus an unverified gap before.\n\n**Sources**\n- [S1](https://tern-current.example/pricing) — TernDB current pricing\n- [S2](https://vale-current.example/pricing) — ValeSQL current pricing\n- [tern-old](https://tern-old.example/pricing) — TernDB pricing as of Nov 3",
+      "route": "historical_update",
+      "citations": 3,
+      "selected_turn_ids": [
+        "pg-nov3"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3397,
+      "output_tokens": 376,
+      "cost_usd": 0.000399,
+      "search_queries": [
+        "TernDB Launch plan pricing US monthly billing",
+        "ValeSQL Postgres hosting pricing Launch plan US"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:26.111Z"
+  },
+  "run": null,
+  "traceId": "b345ddb9-ec1a-496f-b064-96caf59b2c40"
+}

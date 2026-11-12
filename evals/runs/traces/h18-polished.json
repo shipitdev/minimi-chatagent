@@ -1,0 +1,122 @@
+{
+  "caseId": "h18-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "8b2d60f4-ad8f-4fb6-a6ab-e23d1e71814c",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:50.691Z",
+    "inputs": {
+      "prompt": "List the two questions I asked on 9 November in my timezone.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 3
+    },
+    "metadata": {
+      "case_id": "h18-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "f1d44524-0e2d-4465-b1f0-40e303b794f4",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:50.692Z",
+        "inputs": {
+          "history_turns": 3,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 3,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:50.692Z"
+      },
+      {
+        "id": "8fc57b44-7abd-4dc7-96c8-f4d11057697f",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:50.692Z",
+        "inputs": {
+          "user_text": "List the two questions I asked on 9 November in my timezone.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "hotel",
+            "roll"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "9 November"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:50.698Z"
+      },
+      {
+        "id": "62a86765-5d42-499e-99fd-69d7a4fd4b86",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:50.700Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "You asked two questions on 9 November (your timezone, Asia/Kolkata):\n\n1. **00:35** — \"How do we roll back production?\" (engineering session)\n2. **23:50** — \"When is free hotel cancellation over?\" (travel session)\n\nNote: the 23:50 question falls on 9 November in your local time, though it was still 8 November in UTC.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1315,
+            "output": 85,
+            "cacheHit": 640,
+            "cacheMiss": 675
+          },
+          "cost_usd": 0.00016002000000000003,
+          "latency_ms": 1447
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:52.147Z"
+      }
+    ],
+    "outputs": {
+      "answer": "You asked two questions on 9 November (your timezone, Asia/Kolkata):\n\n1. **00:35** — \"How do we roll back production?\" (engineering session)\n2. **23:50** — \"When is free hotel cancellation over?\" (travel session)\n\nNote: the 23:50 question falls on 9 November in your local time, though it was still 8 November in UTC.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "hotel",
+        "roll"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1315,
+      "output_tokens": 85,
+      "cost_usd": 0.00016,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:52.147Z"
+  },
+  "run": null,
+  "traceId": "8b2d60f4-ad8f-4fb6-a6ab-e23d1e71814c"
+}

@@ -1,0 +1,122 @@
+{
+  "caseId": "h18-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "95ff9381-5df6-4a06-ae92-cde786709121",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:52.265Z",
+    "inputs": {
+      "prompt": "what were my 2 asks on the 9th again? my time",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 3
+    },
+    "metadata": {
+      "case_id": "h18-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "a8706fe8-48ba-44f6-82ac-a8be51be555c",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:52.265Z",
+        "inputs": {
+          "history_turns": 3,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 3,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:52.265Z"
+      },
+      {
+        "id": "91b5ad22-7dfc-4f19-bbb5-0d651a1f3b38",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:52.265Z",
+        "inputs": {
+          "user_text": "what were my 2 asks on the 9th again? my time",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "hotel",
+            "roll"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "on the 9th"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:52.267Z"
+      },
+      {
+        "id": "cfa84cbb-7f99-42e7-a5f9-161089f18377",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:52.268Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "On the 9th (your time, IST) I have two asks recorded:\n\n1. **Mon, 09 Nov 2026, 00:35** (session \"engineer\") — \"How do we roll back production?\" My reply: use the approved rollback plan.\n2. **Mon, 09 Nov 2026, 23:50** (session \"travel\") — \"When is free hotel cancellation over?\" My reply: check the booking.\n\nNote that the 00:35 one is just after midnight, so it sits at the very start of the 9th; the travel question came late that night.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1317,
+            "output": 131,
+            "cacheHit": 640,
+            "cacheMiss": 677
+          },
+          "cost_usd": 0.00018606,
+          "latency_ms": 1397
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:53.665Z"
+      }
+    ],
+    "outputs": {
+      "answer": "On the 9th (your time, IST) I have two asks recorded:\n\n1. **Mon, 09 Nov 2026, 00:35** (session \"engineer\") — \"How do we roll back production?\" My reply: use the approved rollback plan.\n2. **Mon, 09 Nov 2026, 23:50** (session \"travel\") — \"When is free hotel cancellation over?\" My reply: check the booking.\n\nNote that the 00:35 one is just after midnight, so it sits at the very start of the 9th; the travel question came late that night.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "hotel",
+        "roll"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1317,
+      "output_tokens": 131,
+      "cost_usd": 0.000186,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:53.666Z"
+  },
+  "run": null,
+  "traceId": "95ff9381-5df6-4a06-ae92-cde786709121"
+}

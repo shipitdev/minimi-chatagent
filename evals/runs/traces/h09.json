@@ -1,0 +1,179 @@
+{
+  "caseId": "h09",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "81cd7fbe-685b-42c9-8f6a-98992f27b7a6",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:24.859Z",
+    "inputs": {
+      "prompt": "What is HazelAuth's Standard price in Europe? Monthly billing, please.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h09",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "deb3d889-a538-45fd-9bb1-48ca836ff3b5",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:24.859Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:24.859Z"
+      },
+      {
+        "id": "6dd0a193-3b01-4c5c-8b19-8160526f5d64",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:24.859Z",
+        "inputs": {
+          "user_text": "What is HazelAuth's Standard price in Europe? Monthly billing, please.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:24.861Z"
+      },
+      {
+        "id": "0816be1f-7ff9-4b85-abaa-a5a6922a60e1",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:24.862Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"HazelAuth Standard plan pricing Europe monthly billing\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1129,
+            "output": 61,
+            "cacheHit": 896,
+            "cacheMiss": 233
+          },
+          "cost_usd": 0.00009186800000000001,
+          "latency_ms": 1020
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:25.882Z"
+      },
+      {
+        "id": "9597ea95-07be-4c62-ab57-50114fb451d0",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:25.882Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "HazelAuth Standard plan pricing Europe monthly billing"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 2,
+          "facts": 2,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 368
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:25.891Z"
+      },
+      {
+        "id": "5891abce-84ec-4725-ab70-0a8edc199a4b",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:25.891Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**€32 per month** for HazelAuth Standard in Europe on month-to-month billing [S2](https://hazel-month.example/pricing).\n\nFor comparison, the annual-billing rate is €25 per month, paid annually [S1](https://hazel-annual.example/pricing) — so monthly billing carries roughly a 28% premium.\n\n**Sources**\n- [S2](https://hazel-month.example/pricing) — Hazel Month pricing (retrieved 2026-11-11)\n- [S1](https://hazel-annual.example/pricing) — Hazel Annual pricing (retrieved 2026-11-11)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1593,
+            "output": 138,
+            "cacheHit": 1152,
+            "cacheMiss": 441
+          },
+          "cost_usd": 0.000171276,
+          "latency_ms": 1372
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:27.263Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**€32 per month** for HazelAuth Standard in Europe on month-to-month billing [S2](https://hazel-month.example/pricing).\n\nFor comparison, the annual-billing rate is €25 per month, paid annually [S1](https://hazel-annual.example/pricing) — so monthly billing carries roughly a 28% premium.\n\n**Sources**\n- [S2](https://hazel-month.example/pricing) — Hazel Month pricing (retrieved 2026-11-11)\n- [S1](https://hazel-annual.example/pricing) — Hazel Annual pricing (retrieved 2026-11-11)",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2722,
+      "output_tokens": 199,
+      "cost_usd": 0.000263,
+      "search_queries": [
+        "HazelAuth Standard plan pricing Europe monthly billing"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:27.264Z"
+  },
+  "run": null,
+  "traceId": "81cd7fbe-685b-42c9-8f6a-98992f27b7a6"
+}

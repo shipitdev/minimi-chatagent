@@ -1,0 +1,122 @@
+{
+  "caseId": "d05",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "01687010-4427-40ae-829a-2de639a7f989",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:28.659Z",
+    "inputs": {
+      "prompt": "What is still open from yesterday’s launch prep?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d05",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "8aaf7074-b566-4e91-87fd-aff285c4bf42",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:28.659Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:28.660Z"
+      },
+      {
+        "id": "9e5eada2-7818-4874-b04a-30f723286be9",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:28.660Z",
+        "inputs": {
+          "user_text": "What is still open from yesterday’s launch prep?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "launch-start",
+            "launch-closed"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "yesterday"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:28.677Z"
+      },
+      {
+        "id": "b749a59b-c2b6-4255-9971-97b568148fe5",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:28.683Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "From yesterday's launch prep, one item is still open: **the changelog draft**.\n\n- **Changelog draft** — still pending as of your last update (Tue, 10 Nov 2026, 3:00 PM).\n- **Access review** — completed and recorded at that same time.\n\nSo the only outstanding piece is finishing the changelog draft.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1319,
+            "output": 77,
+            "cacheHit": 1152,
+            "cacheMiss": 167
+          },
+          "cost_usd": 0.000098756,
+          "latency_ms": 3102
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:31.783Z"
+      }
+    ],
+    "outputs": {
+      "answer": "From yesterday's launch prep, one item is still open: **the changelog draft**.\n\n- **Changelog draft** — still pending as of your last update (Tue, 10 Nov 2026, 3:00 PM).\n- **Access review** — completed and recorded at that same time.\n\nSo the only outstanding piece is finishing the changelog draft.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "launch-start",
+        "launch-closed"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1319,
+      "output_tokens": 77,
+      "cost_usd": 0.000099,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:31.784Z"
+  },
+  "run": null,
+  "traceId": "01687010-4427-40ae-829a-2de639a7f989"
+}

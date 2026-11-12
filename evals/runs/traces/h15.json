@@ -1,0 +1,116 @@
+{
+  "caseId": "h15",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "b1caaa48-1b8c-4d4e-84f5-f9c4d656460d",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:37.771Z",
+    "inputs": {
+      "prompt": "What did I ask you on 1 November?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 1
+    },
+    "metadata": {
+      "case_id": "h15",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "fc81e068-2fbf-4918-a2d2-d2d755f195ce",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:37.771Z",
+        "inputs": {
+          "history_turns": 1,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 1,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:37.771Z"
+      },
+      {
+        "id": "dfc9c3ca-e3b6-4103-99b0-00fccdb3b244",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:37.771Z",
+        "inputs": {
+          "user_text": "What did I ask you on 1 November?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "1 November"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:37.772Z"
+      },
+      {
+        "id": "619143d0-ff12-4136-9dab-f5548744ebf1",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:37.773Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I don't have any record of a conversation on 1 November in my dated memory, so I can't tell you what you asked. Could you give me a hint about the topic, or was it possibly a different date?",
+          "tool_calls": [],
+          "usage": {
+            "input": 1119,
+            "output": 46,
+            "cacheHit": 896,
+            "cacheMiss": 223
+          },
+          "cost_usd": 0.000082068,
+          "latency_ms": 1158
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:38.931Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I don't have any record of a conversation on 1 November in my dated memory, so I can't tell you what you asked. Could you give me a hint about the topic, or was it possibly a different date?",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 1,
+      "input_tokens": 1119,
+      "output_tokens": 46,
+      "cost_usd": 0.000082,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:38.932Z"
+  },
+  "run": null,
+  "traceId": "b1caaa48-1b8c-4d4e-84f5-f9c4d656460d"
+}

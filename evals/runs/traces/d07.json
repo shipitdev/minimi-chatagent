@@ -1,0 +1,179 @@
+{
+  "caseId": "d07",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "69a3ff91-da35-49ae-962c-570e1c6f2ce4",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:34.257Z",
+    "inputs": {
+      "prompt": "Find the official price for Sandchart Pro in Japan.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "d07",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "74b054d6-981b-4cee-a266-9fb2350277dc",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:34.257Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:34.257Z"
+      },
+      {
+        "id": "76b35f92-0c09-4421-85ba-fd94e14d4d51",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:34.257Z",
+        "inputs": {
+          "user_text": "Find the official price for Sandchart Pro in Japan.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:34.258Z"
+      },
+      {
+        "id": "095a9f2c-1f21-4393-8555-5bb096b8384a",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:34.259Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Sandchart Pro pricing Japan official price\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1125,
+            "output": 58,
+            "cacheHit": 896,
+            "cacheMiss": 229
+          },
+          "cost_usd": 0.000089628,
+          "latency_ms": 1113
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:35.372Z"
+      },
+      {
+        "id": "0dcce6d7-7fee-47d5-b5f4-f57e0232dcdd",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:20:35.373Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Sandchart Pro pricing Japan official price"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 1,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 271
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:35.383Z"
+      },
+      {
+        "id": "e4f0a705-25d7-4a20-83b4-288c0c2f4c94",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:35.383Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I couldn't find an official Japan price for Sandchart Pro. The only official pricing page I found is the US one, which lists Sandchart Pro at **$15 USD/month** [S1](https://sand-us.example/pricing) — that's a US price, not a Japan (JPY) price, so it shouldn't be treated as the Japanese figure.\n\nTo get the Japan price, you'd need Sandchart's Japanese regional pricing page or a quote from their Japan sales channel. If you can tell me the vendor's actual domain or product page, I can search again.\n\n**Sources**\n- [S1](https://sand-us.example/pricing) — Sandchart US pricing page (published 2026-11-11)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1471,
+            "output": 152,
+            "cacheHit": 1280,
+            "cacheMiss": 191
+          },
+          "cost_usd": 0.0001477,
+          "latency_ms": 1410
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:36.793Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I couldn't find an official Japan price for Sandchart Pro. The only official pricing page I found is the US one, which lists Sandchart Pro at **$15 USD/month** [S1](https://sand-us.example/pricing) — that's a US price, not a Japan (JPY) price, so it shouldn't be treated as the Japanese figure.\n\nTo get the Japan price, you'd need Sandchart's Japanese regional pricing page or a quote from their Japan sales channel. If you can tell me the vendor's actual domain or product page, I can search again.\n\n**Sources**\n- [S1](https://sand-us.example/pricing) — Sandchart US pricing page (published 2026-11-11)",
+      "route": "research",
+      "citations": 1,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2596,
+      "output_tokens": 210,
+      "cost_usd": 0.000237,
+      "search_queries": [
+        "Sandchart Pro pricing Japan official price"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:36.795Z"
+  },
+  "run": null,
+  "traceId": "69a3ff91-da35-49ae-962c-570e1c6f2ce4"
+}

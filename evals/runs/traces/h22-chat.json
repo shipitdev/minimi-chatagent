@@ -1,0 +1,191 @@
+{
+  "caseId": "h22-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "00a20606-04d1-43fb-9059-d24e9c3eb21c",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:09.890Z",
+    "inputs": {
+      "prompt": "quartzforms did they bump exports this month? seeing 200 and 500",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h22-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "83860ee0-257f-4ad6-afcb-f7b034dc591a",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:09.890Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:09.890Z"
+      },
+      {
+        "id": "a649c7bb-c92d-469b-ab17-b309e3d2340d",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:09.890Z",
+        "inputs": {
+          "user_text": "quartzforms did they bump exports this month? seeing 200 and 500",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "this month"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:09.891Z"
+      },
+      {
+        "id": "21c86320-dde1-441d-974f-75ed47f58e40",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:09.892Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [{\"query\": \"QuartzForms export limit 200 500\", \"subject\": \"QuartzForms export limit\"}, {\"query\": \"QuartzForms changelog November 2026 export limit increase\", \"subject\": \"QuartzForms changelog export limit\"}], \"intent\": \"change\"}"
+            }
+          ],
+          "usage": {
+            "input": 1130,
+            "output": 106,
+            "cacheHit": 896,
+            "cacheMiss": 234
+          },
+          "cost_usd": 0.000117208,
+          "latency_ms": 1058
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:10.950Z"
+      },
+      {
+        "id": "a88cd25d-c5ad-4315-a141-a3ad0827fd25",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:10.950Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "QuartzForms export limit 200 500",
+              "subject": "QuartzForms export limit",
+              "fetch": false
+            },
+            {
+              "query": "QuartzForms changelog November 2026 export limit increase",
+              "subject": "QuartzForms changelog export limit",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 4,
+          "facts": 1,
+          "missing": [
+            "no usable claim-sized evidence for \"QuartzForms changelog November 2026 export limit increase\"",
+            "no value found that is tied to subject \"QuartzForms changelog export limit\"",
+            "evidence gap for \"QuartzForms changelog November 2026 export limit increase\""
+          ],
+          "attempts": 4,
+          "evidence_tokens": 660
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:10.957Z"
+      },
+      {
+        "id": "11d73e75-1473-4b71-b76b-4901c573de91",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:10.957Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Yes — for QuartzForms Pro, the export allowance went from 200 to 500 per month, effective November 6, 2026, per the official Pro release note [S2](https://quartz-change.example/pricing). That matches what you're seeing.\n\nOne caveat: the Pro help article still says 200 exports/month, but it was last updated October 21 — before the change — so it's stale rather than contradictory [S1](https://quartz-help.example/pricing).\n\nI couldn't find a changelog entry confirming this, so the release note is the only source I have for the new number. Also note this is specifically the Pro tier; I have no evidence about other tiers.\n\n**Sources**\n- [S2](https://quartz-change.example/pricing) — QuartzForms Pro release note, published 2026-11-11\n- [S1](https://quartz-help.example/pricing) — QuartzForms Pro help article, last updated 2026-10-21",
+          "tool_calls": [],
+          "usage": {
+            "input": 1914,
+            "output": 213,
+            "cacheHit": 1152,
+            "cacheMiss": 762
+          },
+          "cost_usd": 0.000258216,
+          "latency_ms": 1952
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:12.909Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Yes — for QuartzForms Pro, the export allowance went from 200 to 500 per month, effective November 6, 2026, per the official Pro release note [S2](https://quartz-change.example/pricing). That matches what you're seeing.\n\nOne caveat: the Pro help article still says 200 exports/month, but it was last updated October 21 — before the change — so it's stale rather than contradictory [S1](https://quartz-help.example/pricing).\n\nI couldn't find a changelog entry confirming this, so the release note is the only source I have for the new number. Also note this is specifically the Pro tier; I have no evidence about other tiers.\n\n**Sources**\n- [S2](https://quartz-change.example/pricing) — QuartzForms Pro release note, published 2026-11-11\n- [S1](https://quartz-help.example/pricing) — QuartzForms Pro help article, last updated 2026-10-21",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 3044,
+      "output_tokens": 319,
+      "cost_usd": 0.000375,
+      "search_queries": [
+        "QuartzForms export limit 200 500",
+        "QuartzForms changelog November 2026 export limit increase"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:12.911Z"
+  },
+  "run": null,
+  "traceId": "00a20606-04d1-43fb-9059-d24e9c3eb21c"
+}

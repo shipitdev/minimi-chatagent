@@ -1,0 +1,122 @@
+{
+  "caseId": "h26-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "aed50567-a979-4f3d-b4c7-5cc2a4a09578",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:32.606Z",
+    "inputs": {
+      "prompt": "what db did we land on for imports again n why",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h26-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "f6ee9670-d1f0-49fc-b292-94d4b1aa6768",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:32.606Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:32.607Z"
+      },
+      {
+        "id": "59a6f27b-91a2-401c-a228-3385b70085fe",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:32.607Z",
+        "inputs": {
+          "user_text": "what db did we land on for imports again n why",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "db-final",
+            "db-proposal"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:32.609Z"
+      },
+      {
+        "id": "f56454de-a81b-4c25-8904-1d36c6336a99",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:32.609Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "You landed on **Postgres**, decided on Sat, 07 Nov 2026. Your reason: you need transactions for retrying partial imports.\n\nFor context, the earlier idea (Wed, 04 Nov 2026) was to start with SQLite for imports; that was superseded by the Postgres call.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1273,
+            "output": 65,
+            "cacheHit": 1024,
+            "cacheMiss": 249
+          },
+          "cost_usd": 0.000099932,
+          "latency_ms": 1020
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:33.629Z"
+      }
+    ],
+    "outputs": {
+      "answer": "You landed on **Postgres**, decided on Sat, 07 Nov 2026. Your reason: you need transactions for retrying partial imports.\n\nFor context, the earlier idea (Wed, 04 Nov 2026) was to start with SQLite for imports; that was superseded by the Postgres call.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "db-final",
+        "db-proposal"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1273,
+      "output_tokens": 65,
+      "cost_usd": 0.0001,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:33.630Z"
+  },
+  "run": null,
+  "traceId": "aed50567-a979-4f3d-b4c7-5cc2a4a09578"
+}

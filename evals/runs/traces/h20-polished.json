@@ -1,0 +1,122 @@
+{
+  "caseId": "h20-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "31cc3ceb-bd07-415c-801b-edcea09deafe",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:57.042Z",
+    "inputs": {
+      "prompt": "Please recheck the plan we settled on Monday. Is it still available?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h20-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "64ce7f1b-d6ed-476c-9f69-ffe0ffad2398",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:57.043Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:57.043Z"
+      },
+      {
+        "id": "3225c1e4-cae6-4c19-91e1-321a2eec225f",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:57.043Z",
+        "inputs": {
+          "user_text": "Please recheck the plan we settled on Monday. Is it still available?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "opal",
+            "glade"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:57.045Z"
+      },
+      {
+        "id": "56749986-3d15-46fd-9673-79e03013736c",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:57.046Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I'll check the current availability of the Team plan for both products we settled on Monday.\n\n<｜｜DSML｜｜ calls>\n<｜｜DSML｜｜ invoke name=\"web_search\">\n<｜｜DSML｜｜ parameter name=\"intent\" string=\"true\">change</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"query\" string=\"true\">OpalQueue pricing plans Team plan</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"subject\" string=\"true\">OpalQueue Team plan availability</｜｜DSML｜｜ parameter>\n</｜｜DSML｜｜ invoke>\n<｜｜DSML｜｜ invoke name=\"web_search\">\n<｜｜DSML｜｜ parameter name=\"intent\" string=\"true\">change</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"query\" string=\"true\">GladeMail pricing plans Team plan</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"subject\" string=\"true\">GladeMail Team plan availability</｜｜DSML｜｜ parameter>\n</｜｜DSML｜｜ invoke>\n</｜｜DSML｜｜ calls>",
+          "tool_calls": [],
+          "usage": {
+            "input": 881,
+            "output": 170,
+            "cacheHit": 640,
+            "cacheMiss": 241
+          },
+          "cost_usd": 0.00014686,
+          "latency_ms": 1385
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:58.431Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I'll check the current availability of the Team plan for both products we settled on Monday.\n\n<｜｜DSML｜｜ calls>\n<｜｜DSML｜｜ invoke name=\"web_search\">\n<｜｜DSML｜｜ parameter name=\"intent\" string=\"true\">change</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"query\" string=\"true\">OpalQueue pricing plans Team plan</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"subject\" string=\"true\">OpalQueue Team plan availability</｜｜DSML｜｜ parameter>\n</｜｜DSML｜｜ invoke>\n<｜｜DSML｜｜ invoke name=\"web_search\">\n<｜｜DSML｜｜ parameter name=\"intent\" string=\"true\">change</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"query\" string=\"true\">GladeMail pricing plans Team plan</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"subject\" string=\"true\">GladeMail Team plan availability</｜｜DSML｜｜ parameter>\n</｜｜DSML｜｜ invoke>\n</｜｜DSML｜｜ calls>",
+      "route": "clarify",
+      "citations": 0,
+      "selected_turn_ids": [
+        "opal",
+        "glade"
+      ],
+      "model_calls": 1,
+      "input_tokens": 881,
+      "output_tokens": 170,
+      "cost_usd": 0.000147,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:58.431Z"
+  },
+  "run": null,
+  "traceId": "31cc3ceb-bd07-415c-801b-edcea09deafe"
+}

@@ -1,0 +1,458 @@
+{
+  "h01": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h02": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h03": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h04": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h05": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h06": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h07": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h08": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h09": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h10": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h11": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h12": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h13": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h14": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h15": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h16": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h17-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h17-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h18-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h18-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h19-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h19-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h20-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h20-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h21-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h21-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      },
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h22-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h22-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h23-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h23-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h24-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h24-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h25-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h25-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": null
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h26-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h26-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h27-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h27-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h28-polished": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  },
+  "h28-chat": {
+    "criteria": [
+      {
+        "met": null,
+        "supported": null
+      },
+      {
+        "met": null,
+        "supported": "n/a"
+      }
+    ],
+    "forbidden_claim_seen": null
+  }
+}

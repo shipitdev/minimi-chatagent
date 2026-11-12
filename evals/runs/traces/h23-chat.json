@@ -1,0 +1,186 @@
+{
+  "caseId": "h23-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "a2149bcb-8500-49da-8bc2-7867406a003a",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:22:16.133Z",
+    "inputs": {
+      "prompt": "lake + dockdesk team prices pls. if one doesnt load just tell me the other",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h23-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "8406608c-a371-4e30-9f92-4d5191888ca1",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:16.133Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:16.133Z"
+      },
+      {
+        "id": "4da36870-1069-47be-bd9e-c551541724ed",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:22:16.133Z",
+        "inputs": {
+          "user_text": "lake + dockdesk team prices pls. if one doesnt load just tell me the other",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:16.135Z"
+      },
+      {
+        "id": "79553600-333d-4f4c-9465-2be64c7dd50b",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:16.135Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I'll look up both.",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Lake team plan pricing per user\", \"DockDesk team plan pricing per user\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1128,
+            "output": 78,
+            "cacheHit": 896,
+            "cacheMiss": 232
+          },
+          "cost_usd": 0.000101248,
+          "latency_ms": 1196
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:17.331Z"
+      },
+      {
+        "id": "4ec7cb11-5456-4273-ba6d-8dc62887d801",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:22:17.331Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Lake team plan pricing per user"
+            },
+            {
+              "query": "DockDesk team plan pricing per user"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 1,
+          "missing": [
+            "search failed for \"DockDesk team plan pricing per user\": timeout",
+            "evidence gap for \"DockDesk team plan pricing per user\""
+          ],
+          "attempts": 3,
+          "evidence_tokens": 343
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:17.339Z"
+      },
+      {
+        "id": "b96111db-8596-4453-a774-f16a696e5356",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:22:17.339Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**Lake:** LakeDesk Team is **$16 USD per month, billed monthly** [S1](https://lake-price.example/pricing). Note the source lists it as \"LakeDesk Team\" — if you meant a different Lake product, tell me and I'll re-check.\n\n**DockDesk:** the lookup timed out, so I don't have a price for it. I can retry if you want.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1568,
+            "output": 88,
+            "cacheHit": 1152,
+            "cacheMiss": 416
+          },
+          "cost_usd": 0.00013977599999999998,
+          "latency_ms": 1327
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:22:18.666Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**Lake:** LakeDesk Team is **$16 USD per month, billed monthly** [S1](https://lake-price.example/pricing). Note the source lists it as \"LakeDesk Team\" — if you meant a different Lake product, tell me and I'll re-check.\n\n**DockDesk:** the lookup timed out, so I don't have a price for it. I can retry if you want.",
+      "route": "research",
+      "citations": 1,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2696,
+      "output_tokens": 166,
+      "cost_usd": 0.000241,
+      "search_queries": [
+        "Lake team plan pricing per user",
+        "DockDesk team plan pricing per user"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:22:18.666Z"
+  },
+  "run": null,
+  "traceId": "a2149bcb-8500-49da-8bc2-7867406a003a"
+}

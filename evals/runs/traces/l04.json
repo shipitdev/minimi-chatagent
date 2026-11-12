@@ -1,0 +1,183 @@
+{
+  "caseId": "l04",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "69818159-5485-403a-ae84-fcb1f02d360d",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:49:16.238Z",
+    "inputs": {
+      "prompt": "Where is Project Minimi's software engineering internship based, and what are the application video and repository requirements?",
+      "mode": "live",
+      "timezone": "Asia/Kolkata",
+      "now": null,
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "l04",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "f3f6a1cd-e08c-4e77-bff3-227a00189d02",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:16.238Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:16.238Z"
+      },
+      {
+        "id": "d530a3ef-6f9c-4c81-8890-cbed88ca43a8",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:16.238Z",
+        "inputs": {
+          "user_text": "Where is Project Minimi's software engineering internship based, and what are the application video and repository requirements?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T19:49:16.228Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:16.240Z"
+      },
+      {
+        "id": "c2cc55be-239d-4353-8d88-d6b9c9694f88",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:16.866Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Project Minimi software engineering internship location\", \"Project Minimi internship application video repository requirements\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1153,
+            "output": 68,
+            "cacheHit": 512,
+            "cacheMiss": 641
+          },
+          "cost_usd": 0.000142156,
+          "latency_ms": 866
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:17.732Z"
+      },
+      {
+        "id": "c7a460ca-87d4-425f-94af-409082a15b6e",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:49:17.732Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Project Minimi software engineering internship location"
+            },
+            {
+              "query": "Project Minimi internship application video repository requirements"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 15,
+          "facts": 7,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 1587
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:18.137Z"
+      },
+      {
+        "id": "4f476e21-7d25-440a-a756-54a642cf5cb9",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:18.137Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**Location:** The Software Engineering Intern role at minimi (Project Minimi) is listed as **on-site in Bengaluru, India** — the team describes itself as small and building \"AI that lives on your Mac\" [S3](https://binary.so/YIrD8L5).\n\n**Video and repository requirements:** I couldn't confirm these. The job listing snippet mentions a challenge (\"Build the best chat agent with web search you can\") but the digest didn't include any stated video submission or code repository requirements, and the other results were unrelated internship programs. I don't want to guess at specifics like video length, format, or repo visibility.\n\nTwo things worth noting:\n- There's a separate organization, **Minimis Technologies**, with hybrid/remote internships in Android/iOS development [S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) — that's a different entity from minimi, so don't mix up their requirements.\n- If you can share the full job posting text or link, I can pull out the exact video and repository instructions.\n\n**Sources**\n- [S3](https://binary.so/YIrD8L5) — Software Engineering Intern at minimi, Bengaluru\n- [S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) — Minimis Technologies internship listing (different company)",
+          "tool_calls": [],
+          "usage": {
+            "input": 2905,
+            "output": 334,
+            "cacheHit": 1152,
+            "cacheMiss": 1753
+          },
+          "cost_usd": 0.000464716,
+          "latency_ms": 2241
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:20.378Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**Location:** The Software Engineering Intern role at minimi (Project Minimi) is listed as **on-site in Bengaluru, India** — the team describes itself as small and building \"AI that lives on your Mac\" [S3](https://binary.so/YIrD8L5).\n\n**Video and repository requirements:** I couldn't confirm these. The job listing snippet mentions a challenge (\"Build the best chat agent with web search you can\") but the digest didn't include any stated video submission or code repository requirements, and the other results were unrelated internship programs. I don't want to guess at specifics like video length, format, or repo visibility.\n\nTwo things worth noting:\n- There's a separate organization, **Minimis Technologies**, with hybrid/remote internships in Android/iOS development [S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) — that's a different entity from minimi, so don't mix up their requirements.\n- If you can share the full job posting text or link, I can pull out the exact video and repository instructions.\n\n**Sources**\n- [S3](https://binary.so/YIrD8L5) — Software Engineering Intern at minimi, Bengaluru\n- [S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) — Minimis Technologies internship listing (different company)",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 4058,
+      "output_tokens": 402,
+      "cost_usd": 0.000607,
+      "search_queries": [
+        "Project Minimi software engineering internship location",
+        "Project Minimi internship application video repository requirements"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:49:20.379Z"
+  },
+  "run": null,
+  "traceId": "69818159-5485-403a-ae84-fcb1f02d360d"
+}

@@ -1,0 +1,183 @@
+{
+  "caseId": "l03",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "1f3e3b54-92aa-4396-a32d-5e9a49d76600",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:49:11.559Z",
+    "inputs": {
+      "prompt": "What does Project Minimi say stays on my Mac, and what service creates embeddings? Cite their privacy explanation.",
+      "mode": "live",
+      "timezone": "Asia/Kolkata",
+      "now": null,
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "l03",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "17f0834c-96a0-4f70-b321-ebff84d0bf78",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:11.559Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:11.559Z"
+      },
+      {
+        "id": "67c9f9cc-eb1c-450f-9095-2040ef0f5509",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:49:11.559Z",
+        "inputs": {
+          "user_text": "What does Project Minimi say stays on my Mac, and what service creates embeddings? Cite their privacy explanation.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T19:49:11.548Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:11.561Z"
+      },
+      {
+        "id": "1eec7e81-b8bf-44a9-8514-bdbff3bfc359",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:11.982Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"Project Minimi privacy what stays on my Mac embeddings\", \"Minimi app privacy local embeddings service\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1154,
+            "output": 70,
+            "cacheHit": 512,
+            "cacheMiss": 642
+          },
+          "cost_usd": 0.000143416,
+          "latency_ms": 899
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:12.881Z"
+      },
+      {
+        "id": "95b4607f-1993-46f6-ba43-ba96ad4eb071",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:49:12.881Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "Project Minimi privacy what stays on my Mac embeddings"
+            },
+            {
+              "query": "Minimi app privacy local embeddings service"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 20,
+          "facts": 13,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 1806
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:13.355Z"
+      },
+      {
+        "id": "7e4183c8-fa62-4a8f-a433-9e55ce2e1434",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:49:13.355Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "**What stays on your Mac:** your memory — the index of your activity — is kept in a local vector database on the device, and Minimi's own copy says \"Your memory lives on your Mac, where it's safest\" [S2](https://www.projectminimi.com/memory). A launch write-up of the privacy copy (updated 2026-08-12) likewise says memory stays on your Mac [S7](https://sudoai.net/launches/minimi/#main-content). Third-party summaries describe the same design: data is stored in a local vector database, decrypted only at retrieval time and re-encrypted afterwards, so the main index never leaves the device, with per-app indexing toggles and a global pause [S8](https://www.aitoolnet.com/ru/minimi#1), [S15](https://www.aitoolnet.com/minimi#1).\n\n**What creates embeddings:** Google's **Gemini API**, on a **paid tier**. Minimi uses the paid Gemini API tier to generate embeddings, which the write-up says ensures the processed data isn't used to train the provider's models [S15](https://www.aitoolnet.com/minimi#1), [S8](https://www.aitoolnet.com/ru/minimi#1).\n\nSo the honest framing is: the *memory store* is local, but embedding generation is a cloud call to Gemini — that's the seam in the privacy story, and a competitor's docs explicitly frame it as Minimi's \"privacy gap\" versus cloud-free embeddings [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/).\n\nCaveat: the Gemini detail comes from third-party tool directories (June 2026), not from Minimi's own privacy page in the digest, so treat the exact tier wording as second-hand.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — projectminimi.com, memory page\n- [S7](https://sudoai.net/launches/minimi/#main-content) — launch notes, 2026-09-23\n- [S8](https://www.aitoolnet.com/ru/minimi#1) — aitoolnet, 2026-06-06\n- [S15](https://www.aitoolnet.com/minimi#1) — aitoolnet, 2026-06-06\n- [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) — Pace docs, 2026-06-08",
+          "tool_calls": [],
+          "usage": {
+            "input": 3168,
+            "output": 556,
+            "cacheHit": 1152,
+            "cacheMiss": 2016
+          },
+          "cost_usd": 0.0006258559999999999,
+          "latency_ms": 2764
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:49:16.119Z"
+      }
+    ],
+    "outputs": {
+      "answer": "**What stays on your Mac:** your memory — the index of your activity — is kept in a local vector database on the device, and Minimi's own copy says \"Your memory lives on your Mac, where it's safest\" [S2](https://www.projectminimi.com/memory). A launch write-up of the privacy copy (updated 2026-08-12) likewise says memory stays on your Mac [S7](https://sudoai.net/launches/minimi/#main-content). Third-party summaries describe the same design: data is stored in a local vector database, decrypted only at retrieval time and re-encrypted afterwards, so the main index never leaves the device, with per-app indexing toggles and a global pause [S8](https://www.aitoolnet.com/ru/minimi#1), [S15](https://www.aitoolnet.com/minimi#1).\n\n**What creates embeddings:** Google's **Gemini API**, on a **paid tier**. Minimi uses the paid Gemini API tier to generate embeddings, which the write-up says ensures the processed data isn't used to train the provider's models [S15](https://www.aitoolnet.com/minimi#1), [S8](https://www.aitoolnet.com/ru/minimi#1).\n\nSo the honest framing is: the *memory store* is local, but embedding generation is a cloud call to Gemini — that's the seam in the privacy story, and a competitor's docs explicitly frame it as Minimi's \"privacy gap\" versus cloud-free embeddings [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/).\n\nCaveat: the Gemini detail comes from third-party tool directories (June 2026), not from Minimi's own privacy page in the digest, so treat the exact tier wording as second-hand.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — projectminimi.com, memory page\n- [S7](https://sudoai.net/launches/minimi/#main-content) — launch notes, 2026-09-23\n- [S8](https://www.aitoolnet.com/ru/minimi#1) — aitoolnet, 2026-06-06\n- [S15](https://www.aitoolnet.com/minimi#1) — aitoolnet, 2026-06-06\n- [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) — Pace docs, 2026-06-08",
+      "route": "research",
+      "citations": 5,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 4322,
+      "output_tokens": 626,
+      "cost_usd": 0.000769,
+      "search_queries": [
+        "Project Minimi privacy what stays on my Mac embeddings",
+        "Minimi app privacy local embeddings service"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:49:16.120Z"
+  },
+  "run": null,
+  "traceId": "1f3e3b54-92aa-4396-a32d-5e9a49d76600"
+}

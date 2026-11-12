@@ -1,0 +1,303 @@
+{
+  "generated_at": "2026-11-11T19:47:11.350201+00:00",
+  "summary": {
+    "cases": 5,
+    "splits": [
+      "dev",
+      "live"
+    ],
+    "judge": {
+      "provider": "deepseek",
+      "model": "deepseek-flash"
+    },
+    "component": {
+      "memory_selection": 1.0,
+      "search_behavior": 1.0,
+      "source_coverage": 1.0,
+      "citation_url_membership": 0.6,
+      "contextual_recall": 0.6667
+    },
+    "pipeline": {
+      "faithfulness": 0.9524,
+      "answer_relevancy": 0.9292
+    },
+    "workflow": {
+      "case_compliance": 0.66,
+      "route_match": 1.0,
+      "pass_count": 3,
+      "wording_pairs": {
+        "both_pass": 0,
+        "polished_only": 0,
+        "chat_only": 0,
+        "both_fail": 0
+      }
+    },
+    "telemetry": {
+      "agent_ms": {
+        "p50": 3308,
+        "p95": 5548
+      },
+      "first_answer_text_ms": {
+        "p50": 3308,
+        "p95": 5548
+      },
+      "input_tokens": {
+        "p50": 3397,
+        "p95": 4914
+      },
+      "output_tokens": {
+        "p50": 376,
+        "p95": 642
+      },
+      "search_evidence_tokens": {
+        "p50": 536,
+        "p95": 2253
+      },
+      "model_calls": {
+        "p50": 2,
+        "p95": 2
+      }
+    },
+    "cost_usd_total": 0.002316
+  },
+  "per_case": [
+    {
+      "id": "d02",
+      "split": "dev",
+      "category": "historical_update",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 0.0,
+        "contextual_recall": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because all expected details are fully supported: sentence 1’s TernDB $19-to-$24 comparison is backed by node(s) in retrieval context 1 and 2, sentence 2’s November 8 date is backed by node 1, and sentence 3’s ValeSQL $17/month and unverified-change claim is backed by node 1. Great recall!",
+          "success": true
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output is fully faithful to the retrieval context, with no contradictions identified.",
+          "success": true
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the output is fully relevant, with no irrelevant statements, so it is already at the maximum.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The output fully aligns with the evaluation steps: it reports TernDB Launch changing from $19 to $24 USD/month on comparable US monthly terms, gives November 8, 2026 as the effective timing, and reports current ValeSQL at $17/month while explicitly saying its change cannot be verified. It avoids claiming ValeSQL changed or stayed the same and does not mention PineDB. The remaining claims, including the $5 increase and $7 current gap, are consistent with the provided input and retrieval evidence.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 3308,
+        "first_answer_text_ms": 3308,
+        "input_tokens": 3397,
+        "output_tokens": 376,
+        "search_evidence_tokens": 536,
+        "model_calls": 2,
+        "cost_usd": 0.000399
+      }
+    },
+    {
+      "id": "d06",
+      "split": "dev",
+      "category": "evidence",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0,
+        "contextual_recall": {
+          "score": 1.0,
+          "reason": "The score is 1 because sentence 1 is fully supported by node 1 in retrieval context, which states $21 USD per seat per month billed annually with a 20-seat minimum.",
+          "success": true
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions; the actual output is perfectly faithful to the retrieval context. Great job!",
+          "success": true
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the response directly addresses the question by quoting KiteDesk Standard’s current monthly rate with billing terms, with no irrelevant statements.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 1.0,
+          "reason": "The Actual Output explicitly states $21 USD per seat per month on annual billing and includes the 20-seat minimum, matching the Input and Expected Output. It is supported by the Retrieval Context, which confirms annual billing and the 20-seat minimum, and it does not imply month-to-month billing; it instead clarifies that no month-to-month rate is available.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2245,
+        "first_answer_text_ms": 2245,
+        "input_tokens": 2697,
+        "output_tokens": 155,
+        "search_evidence_tokens": 349,
+        "model_calls": 2,
+        "cost_usd": 0.000206
+      }
+    },
+    {
+      "id": "d10",
+      "split": "dev",
+      "category": "historical_update",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "historical_update",
+      "expected_route": "historical_update",
+      "component": {
+        "memory_selection": 1.0,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 0.0,
+        "contextual_recall": {
+          "score": 0.0,
+          "reason": "The score is 0.00 because sentence 1 is unsupported: node 1 in retrieval context says it records the first observation with no prior value and node 2 gives only one \"$12 USD/month\" quote, not $12 in both observations; sentence 2 is also unsupported because node 1 does not mention two observations or an intervening change.",
+          "success": false
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": 0.8571428571428571,
+          "reason": "The score is 0.86 because the output is largely faithful, but it contradicts the retrieval context by treating https://ember-old.example/pricing as a cited source even though the context only lists S1 as https://ember-new.example/pricing and does not list the old URL as a source.",
+          "success": true
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because the actual output is fully relevant to the input, with no irrelevant statements detected.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 0.2,
+          "reason": "The Actual Output correctly reports the baseline $12/month on the monthly plan and avoids claiming the price never changed, framing the result as an evidence gap. However, it does not report $12 in both observations—the current observation has no price—and it does not explicitly state that the two observations do not rule out an intervening change. Therefore it misses key expected content despite avoiding the forbidden claim.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 2653,
+        "first_answer_text_ms": 2653,
+        "input_tokens": 3122,
+        "output_tokens": 252,
+        "search_evidence_tokens": 364,
+        "model_calls": 2,
+        "cost_usd": 0.000291
+      }
+    },
+    {
+      "id": "l01",
+      "split": "live",
+      "category": "company_lookup",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0,
+        "contextual_recall": {
+          "score": 1.0,
+          "reason": "The score is 1 because both sentences in the expected output are clearly supported by the 1st node(s) in retrieval context: sentence 1 aligns with S24–S26 on Cotton’s memory/context, and sentence 2 aligns with S24 and the title on Melody helping close open loops. Great match!",
+          "success": true
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": null,
+          "error": "TimeoutError: call timed out after 20s (per attempt). Increase DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE (None disables) or reduce work per attempt."
+        },
+        "answer_relevancy": {
+          "score": 0.8,
+          "reason": "The score is 0.80 because the response partially addresses the question with Minimi-related information about Cotton and Melody, but it is pulled down by irrelevant launch date/Product Hunt details, benchmark claims and scores, and EveryDev.ai source metadata that do not explain what Cotton and Melody are for.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 0.9,
+          "reason": "The response clearly identifies Cotton as the memory layer ('who remembers,' local Mac context, BEAM benchmark) and Melody as the commitments feature ('never lets you miss your commitments'), with the 1.0-to-2.0 shift adding open-loop/commitment functionality. These claims are well supported by S15, S2, S25, and S26, and no forbidden claims are made. Minor weakness: it does not explicitly say Melody uses Cotton's captured context to help close open loops, though this is implied by the memory-to-commitments split.",
+          "success": true
+        }
+      },
+      "telemetry": {
+        "agent_ms": 5548,
+        "first_answer_text_ms": 5548,
+        "input_tokens": 4914,
+        "output_tokens": 642,
+        "search_evidence_tokens": 2253,
+        "model_calls": 2,
+        "cost_usd": 0.000847
+      }
+    },
+    {
+      "id": "l04",
+      "split": "live",
+      "category": "company_lookup",
+      "prompt_style": null,
+      "pair_id": null,
+      "route": "research",
+      "expected_route": "research",
+      "component": {
+        "memory_selection": null,
+        "search_behavior": 1.0,
+        "source_coverage": 1.0,
+        "citation_url_membership": 1.0,
+        "contextual_recall": {
+          "score": 0.3333333333333333,
+          "reason": "The score is 0.33 because sentence 1 is supported by node 1 in retrieval context, but sentence 2 (GitHub repo/design Markdown) and sentence 3 (60-second explanation video) are unsupported; node 1 in retrieval context only contains generic internship/application and unrelated video guidance.",
+          "success": false
+        }
+      },
+      "pipeline": {
+        "faithfulness": {
+          "score": null,
+          "error": "TimeoutError: call timed out after 20s (per attempt). Increase DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE (None disables) or reduce work per attempt."
+        },
+        "answer_relevancy": {
+          "score": 0.8461538461538461,
+          "reason": "The score is 0.85 because the response largely addresses the internship location and video/repository requirements, but it includes irrelevant details about the challenge listing and unrelated search results, which keeps it from being higher.",
+          "success": true
+        }
+      },
+      "workflow": {
+        "case_compliance": {
+          "score": 0.2,
+          "reason": "The response correctly identifies the role as on-site in Bengaluru and appropriately warns not to conflate it with Minimis Technologies. However, it fails to provide two required deliverables from the expected output: a reviewer-accessible GitHub repository with a design Markdown file, and a video of up to 60 seconds explaining how the agent was built and why. Stating that these requirements could not be confirmed means the response is incomplete against the evaluation requirements.",
+          "success": false
+        }
+      },
+      "telemetry": {
+        "agent_ms": 4705,
+        "first_answer_text_ms": 4705,
+        "input_tokens": 4022,
+        "output_tokens": 376,
+        "search_evidence_tokens": 1587,
+        "model_calls": 2,
+        "cost_usd": 0.000573
+      }
+    }
+  ]
+}

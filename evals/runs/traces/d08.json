@@ -1,0 +1,116 @@
+{
+  "caseId": "d08",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "0cbc0cc9-95d1-4ed2-9d14-2bab2042b6bd",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:36.922Z",
+    "inputs": {
+      "prompt": "Rewrite this as a friendly one-line message: Send the numbers today.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "d08",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "8793b86c-0f82-46ea-b5a4-fde4bd2da03c",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:36.922Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:36.922Z"
+      },
+      {
+        "id": "41f8e47c-7dd4-4e07-acbe-e271e9373742",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:36.922Z",
+        "inputs": {
+          "user_text": "Rewrite this as a friendly one-line message: Send the numbers today.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "today"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:36.923Z"
+      },
+      {
+        "id": "44b47a39-821e-405c-82ac-3914652987aa",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:36.924Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Hey, could you send me those numbers today when you get a chance? Thanks!",
+          "tool_calls": [],
+          "usage": {
+            "input": 1123,
+            "output": 17,
+            "cacheHit": 896,
+            "cacheMiss": 227
+          },
+          "cost_usd": 0.000066388,
+          "latency_ms": 1073
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:37.997Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Hey, could you send me those numbers today when you get a chance? Thanks!",
+      "route": "direct",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 1,
+      "input_tokens": 1123,
+      "output_tokens": 17,
+      "cost_usd": 0.000066,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:37.998Z"
+  },
+  "run": null,
+  "traceId": "0cbc0cc9-95d1-4ed2-9d14-2bab2042b6bd"
+}

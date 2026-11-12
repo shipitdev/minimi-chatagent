@@ -1,0 +1,122 @@
+{
+  "caseId": "h05",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "10adde3a-6aa6-4c8c-9f9c-c303fdfefff8",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:14.701Z",
+    "inputs": {
+      "prompt": "What should I still follow up on from the security review?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h05",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "89e98c21-450e-46ae-b361-6ffef5dc12ae",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:14.701Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": true
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:14.702Z"
+      },
+      {
+        "id": "675cb0e1-51f6-4949-9c13-9ad7677ee768",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:14.702Z",
+        "inputs": {
+          "user_text": "What should I still follow up on from the security review?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "sec-next",
+            "sec-first"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:14.704Z"
+      },
+      {
+        "id": "479ddeac-6819-4b8b-a435-610886960cd4",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:14.704Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "From what I have on record, two items were open after the security review, and one was closed:\n\n- **Evidence packet** — still open. You said on 5 Nov you'd send it, and on 6 Nov you noted it \"still needs to go out.\" No record of it being sent.\n- **Additional access request** — you said on 5 Nov you'd request it, then on 6 Nov you said to **cancel** it. So that one is closed, not a follow-up.\n- **Evidence packet follow-up** — the only remaining action item is confirming the evidence packet actually went out.\n\nI don't have any record of a reply or acknowledgement from the review side on either item, so if you want, tell me what happened after 6 Nov and I'll update the list.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1272,
+            "output": 166,
+            "cacheHit": 640,
+            "cacheMiss": 632
+          },
+          "cost_usd": 0.00019936000000000002,
+          "latency_ms": 1846
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:16.550Z"
+      }
+    ],
+    "outputs": {
+      "answer": "From what I have on record, two items were open after the security review, and one was closed:\n\n- **Evidence packet** — still open. You said on 5 Nov you'd send it, and on 6 Nov you noted it \"still needs to go out.\" No record of it being sent.\n- **Additional access request** — you said on 5 Nov you'd request it, then on 6 Nov you said to **cancel** it. So that one is closed, not a follow-up.\n- **Evidence packet follow-up** — the only remaining action item is confirming the evidence packet actually went out.\n\nI don't have any record of a reply or acknowledgement from the review side on either item, so if you want, tell me what happened after 6 Nov and I'll update the list.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "sec-next",
+        "sec-first"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1272,
+      "output_tokens": 166,
+      "cost_usd": 0.000199,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:16.551Z"
+  },
+  "run": null,
+  "traceId": "10adde3a-6aa6-4c8c-9f9c-c303fdfefff8"
+}

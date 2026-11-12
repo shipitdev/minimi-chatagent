@@ -1,0 +1,179 @@
+{
+  "caseId": "h14",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "410d8c00-3cfd-42a7-84ba-7caffbb9f9e5",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:35.318Z",
+    "inputs": {
+      "prompt": "What is FableDesk Team's export limit?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h14",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "82b8d728-a507-4aef-a95f-26c65ffa17a3",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:35.318Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:35.318Z"
+      },
+      {
+        "id": "8a3c2797-d005-4e56-bc82-5b1dcbbdf5fb",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:35.318Z",
+        "inputs": {
+          "user_text": "What is FableDesk Team's export limit?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:35.319Z"
+      },
+      {
+        "id": "90540423-bbae-4e68-9900-b1d60332ecb2",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:35.319Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"FableDesk Team plan export limit\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1125,
+            "output": 59,
+            "cacheHit": 896,
+            "cacheMiss": 229
+          },
+          "cost_usd": 0.000090188,
+          "latency_ms": 1057
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:36.376Z"
+      },
+      {
+        "id": "d3767d14-de5c-40e9-b5c3-116d2f9130e7",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:36.376Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "FableDesk Team plan export limit"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 1,
+          "facts": 0,
+          "missing": [],
+          "attempts": 2,
+          "evidence_tokens": 305
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:36.382Z"
+      },
+      {
+        "id": "52ba49b6-03f6-4ebc-a0c7-7a805a49bc26",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:36.382Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "FableDesk Team allows **2,000 exports per workspace per month** [S1](https://fable-limits.example/pricing).\n\nTwo caveats from the same page:\n- Imports are governed by a separate limit, so the export figure doesn't apply to them [S1](https://fable-limits.example/pricing).\n- A footer on that page mentions claiming 9,000 exports. That's a promotional/marketing claim rather than the stated plan limit, so I'd treat 2,000 as the actual Team limit unless FableDesk confirms otherwise [S1](https://fable-limits.example/pricing).\n\n**Sources**\n- [S1](https://fable-limits.example/pricing) — Fable Limits, published 2026-11-11",
+          "tool_calls": [],
+          "usage": {
+            "input": 1511,
+            "output": 165,
+            "cacheHit": 1152,
+            "cacheMiss": 359
+          },
+          "cost_usd": 0.000174916,
+          "latency_ms": 1270
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:37.652Z"
+      }
+    ],
+    "outputs": {
+      "answer": "FableDesk Team allows **2,000 exports per workspace per month** [S1](https://fable-limits.example/pricing).\n\nTwo caveats from the same page:\n- Imports are governed by a separate limit, so the export figure doesn't apply to them [S1](https://fable-limits.example/pricing).\n- A footer on that page mentions claiming 9,000 exports. That's a promotional/marketing claim rather than the stated plan limit, so I'd treat 2,000 as the actual Team limit unless FableDesk confirms otherwise [S1](https://fable-limits.example/pricing).\n\n**Sources**\n- [S1](https://fable-limits.example/pricing) — Fable Limits, published 2026-11-11",
+      "route": "research",
+      "citations": 1,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2636,
+      "output_tokens": 224,
+      "cost_usd": 0.000265,
+      "search_queries": [
+        "FableDesk Team plan export limit"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:37.653Z"
+  },
+  "run": null,
+  "traceId": "410d8c00-3cfd-42a7-84ba-7caffbb9f9e5"
+}

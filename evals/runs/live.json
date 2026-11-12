@@ -1,0 +1,363 @@
+{
+  "split": "live",
+  "results": [
+    {
+      "id": "l01",
+      "status": "answered",
+      "result": {
+        "answer": "In Minimi 2.0 (launched September 24, 2026), the two AI cats split the work: **Cotton remembers, and Melody chases commitments.**\n\n- **Cotton** — the memory side. It's the original cat (Minimi 1.0 was billed as \"Your Ambient Memory layer for Claude\"), and in 2.0 it's the one \"who remembers\" — personal context captured on your Mac [S5](https://chatgate.ai/en/post/minimi-2-0#1). Minimi's own site frames this as memory that \"lives on your Mac, where it's safest,\" claiming 54% vs. 36% prior state of the art on the BEAM long-term memory benchmark [S12](https://www.projectminimi.com/memory).\n- **Melody** — the follow-through side, introduced in 2.0 as \"the Closer\": it tracks down open loops such as promises made in chat channels and overlooked follow-ups, and per the launch framing \"never lets you miss your commitments\" [S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) [S5](https://chatgate.ai/en/post/minimi-2-0#1).\n\nOne caveat on sourcing: the clearest descriptions of the Cotton/Melody split come from launch coverage and the Product Hunt listing as reported by third parties, not from a dedicated feature page on projectminimi.com — the official site page I found covers the memory capability rather than naming both cats [S12](https://www.projectminimi.com/memory).\n\n**Sources**\n- [S5](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops (2026-09-23)\n- [S12](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well (projectminimi.com)\n- [S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) — Minimi 2.0 coverage (2026-09-23)",
+        "route": "research",
+        "selected_turn_ids": [],
+        "search_queries": [
+          "Project Minimi Mac app Cotton Melody",
+          "Minimi app Cotton feature",
+          "Minimi app Melody feature"
+        ],
+        "citations": [
+          {
+            "id": "S5",
+            "url": "https://chatgate.ai/en/post/minimi-2-0"
+          },
+          {
+            "id": "S2",
+            "url": "https://www.projectminimi.com/memory"
+          },
+          {
+            "id": "S9",
+            "url": "https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare"
+          }
+        ],
+        "agent_ms": 4540,
+        "first_answer_text_ms": 4540,
+        "input_tokens": 4809,
+        "output_tokens": 564,
+        "search_evidence_tokens": 2136,
+        "model_calls": 2,
+        "cache_hit_tokens": 1536,
+        "cache_miss_tokens": 3273,
+        "cost_usd": 0.000817,
+        "retrieval_context": [
+          "MINIMI_SEARCH_BATCH\nintent=answer queries=3 sources=30 fetched=0 attempts=3\n\n=== QUERY 1/3 ===\nquery: \"Project Minimi Mac app Cotton Melody\"\nEVIDENCE\n[S5](https://chatgate.ai/en/post/minimi-2-0#1) chatgate.ai 2026-09-23 auth2\n- The Product Hunt listing frames the September 24, 2026 launch around two AI cats: Cotton, who remembers, and Melody, who \"never lets you miss your commitments.\" The same listing previously billed version 1.0 as \"Your Ambient Memory layer for Claude,\" so 2.0 is where the product stops being purely memory\n[S4](https://www.everydev.ai/developers/shram-intelligence) everydev.ai auth2\n- retaining personal data ownership ... ## Products & Services 4 minimi / Cotton June 2026 A Mac app\n- Melody September 24, 2026 The second AI cat in minimi 2.0.\n[S7](https://sudoai.net/launches/minimi/#main-content) sudoai.net 2026-09-23 auth1\n- Product Hunt featured minimi 2.0 / Melody 2026-09-24 (~#4 / ~313 upvotes on hunted.space\n- On this board it sits in Productivity next to Pactto / Harbor / Tonebird as personal open-loop + MCP memory, not another meeting recorder or design review tool. ## Why we listed it Fresh public feature launch: Product Hunt featured minimi 2.0 on 2026-09-24 (~#4 / ~313 upvotes on hunted.space).\n[S6](https://www.producthunt.com/products/shram?launch=1255017) producthunt.com 2024-06-25 auth2\n- Three months ago, we released minimi in memory of our pet kitten, Cotton 🐈.\nSOURCES (for citation)\n- [S4](https://www.everydev.ai/developers/shram-intelligence) — Shram Intelligence, Inc. - 1 AI Tool | EveryDev.ai retrieved=2026-11-11T19:49:02.525Z\n- [S5](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops - minimi 2.0: AI cat that closes your open loops published=2026-09-23 retrieved=2026-11-11T19:49:02.525Z\n- [S6](https://www.producthunt.com/products/shram?launch=1255017) — minimi: Personal intelligence that comes to you | Product Hunt published=2024-06-25 retrieved=2026-11-11T19:49:02.525Z\n- [S7](https://sudoai.net/launches/minimi/#main-content) — minimi — maker launch notes · sudoai.net published=2026-09-23 retrieved=2026-11-11T19:49:02.525Z\n=== QUERY 2/3 ===\nquery: \"Minimi app Cotton feature\"\nEVIDENCE\n[S13](https://chatgate.ai/en/post/minimi-2-0#1) chatgate.ai 2026-09-23 auth2\n- The Product Hunt listing frames the September 24, 2026 launch around two AI cats: Cotton, who remembers, and Melody, who \"never lets you miss your commitments.\" The same listing previously billed version 1.0 as \"Your Ambient Memory layer for Claude,\" so 2.0 is where the product stops being purely memory\n- The site claims 54% versus 36% for the prior state of the art on BEAM, \"measured on BEAM, ICLR 2026 benchmark for long-term memory\" — \"50% more accurate than previous SOTA.\" BEAM itself is real: the benchmark's official repository describes 100 conversations up to 10 million tokens with 2,000 validated probing questions, and its LIGHT framework improved accuracy by 3.5 to 12.7 percent over baselines.\n[S12](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Download app, sign in, and minimi icon appears in your tray 2.\nSOURCES (for citation)\n- [S12](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:02.525Z\n- [S13](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops - minimi 2.0: AI cat that closes your open loops published=2026-09-23 retrieved=2026-11-11T19:49:02.525Z\n=== QUERY 3/3 ===\nquery: \"Minimi app Melody feature\"\nEVIDENCE\n[S24](https://chatgate.ai/en/post/minimi-2-0#1) chatgate.ai 2026-09-23 auth2\n- The Product Hunt listing frames the September 24, 2026 launch around two AI cats: Cotton, who remembers, and Melody, who \"never lets you miss your commitments.\" The same listing previously billed version 1.0 as \"Your Ambient Memory layer for Claude,\" so 2.0 is where the product stops being purely memory\n[S23](https://www.producthunt.com/p/shram) producthunt.com 2025-01-14 auth2\n- ### minimi 2.0 - AI cat that closes your open loops ...\n[S25](https://sudoai.net/launches/minimi/#main-content) sudoai.net 2026-09-23 auth1\n- Product Hunt featured minimi 2.0 on 2026-09-24 (~#4 / ~313 upvotes on hunted.space). ...\n- Product Hunt featured minimi 2.0 / Melody 2026-09-24 (~#4 / ~313 upvotes on hunted.space\n[S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare) coding4food.com 2026-09-23 auth1\n- Minimi 2.0 brings AI cats that capture personal context via MCP and auto-close open loops. ... - Enter Melody the Closer: Version 2.0 introduces Melody, a new AI cat specialized in tracking down open loops (promises made in chat channels, overlooked follow-ups)\n[S30](https://hicyou.com/zh/minimi-2-0) hicyou.com 2026-09-25 auth1\n- ## minimi 2.0 是什么 minimi 2.0 is a personal AI assistant presented as adoptable AI cats.\nSOURCES (for citation)\n- [S24](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops - minimi 2.0: AI cat that closes your open loops published=2026-09-23 retrieved=2026-11-11T19:49:02.525Z\n- [S25](https://sudoai.net/launches/minimi/#main-content) — minimi — maker launch notes · sudoai.net published=2026-09-23 retrieved=2026-11-11T19:49:02.525Z\n\n\nCITATION RULES\n- Inline citations MUST be markdown links copied from the list below, e.g. [S3](https://example.com/page). Bare \"S3\" text is not clickable.\n- End with a **Sources** section whose entries are also markdown links. List only sources actually cited.\n- Use only the S ids above. Do not invent or alter a URL.\n- If an item is marked MISSING, answer the supported portion and say what is missing.\n- Do not claim a change when the change view says it cannot be established.\n\nCOPYABLE SOURCE LINKS\n[S1](https://www.projectminimi.com/)\n[S2](https://www.projectminimi.com/memory)\n[S3](https://www.producthunt.com/p/shram)\n[S4](https://www.everydev.ai/developers/shram-intelligence)\n[S5](https://chatgate.ai/en/post/minimi-2-0#1)\n[S6](https://www.producthunt.com/products/shram?launch=1255017)\n[S7](https://sudoai.net/launches/minimi/#main-content)\n[S8](https://sudoai.net/zh/launches/minimi/)\n[S9](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare)\n[S10](https://www.nextfor.ai/products/minimi-2-0-2)\n[S11](https://www.projectminimi.com/)\n[S12](https://www.projectminimi.com/memory)\n[S13](https://chatgate.ai/en/post/minimi-2-0#1)\n[S14](https://www.nextfor.ai/products/minimi-2-0-2)\n[S15](https://hicyou.com/zh/minimi-2-0)\n[S16](https://www.listmystartup.app/startup/minimi-20)\n[S17](https://aitrovex.com/tool/minimi)\n[S18](https://moge.ai/de/product/minimi)\n[S19](https://moge.ai/es/product/minimi)\n[S20](https://aitrovex.com/de/tool/minimi)\n[S21](https://www.projectminimi.com/)\n[S22](https://www.projectminimi.com/memory)\n[S23](https://www.producthunt.com/p/shram)\n[S24](https://chatgate.ai/en/post/minimi-2-0#1)\n[S25](https://sudoai.net/launches/minimi/#main-content)\n[S26](https://www.producthunt.com/products/shram?launch=minimi-2-0-2)\n[S27](https://coding4food.com/en/post/minimi-2-0-can-cute-ai-cats-solve-context-switching-nightmare)\n[S28](https://webmail.hunted.space/dashboard/shram#top-comment)\n[S29](http://mp.weixin.qq.com/s?__biz=MzY4NDM4Mjc5OA==&mid=2247483886&idx=1&sn=565e9d50998ef954d251b245399d0f31)\n[S30](https://hicyou.com/zh/minimi-2-0)\n- Evidence was truncated to the digest budget; treat omissions as unknown, not absent."
+        ],
+        "trace_id": "8221e520-e234-4794-be31-1b0421778f91",
+        "langsmith": {
+          "enabled": false,
+          "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+        }
+      },
+      "checks": {
+        "route": true,
+        "search_when_needed": true,
+        "expected_source_coverage": 1.0
+      },
+      "wall_ms": 4650.0
+    },
+    {
+      "id": "l02",
+      "status": "answered",
+      "result": {
+        "answer": "**No — per the vendor's own description, Minimi does not take screenshots.** It reads what's on your Mac screen through macOS **Accessibility** APIs instead of capturing images.\n\n**Cotton's role:** Cotton is the memory side of Minimi 2.0 — it accumulates the context of what you read, hear, and do on your Mac into a private, on-device memory layer (Melody, the other character, tracks unfinished commitments) [S5](https://www.nextfor.ai/products/minimi-2-0-2), [S9](https://chatgate.ai/en/post/minimi-2-0#1).\n\n**How it reads the screen:** A review of the product states that the official site says it reads screen content via macOS Accessibility rather than screenshots; microphone and system-audio capture require separate permissions, and the policy notes that recording other people's conversations requires any legally required consent [S8](https://aitrovex.com/zh-hans/tool/minimi). Memories are stored as embeddings in a local vector database on your Mac, and the company says nothing is kept on its servers or used for training [S5](https://www.nextfor.ai/products/minimi-2-0-2), [S2](https://www.projectminimi.com/memory).\n\nTwo caveats:\n- The Accessibility-vs-screenshot wording comes from a third-party summary of the site, not a direct quote from the vendor page I retrieved; the official memory page I checked only says memory stays on your Mac and that it uses \"the same permissions as WisprFlow\" [S2](https://www.projectminimi.com/memory).\n- The search digest was truncated, so I can't rule out that the site elsewhere mentions optional screenshot-based features.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — minimi memory page\n- [S5](https://www.nextfor.ai/products/minimi-2-0-2) — minimi 2.0 features overview\n- [S8](https://aitrovex.com/zh-hans/tool/minimi) — aitrovex product summary (Accessibility vs. screenshots)\n- [S9](https://chatgate.ai/en/post/minimi-2-0#1) — chatgate.ai on minimi 2.0",
+        "route": "research",
+        "selected_turn_ids": [],
+        "search_queries": [
+          "Project Minimi Cotton screenshots Mac screen reading",
+          "Cotton app Mac screen capture accessibility API"
+        ],
+        "citations": [
+          {
+            "id": "S5",
+            "url": "https://www.nextfor.ai/products/minimi-2-0-2"
+          },
+          {
+            "id": "S9",
+            "url": "https://chatgate.ai/en/post/minimi-2-0"
+          },
+          {
+            "id": "S8",
+            "url": "https://aitrovex.com/zh-hans/tool/minimi"
+          },
+          {
+            "id": "S2",
+            "url": "https://www.projectminimi.com/memory"
+          }
+        ],
+        "agent_ms": 4279,
+        "first_answer_text_ms": 4279,
+        "input_tokens": 4338,
+        "output_tokens": 557,
+        "search_evidence_tokens": 1810,
+        "model_calls": 2,
+        "cache_hit_tokens": 1664,
+        "cache_miss_tokens": 2674,
+        "cost_usd": 0.000733,
+        "retrieval_context": [
+          "MINIMI_SEARCH_BATCH\nintent=answer queries=2 sources=20 fetched=0 attempts=2\n\n=== QUERY 1/2 ===\nquery: \"Project Minimi Cotton screenshots Mac screen reading\"\nEVIDENCE\n[S10](https://sudoai.net/launches/minimi/#main-content) sudoai.net 2026-09-23 auth1\n- Fresh public feature launch: Product Hunt featured minimi 2.0 on 2026-09-24 (~#4 / ~313 upvotes on hunted.space).\n- Privacy copy (updated 2026-08-12) says memory stays on your Mac\n[S8](https://aitrovex.com/zh-hans/tool/minimi) aitrovex.com auth1\n- # minimi：Mac 上的 AI 个人助理与记忆工具 ... minimi 是一款面向 Mac 的 AI 个人助理。 ... 官网称它通过 macOS 辅助功能读取屏幕内容，而非截图； 官网把记忆能力称为 Cotton，把追踪未完成事项的能力称为 Melody：前者积累你在 Mac 上接触的上下文 ... 官网称它通过 macOS 辅助功能读取屏幕内容，而非截图；麦克风和系统音频采集需要权限，涉及其他人的谈话应先取得法律要求的同意。政策还说明可在应用内删除记忆...\n[S5](https://www.nextfor.ai/products/minimi-2-0-2) nextfor.ai auth1\n- Version 2.0 splits the job between two characters: Cotton remembers, and Melody chases the things you promised to do.\n- one paste, and you can revoke the link when you want to cut access. ### On-device vector memory Memories are stored as embeddings in a local vector database on your Mac, and the company says nothing is kept on its servers or used for training. minimi reports 54% accuracy on the BEAM long-term memory benchmark against 36% for the previous best result, a figure the vendor measured itself. ...\n[S9](https://chatgate.ai/en/post/minimi-2-0#1) chatgate.ai 2026-09-23 auth2\n- # minimi 2.0: AI cat that closes your open loops minimi 2.0 is a Mac-only desktop app from Shram Intelligence that quietly captures what you read, hear, and do on your machine into a private memory layer, then uses that context to find the commitments you have let slip\n[S2](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Your memory is stored on your Mac.\nSOURCES (for citation)\n- [S2](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:07.166Z\n- [S5](https://www.nextfor.ai/products/minimi-2-0-2) — minimi: AI Memory App Features, Pricing & Use Cases retrieved=2026-11-11T19:49:07.166Z\n- [S10](https://sudoai.net/launches/minimi/#main-content) — minimi — maker launch notes · sudoai.net published=2026-09-23 retrieved=2026-11-11T19:49:07.166Z\n=== QUERY 2/2 ===\nquery: \"Cotton app Mac screen capture accessibility API\"\nEVIDENCE\n[S17](http://ecosystems.gitwallet.co/ecosystems/electron/projects/node-mac-permissions) ecosystems.gitwallet.co auth1\n- Calling this method or attempting to start a capture session without a usage description raises an exception. ... - status will be resolved back as authorized prior to macOS 10.14, as the underlying API was not introduced until that version. ... ### permissions.askForScreenCaptureAccess([openPreferences]) - openPreferences Boolean (optional) - Whether to open System Preferences if the request to authorize Screen Capture fails or is denied by the user.\n[S19](https://www.npmjs.com/package/@mcp-s/computer-use-mcp#1) npmjs.com 2026-11-04 auth3\n- No API keys, no cloud service. ## Requirements - macOS 13 or later (Apple silicon or Intel) - Node.js 18+ ## MCP client configuration { \"mcpServers\": ... npx\", ... [\"-y\", \"@mcp-s/computer-use-mcp\"] ... ## Permissions macOS grants these permissions to the app that launches the server (Cursor, Claude, your terminal), not to the server itself.\n[S12](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Your memory is stored on your Mac.\n[S14](https://stackoverflow.com/posts/65423834/timeline) stackoverflow.com auth3\n- Just need to verify if it works correctly on all versions of 10.15 codeworkshop.net/objc-diff/sdkdiffs/macos/11.0b3/… comment: @JordanH: Correct, the API is only available in macOS 11 because of a bug. ... comment: Thanks.\n- Jul 13, 2022 at 7:01 | comment | added | Motti Shneor | The same behavior (getting \"old\" status from your launch-time) is observed with other similar APIs (e.g. checks for permission for Accessibility).\nSOURCES (for citation)\n- [S12](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:07.166Z\n- [S14](https://stackoverflow.com/posts/65423834/timeline) — Timeline for answer to Detecting screen recording settings on macOS Catalina by Somesh Karthik retrieved=2026-11-11T19:49:07.166Z\n\n\nCITATION RULES\n- Inline citations MUST be markdown links copied from the list below, e.g. [S3](https://example.com/page). Bare \"S3\" text is not clickable.\n- End with a **Sources** section whose entries are also markdown links. List only sources actually cited.\n- Use only the S ids above. Do not invent or alter a URL.\n- If an item is marked MISSING, answer the supported portion and say what is missing.\n- Do not claim a change when the change view says it cannot be established.\n\nCOPYABLE SOURCE LINKS\n[S1](https://www.projectminimi.com/)\n[S2](https://www.projectminimi.com/memory)\n[S3](https://bestaitoolfinder.com/minimi-2-0/#index-1-11-4)\n[S4](https://agentfilter.com/agents/minimi)\n[S5](https://www.nextfor.ai/products/minimi-2-0-2)\n[S6](https://aitrovex.com/de/tool/minimi)\n[S7](https://aitrovex.com/tool/minimi)\n[S8](https://aitrovex.com/zh-hans/tool/minimi)\n[S9](https://chatgate.ai/en/post/minimi-2-0#1)\n[S10](https://sudoai.net/launches/minimi/#main-content)\n[S11](https://www.projectminimi.com/)\n[S12](https://www.projectminimi.com/memory)\n[S13](https://github.com/hs3180/disclaude/blob/main/skills/mac-screen-control/scripts/mac_control.py#1)\n[S14](https://stackoverflow.com/posts/65423834/timeline)\n[S15](https://glama.ai/mcp/servers/woladi/macos-vision-mcp#2)\n[S16](https://claudemarketplaces.com/mcp/jeomon/macos-mcp)\n[S17](http://ecosystems.gitwallet.co/ecosystems/electron/projects/node-mac-permissions)\n[S18](https://stackoverflow.com/revisions/6bfc98e4-8932-471c-ac89-b125c308844b/view-source)\n[S19](https://www.npmjs.com/package/@mcp-s/computer-use-mcp#1)\n[S20](https://cfe.smhs.gwu.edu/sites/g/files/zaskib506/files/2021-11/How%20to%20Record%20with%20Panopto%20for%20Mac.pdf#1#1#1)\n- Evidence was truncated to the digest budget; treat omissions as unknown, not absent."
+        ],
+        "trace_id": "f5baa695-583e-4b74-9089-347143e02857",
+        "langsmith": {
+          "enabled": false,
+          "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+        }
+      },
+      "checks": {
+        "route": true,
+        "search_when_needed": true,
+        "expected_source_coverage": 1.0
+      },
+      "wall_ms": 4380.1
+    },
+    {
+      "id": "l03",
+      "status": "answered",
+      "result": {
+        "answer": "**What stays on your Mac:** your memory — the index of your activity — is kept in a local vector database on the device, and Minimi's own copy says \"Your memory lives on your Mac, where it's safest\" [S2](https://www.projectminimi.com/memory). A launch write-up of the privacy copy (updated 2026-08-12) likewise says memory stays on your Mac [S7](https://sudoai.net/launches/minimi/#main-content). Third-party summaries describe the same design: data is stored in a local vector database, decrypted only at retrieval time and re-encrypted afterwards, so the main index never leaves the device, with per-app indexing toggles and a global pause [S8](https://www.aitoolnet.com/ru/minimi#1), [S15](https://www.aitoolnet.com/minimi#1).\n\n**What creates embeddings:** Google's **Gemini API**, on a **paid tier**. Minimi uses the paid Gemini API tier to generate embeddings, which the write-up says ensures the processed data isn't used to train the provider's models [S15](https://www.aitoolnet.com/minimi#1), [S8](https://www.aitoolnet.com/ru/minimi#1).\n\nSo the honest framing is: the *memory store* is local, but embedding generation is a cloud call to Gemini — that's the seam in the privacy story, and a competitor's docs explicitly frame it as Minimi's \"privacy gap\" versus cloud-free embeddings [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/).\n\nCaveat: the Gemini detail comes from third-party tool directories (June 2026), not from Minimi's own privacy page in the digest, so treat the exact tier wording as second-hand.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — projectminimi.com, memory page\n- [S7](https://sudoai.net/launches/minimi/#main-content) — launch notes, 2026-09-23\n- [S8](https://www.aitoolnet.com/ru/minimi#1) — aitoolnet, 2026-06-06\n- [S15](https://www.aitoolnet.com/minimi#1) — aitoolnet, 2026-06-06\n- [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) — Pace docs, 2026-06-08",
+        "route": "research",
+        "selected_turn_ids": [],
+        "search_queries": [
+          "Project Minimi privacy what stays on my Mac embeddings",
+          "Minimi app privacy local embeddings service"
+        ],
+        "citations": [
+          {
+            "id": "S2",
+            "url": "https://www.projectminimi.com/memory"
+          },
+          {
+            "id": "S7",
+            "url": "https://sudoai.net/launches/minimi/"
+          },
+          {
+            "id": "S8",
+            "url": "https://www.aitoolnet.com/ru/minimi"
+          },
+          {
+            "id": "S5",
+            "url": "https://www.aitoolnet.com/minimi"
+          },
+          {
+            "id": "S3",
+            "url": "https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/"
+          }
+        ],
+        "agent_ms": 4574,
+        "first_answer_text_ms": 4574,
+        "input_tokens": 4322,
+        "output_tokens": 626,
+        "search_evidence_tokens": 1806,
+        "model_calls": 2,
+        "cache_hit_tokens": 1664,
+        "cache_miss_tokens": 2658,
+        "cost_usd": 0.000769,
+        "retrieval_context": [
+          "MINIMI_SEARCH_BATCH\nintent=answer queries=2 sources=20 fetched=0 attempts=2\n\n=== QUERY 1/2 ===\nquery: \"Project Minimi privacy what stays on my Mac embeddings\"\nEVIDENCE\n[S7](https://sudoai.net/launches/minimi/#main-content) sudoai.net 2026-09-23 auth1\n- Privacy copy (updated 2026-08-12) says memory stays on your Mac\n[S3](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) heypace.app 2026-06-08 auth2\n- 2026-06-09 Source: https://www.projectminimi.com/ ...\n- Project Minimi is positioned as ambient memory for Claude on Mac.\n[S8](https://www.aitoolnet.com/ru/minimi#1) aitoolnet.com 2026-06-06 auth2\n- Minimi — это приложение для macOS, которое записывает вашу цифровую активность, предоставляя Claude постоянный и актуальный контекст без необходимости вручную загружать файлы или копировать данные.32 ... - Локальное векторное хранение: Данные о вашей активности сохраняются в локальной векторной базе данных на вашем Mac. Данные расшифровываются только в момент извлечения для обработки LLM и повторно шифруются после этого, что гарантирует, что основной индекс никогда не покидает ваше устройство. - Детальный контроль приватности: Интерфейс включает переключатели индексации для каждого приложения и глобальную функцию паузы. Вы сами решаете, какие приложения Minimi может «видеть», и можете приостанавливать сбор данных во время выполнения конфиденциальных задач. - Конфиденциальные эмбеддинги: Minimi использует платный уровень API Gemini для создания эмбеддингов данных. Такое лицензирование гарантирует, что ваши обработанные данные не используются для обучения моделей со стороны поставщика.\n[S2](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Download app, sign in, and minimi icon appears in your tray 2.\nSOURCES (for citation)\n- [S2](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:11.548Z\n- [S3](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) — Project Minimi RAG Snapshot - Pace docs published=2026-06-08 retrieved=2026-11-11T19:49:11.548Z\n- [S7](https://sudoai.net/launches/minimi/#main-content) — minimi — maker launch notes · sudoai.net published=2026-09-23 retrieved=2026-11-11T19:49:11.548Z\n=== QUERY 2/2 ===\nquery: \"Minimi app privacy local embeddings service\"\nEVIDENCE\n[S16](https://www.producthunt.com/p/shram/minimi-3) producthunt.com 2026-06-03 auth2\n- We have built SOTA memory - it has beat the published benchmark of 0.36 (BEAM) by 50% - that is why the results are really on point! ... @zaid_mallik1 In Minimi - updates, contradictions, and temporal order are handled as core behavior, not patched on.\n- I endorse it because it's 50% more accurate than previous memory systems (54% vs 36% on the BEAM benchmark), keeps your memory on-device in a local vector database with nothing stored on the cloud, and lets you skip the extra prompting to get straight to answers.\n[S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) heypace.app 2026-06-08 auth2\n- no cloud LLM fallback. - Pace’s RAG should answer questions such as “how does Pace differ from Minimi”, “what is Minimi’s privacy gap”, and “why does Pace avoid cloud embeddings”.\n- 2026-06-09 Source: https://www.projectminimi.com/ ...\n[S13](https://chatgate.ai/post/minimi#1) chatgate.ai 2026-06-04 auth2\n- Minimi is a Mac app that turns the activity around your workday into retrievable context for Claude. ... ## What should users know about privacy\n[S15](https://www.aitoolnet.com/minimi#1) aitoolnet.com 2026-06-06 auth2\n- # Minimi ... - Granular Privacy Controls: The interface includes per-app indexing toggles\n- You define which applications Minimi can \"see\" ... tasks. - Privacy-Preserving Embeddings: Minimi uses a paid Gemini API tier to generate data embeddings.\n[S12](https://www.projectminimi.com/memory) projectminimi.com auth5\n- Download app, sign in, and minimi icon appears in your tray 2.\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\nSOURCES (for citation)\n- [S12](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:11.548Z\n- [S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) — Project Minimi RAG Snapshot - Pace docs published=2026-06-08 retrieved=2026-11-11T19:49:11.548Z\n- [S16](https://www.producthunt.com/p/shram/minimi-3) — minimi : minimi Forums | Product Hunt published=2026-06-03 retrieved=2026-11-11T19:49:11.548Z\n\n\nCITATION RULES\n- Inline citations MUST be markdown links copied from the list below, e.g. [S3](https://example.com/page). Bare \"S3\" text is not clickable.\n- End with a **Sources** section whose entries are also markdown links. List only sources actually cited.\n- Use only the S ids above. Do not invent or alter a URL.\n- If an item is marked MISSING, answer the supported portion and say what is missing.\n- Do not claim a change when the change view says it cannot be established.\n\nCOPYABLE SOURCE LINKS\n[S1](https://www.projectminimi.com/)\n[S2](https://www.projectminimi.com/memory)\n[S3](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/)\n[S4](https://chatgate.ai/post/minimi#1)\n[S5](https://www.aitoolnet.com/minimi#1)\n[S6](https://www.aitoolnet.com/fr/minimi#1)\n[S7](https://sudoai.net/launches/minimi/#main-content)\n[S8](https://www.aitoolnet.com/ru/minimi#1)\n[S9](https://blog.csdn.net/ting9452000/article/details/161754248#3)\n[S10](https://blog.csdn.net/ting9452000/article/details/161754248#1)\n[S11](https://www.projectminimi.com/)\n[S12](https://www.projectminimi.com/memory)\n[S13](https://chatgate.ai/post/minimi#1)\n[S14](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/)\n[S15](https://www.aitoolnet.com/minimi#1)\n[S16](https://www.producthunt.com/p/shram/minimi-3)\n[S17](https://www.aitoolnet.com/fr/minimi#1)\n[S18](https://www.aitoolnet.com/zhtw/minimi#1)\n[S19](https://store.hypergpt.ai/minimi)\n[S20](https://blog.csdn.net/ting9452000/article/details/161754248#1)\n- Evidence was truncated to the digest budget; treat omissions as unknown, not absent."
+        ],
+        "trace_id": "1f3e3b54-92aa-4396-a32d-5e9a49d76600",
+        "langsmith": {
+          "enabled": false,
+          "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+        }
+      },
+      "checks": {
+        "route": true,
+        "search_when_needed": true,
+        "expected_source_coverage": 1.0
+      },
+      "wall_ms": 4675.2
+    },
+    {
+      "id": "l04",
+      "status": "answered",
+      "result": {
+        "answer": "**Location:** The Software Engineering Intern role at minimi (Project Minimi) is listed as **on-site in Bengaluru, India** — the team describes itself as small and building \"AI that lives on your Mac\" [S3](https://binary.so/YIrD8L5).\n\n**Video and repository requirements:** I couldn't confirm these. The job listing snippet mentions a challenge (\"Build the best chat agent with web search you can\") but the digest didn't include any stated video submission or code repository requirements, and the other results were unrelated internship programs. I don't want to guess at specifics like video length, format, or repo visibility.\n\nTwo things worth noting:\n- There's a separate organization, **Minimis Technologies**, with hybrid/remote internships in Android/iOS development [S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) — that's a different entity from minimi, so don't mix up their requirements.\n- If you can share the full job posting text or link, I can pull out the exact video and repository instructions.\n\n**Sources**\n- [S3](https://binary.so/YIrD8L5) — Software Engineering Intern at minimi, Bengaluru\n- [S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) — Minimis Technologies internship listing (different company)",
+        "route": "research",
+        "selected_turn_ids": [],
+        "search_queries": [
+          "Project Minimi software engineering internship location",
+          "Project Minimi internship application video repository requirements"
+        ],
+        "citations": [
+          {
+            "id": "S3",
+            "url": "https://binary.so/YIrD8L5"
+          },
+          {
+            "id": "S4",
+            "url": "https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f"
+          }
+        ],
+        "agent_ms": 4153,
+        "first_answer_text_ms": 4153,
+        "input_tokens": 4058,
+        "output_tokens": 402,
+        "search_evidence_tokens": 1587,
+        "model_calls": 2,
+        "cache_hit_tokens": 1664,
+        "cache_miss_tokens": 2394,
+        "cost_usd": 0.000607,
+        "retrieval_context": [
+          "MINIMI_SEARCH_BATCH\nintent=answer queries=2 sources=15 fetched=0 attempts=2\n\n=== QUERY 1/2 ===\nquery: \"Project Minimi software engineering internship location\"\nEVIDENCE\n[S2](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Download app, sign in, and minimi icon appears in your tray 2.\n[S1](https://www.projectminimi.com/) projectminimi.com auth5\n- TRUSTED BY FOLKS AT 1.\n[S3](https://binary.so/YIrD8L5) binary.so auth5\n- We're a small team, and we're looking for a Software Engineering Intern to build it with us. ## What you'll work on - Agents that read your day\n- # Software Engineering Intern at minimi Bengaluru minimi is AI that lives on your Mac\n- frontend Internship · On-site, Bengaluru ## The challenge Build the best chat agent with web search you can.\n[S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f) usyd-studyabroad-internships.notion.site auth1\n- refinement of our Minimis Glass OS (Kotlin – Android) or the Minimis Launcher (Kotlin for Android, Swift for iOS) Minimis Technologies Area of Internship Finance Marketing Software/SEO/UX/AI Engineering Internship Style Hybrid or remote ...\n- Software engineering intern assists in the development\n- Internship Style Hybrid or remote ... 其他 3 个属性 ... #### Technical roles ...\nSOURCES (for citation)\n- [S2](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:16.228Z\n=== QUERY 2/2 ===\nquery: \"Project Minimi internship application video repository requirements\"\nEVIDENCE\n[S6](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Download app, sign in, and minimi icon appears in your tray 2.\n[S8](https://rasmuson.org/wp-content/uploads/2025/04/IAA-Project-Award-Work-Samples-Guide.pdf#1#1#1) rasmuson.org auth2\n- Click on the \"+ Create\" button at the top of the page then select \"Upload Video.\" 3.\n[S9](http://lmenc.weebly.com/how-to-apply.html) lmenc.weebly.com auth2\n- Choose between the following pieces (a total of 2 separate video uploads)\n- How to apply The applicant will be asked to fill in an online application form which will require from them the following: ... - Upload of video recordings of the applicant performing 2 of the following pieces.\n[S14](https://students.uu.nl/en/academics/honours/uu-honours-college/da-vinci-project-ba/application-and-selection) students.uu.nl 2023-09-18 auth3\n- Before you complete the online application, there are some documents you need to prepare: 1.\n- 3 minutes) in which you: - Motivate why you want to become part of this project\n[S12](https://www.ammanu.edu.jo/ntp/frequently-asked-questions/) ammanu.edu.jo auth3\n- Project accomplished within 2025-2026 It is not a mandatory requirement.\n- Usually, the abstract is up to 300 words.\n[S11](https://satoshi-ikehata.github.io/internship-video.html) satoshi-ikehata.github.io auth1\n- 2026 2nd Call · NII International Internship Program # Video Presentation Guidelines K00501: 3D Computer Vision, 3D Computer Graphics Satoshi Ikehata · National Institute of Informatics (NII) Thank you for your interest in my research topic.\n- Degree requirements Clarify whether the internship research needs to be included in your Master's or Ph.D. thesis. ## How to submit Email a link to your video to sikehata@nii.ac.jp by October 14, 2026 (AOE / Anywhere on Earth).\nSOURCES (for citation)\n- [S6](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:16.228Z\n- [S11](https://satoshi-ikehata.github.io/internship-video.html) — Video Presentation Guidelines retrieved=2026-11-11T19:49:16.228Z\n\n\nCITATION RULES\n- Inline citations MUST be markdown links copied from the list below, e.g. [S3](https://example.com/page). Bare \"S3\" text is not clickable.\n- End with a **Sources** section whose entries are also markdown links. List only sources actually cited.\n- Use only the S ids above. Do not invent or alter a URL.\n- If an item is marked MISSING, answer the supported portion and say what is missing.\n- Do not claim a change when the change view says it cannot be established.\n\nCOPYABLE SOURCE LINKS\n[S1](https://www.projectminimi.com/)\n[S2](https://www.projectminimi.com/memory)\n[S3](https://binary.so/YIrD8L5)\n[S4](https://usyd-studyabroad-internships.notion.site/Minimis-Technologies-6b0fc7e3430148b3977879c79754b14f)\n[S5](https://www.projectminimi.com/)\n[S6](https://www.projectminimi.com/memory)\n[S7](https://binary.so/YIrD8L5)\n[S8](https://rasmuson.org/wp-content/uploads/2025/04/IAA-Project-Award-Work-Samples-Guide.pdf#1#1#1)\n[S9](http://lmenc.weebly.com/how-to-apply.html)\n[S10](https://ec.europa.eu/programmes/erasmus-plus/project-result-content/0d30c310-2161-4ce4-8d1a-5e632599cb9f/IT_MATCHSI_Toolkit_Organizzatori.pdf#4#4#4)\n[S11](https://satoshi-ikehata.github.io/internship-video.html)\n[S12](https://www.ammanu.edu.jo/ntp/frequently-asked-questions/)\n[S13](https://www.democracyandme.org/includes/internship_2020.php)\n[S14](https://students.uu.nl/en/academics/honours/uu-honours-college/da-vinci-project-ba/application-and-selection)\n[S15](https://forms.monday.com/forms/0f17dfb20c06b3528a157018d5d2e68f?r=use1)\n- Evidence was truncated to the digest budget; treat omissions as unknown, not absent."
+        ],
+        "trace_id": "69818159-5485-403a-ae84-fcb1f02d360d",
+        "langsmith": {
+          "enabled": false,
+          "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+        }
+      },
+      "checks": {
+        "route": true,
+        "search_when_needed": true,
+        "expected_source_coverage": 1.0
+      },
+      "wall_ms": 4259.1
+    },
+    {
+      "id": "l05",
+      "status": "answered",
+      "result": {
+        "answer": "The About page itself didn't return content in this search — the digest only surfaced the URL, not its text. What the evidence does support:\n\n- Cotton is named after the makers' real pet kitten: \"Three months ago, we released minimi in memory of our pet kitten, Cotton 🐈\" [S16](https://www.producthunt.com/products/shram?launch=1255017).\n- In the 2.0 framing, Cotton is the AI cat \"who remembers,\" alongside Melody, who handles commitments [S19](https://chatgate.ai/en/post/minimi-2-0#1).\n\nSo the inspiration appears to be their own late kitten, Cotton — but that comes from a Product Hunt maker comment, not the official About page. I couldn't retrieve the About page text ([S3](https://www.projectminimi.com/about)), so I can't confirm whether it names any additional inspiration (a specific breed, a person, or a design reference). If you can paste the About page text, I'll verify it directly.\n\n**Sources**\n- [S16](https://www.producthunt.com/products/shram?launch=1255017)\n- [S19](https://chatgate.ai/en/post/minimi-2-0#1)\n- [S3](https://www.projectminimi.com/about) (checked; content not retrieved)",
+        "route": "research",
+        "selected_turn_ids": [],
+        "search_queries": [
+          "Project Minimi Cotton mascot inspiration About page",
+          "Project Minimi official About page Cotton"
+        ],
+        "citations": [
+          {
+            "id": "S16",
+            "url": "https://www.producthunt.com/products/shram?launch=1255017"
+          },
+          {
+            "id": "S4",
+            "url": "https://chatgate.ai/en/post/minimi-2-0"
+          },
+          {
+            "id": "S3",
+            "url": "https://www.projectminimi.com/about"
+          }
+        ],
+        "agent_ms": 3895,
+        "first_answer_text_ms": 3895,
+        "input_tokens": 4889,
+        "output_tokens": 371,
+        "search_evidence_tokens": 2191,
+        "model_calls": 2,
+        "cache_hit_tokens": 1664,
+        "cache_miss_tokens": 3225,
+        "cost_usd": 0.000706,
+        "retrieval_context": [
+          "MINIMI_SEARCH_BATCH\nintent=answer queries=2 sources=22 fetched=0 attempts=2\n\n=== QUERY 1/2 ===\nquery: \"Project Minimi Cotton mascot inspiration About page\"\nEVIDENCE\n[S4](https://chatgate.ai/en/post/minimi-2-0#1) chatgate.ai 2026-09-23 auth2\n- The Product Hunt listing frames the September 24, 2026 launch around two AI cats: Cotton, who remembers, and Melody, who \"never lets you miss your commitments.\" The same listing previously billed version 1.0 as \"Your Ambient Memory layer for Claude,\" so 2.0 is where the product stops being purely memory\n- # minimi 2.0: AI cat that closes your open loops ...\n[S8](https://hcstrinitypark.schoolzineplus.com/_file/szschool/newsletter/9595/attachment/Commonwealth%20Games%20Mascot%20Competition.pdf#1#1#1) hcstrinitypark.schoolzineplus.com auth2\n- support Gold Coast 2018 Commonwealth Games™\n- background story ... # Gold Coast 2018 Commonwealth GamesTM Mascot Community Design Competition - terms\n[S9](https://bricksfortheblind.org/wp-content/uploads/2026/09/42643-Cotton-Candy-Stand-and-Scooter-V2.pdf#1#1#1) bricksfortheblind.org auth2\n- Group 3 - Cotton Candy Mascot ...\n- we make the mascot!\n[S11](https://news.tulane.edu/print/pdf/node/1651345#1#1#1) news.tulane.edu auth3\n- # Green Wave tire mascot will be a souvenir of historic Cotton Bowl win January 05, 2023 11:15 AM Tulane Today staff today@tulane.edu A huge Angry Wave mascot created from Goodyear tires is displayed with the Cotton Bowl Classic trophy at AT&T Stadium in Arlington, Texas.\n- Goodyear tire art has been a Cotton Bowl tradition since 2016.\n[S6](http://repository.ubharajaya.ac.id/20470/1/Tesis%20Imaddudin.pdf#10#32#10) repository.ubharajaya.ac.id auth2\n- Sumber : Arsip Museum Indonesia TMII 2010 ... **3.1.4.2 Maskot Taman Mini “Indonesia Indah”** **Gambar 3.2** **Maskot Taman Mini “Indonesia Indah”** N I T R A ...\n- Sumber : Arsip Museum Indonesia TMII 2010 ... **3.1.4.2 Maskot Taman Mini “Indonesia Indah”** ...\n[S2](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\nSOURCES (for citation)\n- [S2](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:20.479Z\n- [S4](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops - minimi 2.0: AI cat that closes your open loops published=2026-09-23 retrieved=2026-11-11T19:49:20.479Z\n- [S6](http://repository.ubharajaya.ac.id/20470/1/Tesis%20Imaddudin.pdf#10#32#10) — 2. Memberikan jaminan kepastian hukum bagi inspector retrieved=2026-11-11T19:49:20.479Z\n- [S11](https://news.tulane.edu/print/pdf/node/1651345#1#1#1) — Green Wave tire mascot will be a souvenir of historic Cotton Bowl win retrieved=2026-11-11T19:49:20.479Z\n=== QUERY 2/2 ===\nquery: \"Project Minimi official About page Cotton\"\nEVIDENCE\n[S17](https://sudoai.net/launches/minimi/#main-content) sudoai.net 2026-09-23 auth1\n- Fresh public feature launch: Product Hunt featured minimi 2.0 on 2026-09-24 (~#4 / ~313 upvotes on hunted.space). ...\n- Product Hunt featured minimi 2.0 / Melody 2026-09-24 (~#4 / ~313 upvotes on hunted.space\n[S21](https://www.chirpycheeks.co.nz/collections/inserts-without-prefolds/products/minimi-bamboo-cotton-insert-set) chirpycheeks.co.nz 2020-07-27 auth2\n- Copyrighted © Minimi 2019\n- With 70% Viscose from Bamboo and 30% Cotton, there are no oil-based synthetics used in our absorbency.\n[S13](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Download app, sign in, and minimi icon appears in your tray 2.\n[S16](https://www.producthunt.com/products/shram?launch=1255017) producthunt.com 2024-06-25 auth2\n- Three months ago, we released minimi in memory of our pet kitten, Cotton 🐈.\n[S19](https://chatgate.ai/en/post/minimi-2-0#1) chatgate.ai 2026-09-23 auth2\n- The site claims 54% versus 36% for the prior state of the art on BEAM, \"measured on BEAM, ICLR 2026 benchmark for long-term memory\" — \"50% more accurate than previous SOTA.\" BEAM itself is real: the benchmark's official repository describes 100 conversations up to 10 million tokens with 2,000 validated probing questions, and its LIGHT framework improved accuracy by 3.5 to 12.7 percent over baselines.\n- The Product Hunt listing frames the September 24, 2026 launch around two AI cats: Cotton, who remembers, and Melody, who \"never lets you miss your commitments.\" The same listing previously billed version 1.0 as \"Your Ambient Memory layer for Claude,\" so 2.0 is where the product stops being purely memory\nSOURCES (for citation)\n- [S13](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:20.479Z\n- [S16](https://www.producthunt.com/products/shram?launch=1255017) — minimi: Personal intelligence that comes to you | Product Hunt published=2024-06-25 retrieved=2026-11-11T19:49:20.479Z\n- [S17](https://sudoai.net/launches/minimi/#main-content) — minimi — maker launch notes · sudoai.net published=2026-09-23 retrieved=2026-11-11T19:49:20.479Z\n- [S19](https://chatgate.ai/en/post/minimi-2-0#1) — minimi 2.0: AI cat that closes your open loops - minimi 2.0: AI cat that closes your open loops published=2026-09-23 retrieved=2026-11-11T19:49:20.479Z\n- [S21](https://www.chirpycheeks.co.nz/collections/inserts-without-prefolds/products/minimi-bamboo-cotton-insert-set) — Minimi Bamboo/Cotton Insert Set (Seconds) published=2020-07-27 retrieved=2026-11-11T19:49:20.479Z\n\n\nCITATION RULES\n- Inline citations MUST be markdown links copied from the list below, e.g. [S3](https://example.com/page). Bare \"S3\" text is not clickable.\n- End with a **Sources** section whose entries are also markdown links. List only sources actually cited.\n- Use only the S ids above. Do not invent or alter a URL.\n- If an item is marked MISSING, answer the supported portion and say what is missing.\n- Do not claim a change when the change view says it cannot be established.\n\nCOPYABLE SOURCE LINKS\n[S1](https://www.projectminimi.com/)\n[S2](https://www.projectminimi.com/memory)\n[S3](https://www.projectminimi.com/about)\n[S4](https://chatgate.ai/en/post/minimi-2-0#1)\n[S5](http://trade.searchpress.com.au/_uploads/_catalogues/December2023.pdf#2#2#2)\n[S6](http://repository.ubharajaya.ac.id/20470/1/Tesis%20Imaddudin.pdf#10#32#10)\n[S7](http://projects.nmi.cool/2024/em/battlemascots/assets/files/project-research/project-brief.pdf#1#1#1)\n[S8](https://hcstrinitypark.schoolzineplus.com/_file/szschool/newsletter/9595/attachment/Commonwealth%20Games%20Mascot%20Competition.pdf#1#1#1)\n[S9](https://bricksfortheblind.org/wp-content/uploads/2026/09/42643-Cotton-Candy-Stand-and-Scooter-V2.pdf#1#1#1)\n[S10](http://mascot.olemiss.edu/wp-content/uploads/2010/10/Final-Mascot-Concepts-2.pdf#1#1#1)\n[S11](https://news.tulane.edu/print/pdf/node/1651345#1#1#1)\n[S12](https://www.projectminimi.com/)\n[S13](https://www.projectminimi.com/memory)\n[S14](https://www.projectminimi.com/about)\n[S15](https://aitrovex.com/tool/minimi)\n[S16](https://www.producthunt.com/products/shram?launch=1255017)\n[S17](https://sudoai.net/launches/minimi/#main-content)\n[S18](https://www.producthunt.com/p/shram)\n[S19](https://chatgate.ai/en/post/minimi-2-0#1)\n[S20](https://openalt.pro/en/tools/minimi-20-9e6ad0)\n[S21](https://www.chirpycheeks.co.nz/collections/inserts-without-prefolds/products/minimi-bamboo-cotton-insert-set)\n[S22](https://texprocil.org/e-newsletter/1746704522-ENews_(8.08).pdf#7#14#7)\n- Evidence was truncated to the digest budget; treat omissions as unknown, not absent."
+        ],
+        "trace_id": "d06d17a0-a0fb-44aa-bb8a-d5f0ebbfbe93",
+        "langsmith": {
+          "enabled": false,
+          "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+        }
+      },
+      "checks": {
+        "route": true,
+        "search_when_needed": true,
+        "expected_source_coverage": 1.0
+      },
+      "wall_ms": 3992.4
+    },
+    {
+      "id": "l06",
+      "status": "answered",
+      "result": {
+        "answer": "**The two scores:** Minimi 54% vs. LIGHT (BEAM) 36%, measured on BEAM, the ICLR 2026 benchmark for long-term memory [S2](https://www.projectminimi.com/memory).\n\n**What the 50% means:** It's a relative improvement over the previous state of the art, not a 50-point gap. 54 ÷ 36 = 1.5, so Minimi's score is 50% higher than LIGHT's — the absolute difference is 18 percentage points [S2](https://www.projectminimi.com/memory). Minimi's own framing is \"50% more accurate than previous SOTA\" [S2](https://www.projectminimi.com/memory), echoed in its launch material (\"beat the published benchmark of 0.36 (BEAM) by 50%\") [S4](https://www.producthunt.com/p/shram/minimi-3).\n\nTwo caveats worth noting: the claim is a vendor self-report, and third-party write-ups note that the underlying evaluation details (harness, dataset split, scoring method) aren't published alongside the headline number [S9](https://ustack.app/products/minimi). Also, \"54% accurate\" is a low absolute score — the 50% figure is flattering precisely because the baseline is low.\n\n**Sources**\n- [S2](https://www.projectminimi.com/memory) — Minimi memory page (54% vs 36%, BEAM ICLR 2026)\n- [S4](https://www.producthunt.com/p/shram/minimi-3) — Product Hunt launch thread\n- [S9](https://ustack.app/products/minimi) — ustack.app product listing (notes limited evaluation detail)",
+        "route": "research",
+        "selected_turn_ids": [],
+        "search_queries": [
+          "Project Minimi memory 50% more accurate benchmark scores"
+        ],
+        "citations": [
+          {
+            "id": "S2",
+            "url": "https://www.projectminimi.com/memory"
+          },
+          {
+            "id": "S4",
+            "url": "https://www.producthunt.com/p/shram/minimi-3"
+          },
+          {
+            "id": "S9",
+            "url": "https://ustack.app/products/minimi"
+          }
+        ],
+        "agent_ms": 3836,
+        "first_answer_text_ms": 3836,
+        "input_tokens": 4279,
+        "output_tokens": 437,
+        "search_evidence_tokens": 1685,
+        "model_calls": 2,
+        "cache_hit_tokens": 1664,
+        "cache_miss_tokens": 2615,
+        "cost_usd": 0.000657,
+        "retrieval_context": [
+          "MINIMI_SEARCH_BATCH\nintent=answer queries=1 sources=10 fetched=0 attempts=1\n\n=== QUERY 1/1 ===\nquery: \"Project Minimi memory 50% more accurate benchmark scores\"\nEVIDENCE\n[S5](https://aitoolly.com/product/minimi#1) aitoolly.com 2026-06-06 auth2\n- Minimi is 54% accurate according to the ICLR 2026 BEAM benchmark, making it 50% more accurate than previous leading memory solutions.\n- Based on the BEAM (ICLR 2026 benchmark) for long-term memory, Minimi achieved a score of 54%, significantly outperforming competitors like LIGHT (BEAM) which scored 36%.\n[S3](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) heypace.app 2026-06-08 auth2\n- 2026-06-09 Source: https://www.projectminimi.com/ ... ## Memory And Retrieval Claims Minimi says the memory lives on the user’s Mac\n- The homepage also claims a BEAM benchmark result of 54% for Minimi versus 36% for LIGHT, described as 50% more accurate than the previous SOTA.\n[S9](https://ustack.app/products/minimi) ustack.app auth1\n- Benchmark-referenced accuracy claim The homepage claims a benchmark result of 54% on BEAM versus 36% for Light (Beam), described as 50% more accurate than the previous SOTA on that benchmark. ... - The homepage makes a benchmark accuracy claim, but\n- Minimi is a Mac app that gives Claude ambient memory from what you read, said, or heard on your computer. ... ### Benchmark-referenced accuracy claim The homepage claims a benchmark result of 54% on BEAM versus 36% for Light (Beam), described as 50% more accurate than the previous SOTA on that benchmark. ... - The homepage makes a benchmark accuracy claim, but the underlying evaluation details are limited in the source pages provided.\n[S6](https://huntscreens.com/id/products/minimi) huntscreens.com auth2\n- Minimi adalah asisten memori ambient untuk Claude di Mac. ... - •Akurasi Tinggi:50% lebih akurat dibandingkan model sebelumnya pada tolok ukur BEAM ICLR 2026 untuk memori jangka panjang.\n- Akurasi 54% pada benchmark BEAM, penyimpanan di perangkat. ... - •Akurasi Tinggi:50% lebih akurat dibandingkan model sebelumnya pada tolok ukur BEAM ICLR 2026 untuk memori jangka panjang.\n[S10](https://pypi.org/project/mnimi-memory/#2) pypi.org 2026-10-16 auth4\n- The LongMemEval cache, attached to the v3.1.1 GitHub release, is 95,846 rows, 140,038,144 bytes, sha256 ce4a1ab33d661c2c1128974c5d4ea2f69bd238b49085691c600b07a82db4e39e. - Sizes.\n- At benchmark scale, measured on v3.1.0's LongMemEval run (mnimi__500q_gpt4o_pt1, 2026-10-15...\n[S7](https://fr.linkedin.com/pulse/your-memory-layer-feature-stop-pretending-its-company-jay-gadekar-n31rc?tl=fr#1) fr.linkedin.com 2026-05-27 auth2\n- Minimi surpasse le benchmark mémoire de pointe actuel (FAISCEAU) de 50 %.\n- Benchmark BEAM de Minimi - 50 % plus élevé que le SOTA actuel\n[S4](https://www.producthunt.com/p/shram/minimi-3) producthunt.com 2026-06-03 auth2\n- I endorse it because it's 50% more accurate than previous memory systems (54% vs 36% on the BEAM benchmark)...\n- We have built SOTA memory - it has beat the published benchmark of 0.36 (BEAM) by 50% - that is why the results are really on point! ... @zaid_mallik1 In Minimi - updates, contradictions, and temporal order are handled as core behavior, not patched on.\n[S2](https://www.projectminimi.com/memory) projectminimi.com auth5\n- ChatGPT Claude Your memory lives on your Mac, where it's safest 50% more accurate than previous SOTA* LIGHT (BEAM) 36% Minimi 54% *Measured on BEAM, ICLR 2026 benchmark for long-term memory Same permissions as WisprFlow\n- Download app, sign in, and minimi icon appears in your tray 2.\nSOURCES (for citation)\n- [S2](https://www.projectminimi.com/memory) — minimi: AI cat that knows you really well retrieved=2026-11-11T19:49:24.474Z\n- [S3](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/) — Project Minimi RAG Snapshot - Pace docs published=2026-06-08 retrieved=2026-11-11T19:49:24.474Z\n- [S4](https://www.producthunt.com/p/shram/minimi-3) — minimi : minimi Forums | Product Hunt published=2026-06-03 retrieved=2026-11-11T19:49:24.474Z\n- [S5](https://aitoolly.com/product/minimi#1) — Minimi — Minimi: Your Ambient Memory for… | AIToolly - M published=2026-06-06 retrieved=2026-11-11T19:49:24.474Z\n- [S6](https://huntscreens.com/id/products/minimi) — Minimi: Memori Ambient untuk Claude di Mac retrieved=2026-11-11T19:49:24.474Z\n- [S7](https://fr.linkedin.com/pulse/your-memory-layer-feature-stop-pretending-its-company-jay-gadekar-n31rc?tl=fr#1) — Votre couche mémoire est une fonctionnalité. Arrêtez de faire semblant que c’est une entreprise. - Accepter et s’inscrire sur LinkedIn published=2026-05-27 retrieved=2026-11-11T19:49:24.474Z\n- [S9](https://ustack.app/products/minimi) — Minimi - AI Tool, Features, Use Cases & Alternatives retrieved=2026-11-11T19:49:24.474Z\n- [S10](https://pypi.org/project/mnimi-memory/#2) — mnimi-memory - MNIMI_EMBEDDER (bge | hashing, default bge) are the other settings; published=2026-10-16 retrieved=2026-11-11T19:49:24.474Z\n\n\nCITATION RULES\n- Inline citations MUST be markdown links copied from the list below, e.g. [S3](https://example.com/page). Bare \"S3\" text is not clickable.\n- End with a **Sources** section whose entries are also markdown links. List only sources actually cited.\n- Use only the S ids above. Do not invent or alter a URL.\n- If an item is marked MISSING, answer the supported portion and say what is missing.\n- Do not claim a change when the change view says it cannot be established.\n\nCOPYABLE SOURCE LINKS\n[S1](https://www.projectminimi.com/)\n[S2](https://www.projectminimi.com/memory)\n[S3](https://heypace.app/docs/knowledge/competitive/project-minimi-rag-snapshot/)\n[S4](https://www.producthunt.com/p/shram/minimi-3)\n[S5](https://aitoolly.com/product/minimi#1)\n[S6](https://huntscreens.com/id/products/minimi)\n[S7](https://fr.linkedin.com/pulse/your-memory-layer-feature-stop-pretending-its-company-jay-gadekar-n31rc?tl=fr#1)\n[S8](https://huntscreens.com/products/minimi)\n[S9](https://ustack.app/products/minimi)\n[S10](https://pypi.org/project/mnimi-memory/#2)\n"
+        ],
+        "trace_id": "dc6bcb32-5e53-4f08-9d6d-51665924d2c0",
+        "langsmith": {
+          "enabled": false,
+          "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+        }
+      },
+      "checks": {
+        "route": true,
+        "search_when_needed": true,
+        "expected_source_coverage": 1.0
+      },
+      "wall_ms": 3934.5
+    }
+  ],
+  "summary": {
+    "cases": 6,
+    "answered": 6,
+    "structural": {
+      "route": {
+        "n": 6,
+        "mean": 1.0
+      },
+      "search_when_needed": {
+        "n": 6,
+        "mean": 1.0
+      },
+      "expected_source_coverage": {
+        "n": 6,
+        "mean": 1.0
+      }
+    },
+    "telemetry": {
+      "agent_ms": {
+        "n": 6,
+        "p50": 4153,
+        "p95": 4574
+      },
+      "first_answer_text_ms": {
+        "n": 6,
+        "p50": 4153,
+        "p95": 4574
+      },
+      "input_tokens": {
+        "n": 6,
+        "p50": 4322,
+        "p95": 4889
+      },
+      "output_tokens": {
+        "n": 6,
+        "p50": 437,
+        "p95": 626
+      },
+      "search_evidence_tokens": {
+        "n": 6,
+        "p50": 1806,
+        "p95": 2191
+      },
+      "model_calls": {
+        "n": 6,
+        "p50": 2,
+        "p95": 2
+      }
+    }
+  }
+}

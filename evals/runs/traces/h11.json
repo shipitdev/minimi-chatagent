@@ -1,0 +1,116 @@
+{
+  "caseId": "h11",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "9917e39c-f58d-451b-8763-e5d09ce8f10e",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:30.309Z",
+    "inputs": {
+      "prompt": "What is 17% of 340? Give only the number.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "h11",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "e2361810-ce33-4310-9439-2bdf846ae410",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:30.309Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:30.310Z"
+      },
+      {
+        "id": "9799d23f-1e9c-49cb-83c4-1deefb8d734b",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:30.310Z",
+        "inputs": {
+          "user_text": "What is 17% of 340? Give only the number.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:30.311Z"
+      },
+      {
+        "id": "5e21f14b-7f21-4440-87d0-49049cc62184",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:30.312Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "57.8",
+          "tool_calls": [],
+          "usage": {
+            "input": 1123,
+            "output": 3,
+            "cacheHit": 896,
+            "cacheMiss": 227
+          },
+          "cost_usd": 0.000058548,
+          "latency_ms": 826
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:31.138Z"
+      }
+    ],
+    "outputs": {
+      "answer": "57.8",
+      "route": "direct",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 1,
+      "input_tokens": 1123,
+      "output_tokens": 3,
+      "cost_usd": 0.000059,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:31.139Z"
+  },
+  "run": null,
+  "traceId": "9917e39c-f58d-451b-8763-e5d09ce8f10e"
+}

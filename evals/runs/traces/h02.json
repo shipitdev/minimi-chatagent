@@ -1,0 +1,122 @@
+{
+  "caseId": "h02",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "26ac6e9f-ddf6-4135-91fe-2d3574bd19cd",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:10.143Z",
+    "inputs": {
+      "prompt": "What were the two things I asked you on Nov 7?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 3
+    },
+    "metadata": {
+      "case_id": "h02",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "42782238-8d2f-430c-ae4e-ca6a623d11a2",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:10.143Z",
+        "inputs": {
+          "history_turns": 3,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 3,
+          "restarted": true
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:10.145Z"
+      },
+      {
+        "id": "384bdb95-2f68-4ba3-89cc-ad092d6d9eb2",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:10.145Z",
+        "inputs": {
+          "user_text": "What were the two things I asked you on Nov 7?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "venue",
+            "beacon"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "Nov 7"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:10.148Z"
+      },
+      {
+        "id": "02e73b69-629a-49b8-b244-830629ce4255",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:10.148Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "On Nov 7 you asked me two things:\n\n1. **\"What was the venue deposit amount?\"** — I answered ₹4,000 (asked at 6:30 PM).\n2. **\"When did we deploy Beacon?\"** — I answered at noon (asked at 10:30 AM).\n\nBoth were from separate sessions that day.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1308,
+            "output": 71,
+            "cacheHit": 512,
+            "cacheMiss": 796
+          },
+          "cost_usd": 0.000165536,
+          "latency_ms": 1408
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:11.556Z"
+      }
+    ],
+    "outputs": {
+      "answer": "On Nov 7 you asked me two things:\n\n1. **\"What was the venue deposit amount?\"** — I answered ₹4,000 (asked at 6:30 PM).\n2. **\"When did we deploy Beacon?\"** — I answered at noon (asked at 10:30 AM).\n\nBoth were from separate sessions that day.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "venue",
+        "beacon"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1308,
+      "output_tokens": 71,
+      "cost_usd": 0.000166,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:11.557Z"
+  },
+  "run": null,
+  "traceId": "26ac6e9f-ddf6-4135-91fe-2d3574bd19cd"
+}

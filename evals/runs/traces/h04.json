@@ -1,0 +1,116 @@
+{
+  "caseId": "h04",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "867048b8-d1e8-4cf0-a9f2-c8260e857476",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:12.937Z",
+    "inputs": {
+      "prompt": "Is the pricing we discussed Monday still correct?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h04",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "498c34f1-9ff0-4878-b636-7c7c65a840cc",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:12.937Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:12.938Z"
+      },
+      {
+        "id": "72f67e5a-aab1-447e-a3b6-153b0e125544",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:12.938Z",
+        "inputs": {
+          "user_text": "Is the pricing we discussed Monday still correct?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:12.939Z"
+      },
+      {
+        "id": "4c43d457-0698-4b63-8325-1c5b0baf4873",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:12.939Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I don't have a record of a pricing discussion on Monday in my dated memory for this conversation, so I can't confirm what \"the pricing\" refers to.\n\nCould you tell me which product or plan you mean (and the region/tier if relevant)? Then I'll check the current pricing and compare it with what you had.",
+          "tool_calls": [],
+          "usage": {
+            "input": 730,
+            "output": 67,
+            "cacheHit": 512,
+            "cacheMiss": 218
+          },
+          "cost_usd": 0.000082376,
+          "latency_ms": 1646
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:14.585Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I don't have a record of a pricing discussion on Monday in my dated memory for this conversation, so I can't confirm what \"the pricing\" refers to.\n\nCould you tell me which product or plan you mean (and the region/tier if relevant)? Then I'll check the current pricing and compare it with what you had.",
+      "route": "clarify",
+      "citations": 0,
+      "selected_turn_ids": [],
+      "model_calls": 1,
+      "input_tokens": 730,
+      "output_tokens": 67,
+      "cost_usd": 0.000082,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:14.586Z"
+  },
+  "run": null,
+  "traceId": "867048b8-d1e8-4cf0-a9f2-c8260e857476"
+}

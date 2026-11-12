@@ -1,0 +1,122 @@
+{
+  "caseId": "h20-chat",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "807458d9-d8c8-472c-998a-64ca9a338a01",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:58.546Z",
+    "inputs": {
+      "prompt": "monday's plan still available or what?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h20-chat",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "85d887cf-7c81-42b9-95f4-bb5e29a4c509",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:58.546Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:58.547Z"
+      },
+      {
+        "id": "51b4b7f6-008c-476d-801c-e69d87069bab",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:58.547Z",
+        "inputs": {
+          "user_text": "monday's plan still available or what?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "opal",
+            "glade"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:58.549Z"
+      },
+      {
+        "id": "08df4f70-7f4f-439a-ae6f-49fe4c34f7fc",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:58.549Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Which plan do you mean — the **OpalQueue** Team plan or the **GladeMail** Team plan? Both were picked on Monday 9 Nov 2026, but they're different products, so I want to check the right one before searching.",
+          "tool_calls": [],
+          "usage": {
+            "input": 875,
+            "output": 53,
+            "cacheHit": 640,
+            "cacheMiss": 235
+          },
+          "cost_usd": 0.0000805,
+          "latency_ms": 969
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:59.518Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Which plan do you mean — the **OpalQueue** Team plan or the **GladeMail** Team plan? Both were picked on Monday 9 Nov 2026, but they're different products, so I want to check the right one before searching.",
+      "route": "clarify",
+      "citations": 0,
+      "selected_turn_ids": [
+        "opal",
+        "glade"
+      ],
+      "model_calls": 1,
+      "input_tokens": 875,
+      "output_tokens": 53,
+      "cost_usd": 0.000081,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:59.519Z"
+  },
+  "run": null,
+  "traceId": "807458d9-d8c8-472c-998a-64ca9a338a01"
+}

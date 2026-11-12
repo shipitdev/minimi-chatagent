@@ -1,0 +1,122 @@
+{
+  "caseId": "h19-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "b532d95d-51e5-4359-a753-0d4e0afd3d96",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:53.783Z",
+    "inputs": {
+      "prompt": "Which of the review actions belongs to me and remains open?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h19-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "aad65089-56d0-49de-85d0-81af077c8142",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:53.783Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:53.784Z"
+      },
+      {
+        "id": "925e5430-1344-4273-a4bb-a8fb841f827b",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:53.784Z",
+        "inputs": {
+          "user_text": "Which of the review actions belongs to me and remains open?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "review-2",
+            "review-1"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:53.786Z"
+      },
+      {
+        "id": "58a01b94-c325-482f-9bfb-4caa347c29c5",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:53.786Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "Based on what you've told me:\n\n- **Accessibility notes** — yours, still open (as of 10 Nov 2026).\n- **Release note** — yours, but you sent it on 10 Nov 2026, so it's done.\n- **Migration checklist** — Dev's, not yours.\n\nSo the only open action that belongs to you is the **accessibility notes**.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1276,
+            "output": 82,
+            "cacheHit": 640,
+            "cacheMiss": 636
+          },
+          "cost_usd": 0.00015287999999999999,
+          "latency_ms": 1428
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:55.214Z"
+      }
+    ],
+    "outputs": {
+      "answer": "Based on what you've told me:\n\n- **Accessibility notes** — yours, still open (as of 10 Nov 2026).\n- **Release note** — yours, but you sent it on 10 Nov 2026, so it's done.\n- **Migration checklist** — Dev's, not yours.\n\nSo the only open action that belongs to you is the **accessibility notes**.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "review-2",
+        "review-1"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1276,
+      "output_tokens": 82,
+      "cost_usd": 0.000153,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:55.215Z"
+  },
+  "run": null,
+  "traceId": "b532d95d-51e5-4359-a753-0d4e0afd3d96"
+}

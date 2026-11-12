@@ -1,0 +1,122 @@
+{
+  "caseId": "d11-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "5095455e-7e35-44e8-9bda-8aa87d6adbbb",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:43.553Z",
+    "inputs": {
+      "prompt": "Identify which promised deliverable remains outstanding and its deadline.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d11-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "0f69cc4d-f743-4a57-a4ec-290d1f6aaadc",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:43.553Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:43.554Z"
+      },
+      {
+        "id": "b7e3bba7-4d4c-4c7e-b728-d9dc07ac0bfa",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:43.554Z",
+        "inputs": {
+          "user_text": "Identify which promised deliverable remains outstanding and its deadline.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "leena-a",
+            "leena-b"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:43.556Z"
+      },
+      {
+        "id": "cd3fe838-9244-4561-8dd4-424494dfc8ce",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:43.556Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "The outstanding deliverable is the **API examples** for Leena. The deadline is **Thursday, 12 November 2026, 3 PM**.\n\nThe draft diagram, promised for Monday 9 November, was sent on Tuesday 10 November.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1279,
+            "output": 50,
+            "cacheHit": 1024,
+            "cacheMiss": 255
+          },
+          "cost_usd": 0.000092372,
+          "latency_ms": 1002
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:44.558Z"
+      }
+    ],
+    "outputs": {
+      "answer": "The outstanding deliverable is the **API examples** for Leena. The deadline is **Thursday, 12 November 2026, 3 PM**.\n\nThe draft diagram, promised for Monday 9 November, was sent on Tuesday 10 November.",
+      "route": "recall",
+      "citations": 0,
+      "selected_turn_ids": [
+        "leena-a",
+        "leena-b"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1279,
+      "output_tokens": 50,
+      "cost_usd": 0.000092,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:44.559Z"
+  },
+  "run": null,
+  "traceId": "5095455e-7e35-44e8-9bda-8aa87d6adbbb"
+}

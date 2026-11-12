@@ -1,0 +1,200 @@
+{
+  "caseId": "h17-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "44d40e51-1697-42af-a708-a8e7c97fa5a1",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:21:42.032Z",
+    "inputs": {
+      "prompt": "Verify both tools from our Monday shortlist against their current US monthly-billed Team prices for 20 seats. Cite the old and new evidence.",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "h17-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "61a97ae8-5df3-4b03-b27c-bb7cd4753140",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:42.032Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": true
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:42.033Z"
+      },
+      {
+        "id": "8c02dda7-432e-43b6-bc10-f409d081e36f",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:21:42.033Z",
+        "inputs": {
+          "user_text": "Verify both tools from our Monday shortlist against their current US monthly-billed Team prices for 20 seats. Cite the old and new evidence.",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "helpdesk-tue",
+            "helpdesk-mon"
+          ],
+          "turns": 2,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:42.035Z"
+      },
+      {
+        "id": "64dbc84f-5161-4394-bb01-f933cab2fa71",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:42.036Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"intent\": \"change\", \"queries\": [{\"query\": \"NacreDesk Team pricing US per seat per month billed monthly\", \"subject\": \"NacreDesk Team US monthly per-seat price\"}, {\"query\": \"LoamDesk Team pricing US per seat per month billed monthly\", \"subject\": \"LoamDesk Team US monthly per-seat price\"}]}"
+            }
+          ],
+          "usage": {
+            "input": 1432,
+            "output": 119,
+            "cacheHit": 640,
+            "cacheMiss": 792
+          },
+          "cost_usd": 0.00019544,
+          "latency_ms": 1288
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:43.324Z"
+      },
+      {
+        "id": "b4ab6124-51e7-40a0-9677-74e556c3219e",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:21:43.325Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "NacreDesk Team pricing US per seat per month billed monthly",
+              "subject": "NacreDesk Team US monthly per-seat price",
+              "fetch": false
+            },
+            {
+              "query": "LoamDesk Team pricing US per seat per month billed monthly",
+              "subject": "LoamDesk Team US monthly per-seat price",
+              "fetch": false
+            }
+          ],
+          "intent": "change",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 2,
+          "facts": 0,
+          "missing": [
+            "no usable claim-sized evidence for \"NacreDesk Team pricing US per seat per month billed monthly\"",
+            "no value found that is tied to subject \"NacreDesk Team US monthly per-seat price\"",
+            "evidence gap for \"NacreDesk Team pricing US per seat per month billed monthly\"",
+            "no usable claim-sized evidence for \"LoamDesk Team pricing US per seat per month billed monthly\"",
+            "no value found that is tied to subject \"LoamDesk Team US monthly per-seat price\"",
+            "evidence gap for \"LoamDesk Team pricing US per seat per month billed monthly\""
+          ],
+          "attempts": 4,
+          "evidence_tokens": 612
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:43.331Z"
+      },
+      {
+        "id": "631f7b56-da2e-47fe-9a5f-901fc58bc9c8",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:21:43.331Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I can't verify either price today — the current pages returned no usable pricing evidence.\n\n**What I have (Monday's baseline, 9 Nov 2026):**\n- **NacreDesk Team** — US, $20 USD per seat per month, billed monthly, 20 seats [nacre-old](https://nacre-old.example/pricing)\n- **LoamDesk Team** — US, $30 USD per seat per month, billed monthly, 20 seats [loam-old](https://loam-old.example/pricing)\n\n**What today's check returned (11 Nov 2026):**\n- **NacreDesk:** the current pricing page was retrieved [S1](https://nacre-current.example/pricing), but no claim-sized evidence for the Team tier, US region, or monthly billing basis came back. So I can't confirm, update, or contradict the $20 figure.\n- **LoamDesk:** the only page retrieved is an **annual**-billing page [S2](https://loam-annual.example/pricing), and it yielded no usable price evidence. Even if it had, an annual-billing figure wouldn't be comparable to your monthly-billed baseline — different billing terms.\n\n**Bottom line:** no change can be established for either tool. This is an evidence gap, not a price change. To close it, I'd need the current NacreDesk Team monthly US rate and a LoamDesk Team page quoted on a monthly-billed basis for 20 seats.\n\n**Sources**\n- [nacre-old](https://nacre-old.example/pricing)\n- [loam-old](https://loam-old.example/pricing)\n- [S1](https://nacre-current.example/pricing)\n- [S2](https://loam-annual.example/pricing)",
+          "tool_calls": [],
+          "usage": {
+            "input": 2165,
+            "output": 377,
+            "cacheHit": 1536,
+            "cacheMiss": 629
+          },
+          "cost_usd": 0.000342188,
+          "latency_ms": 2771
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:21:46.102Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I can't verify either price today — the current pages returned no usable pricing evidence.\n\n**What I have (Monday's baseline, 9 Nov 2026):**\n- **NacreDesk Team** — US, $20 USD per seat per month, billed monthly, 20 seats [nacre-old](https://nacre-old.example/pricing)\n- **LoamDesk Team** — US, $30 USD per seat per month, billed monthly, 20 seats [loam-old](https://loam-old.example/pricing)\n\n**What today's check returned (11 Nov 2026):**\n- **NacreDesk:** the current pricing page was retrieved [S1](https://nacre-current.example/pricing), but no claim-sized evidence for the Team tier, US region, or monthly billing basis came back. So I can't confirm, update, or contradict the $20 figure.\n- **LoamDesk:** the only page retrieved is an **annual**-billing page [S2](https://loam-annual.example/pricing), and it yielded no usable price evidence. Even if it had, an annual-billing figure wouldn't be comparable to your monthly-billed baseline — different billing terms.\n\n**Bottom line:** no change can be established for either tool. This is an evidence gap, not a price change. To close it, I'd need the current NacreDesk Team monthly US rate and a LoamDesk Team page quoted on a monthly-billed basis for 20 seats.\n\n**Sources**\n- [nacre-old](https://nacre-old.example/pricing)\n- [loam-old](https://loam-old.example/pricing)\n- [S1](https://nacre-current.example/pricing)\n- [S2](https://loam-annual.example/pricing)",
+      "route": "historical_update",
+      "citations": 4,
+      "selected_turn_ids": [
+        "helpdesk-tue",
+        "helpdesk-mon"
+      ],
+      "model_calls": 2,
+      "input_tokens": 3597,
+      "output_tokens": 496,
+      "cost_usd": 0.000538,
+      "search_queries": [
+        "NacreDesk Team pricing US per seat per month billed monthly",
+        "LoamDesk Team pricing US per seat per month billed monthly"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:21:46.103Z"
+  },
+  "run": null,
+  "traceId": "44d40e51-1697-42af-a708-a8e7c97fa5a1"
+}

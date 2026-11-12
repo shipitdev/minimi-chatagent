@@ -1,0 +1,120 @@
+{
+  "caseId": "d01",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "12ee8328-ad88-48b9-b08e-2f79d61e1168",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:21.281Z",
+    "inputs": {
+      "prompt": "What did I ask you on 3 November?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 2
+    },
+    "metadata": {
+      "case_id": "d01",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "94466e73-b6f2-4f5e-ab7b-9d5ba13b1ee7",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:21.281Z",
+        "inputs": {
+          "history_turns": 2,
+          "fixtures": 0
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 2,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:21.282Z"
+      },
+      {
+        "id": "30505fc7-ad6f-413a-92e7-d120544ff0b3",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:21.282Z",
+        "inputs": {
+          "user_text": "What did I ask you on 3 November?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [
+            "pg-nov3"
+          ],
+          "turns": 1,
+          "facts": 0,
+          "snapshots": 0,
+          "window": "3 November"
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:21.284Z"
+      },
+      {
+        "id": "1b156d2c-9ac6-4904-b3dd-9c4be7b0008f",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:21.284Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "On 3 November 2026 (13:40, in your Postgres session), you asked me to **compare TernDB and ValeSQL Postgres hosting for a US Launch plan**.\n\nWhat I recorded at the time: TernDB Launch was $19 USD/month on monthly billing ([tern-old](https://tern-old.example/pricing)); ValeSQL was shortlisted but I had no confirmed old price for it.",
+          "tool_calls": [],
+          "usage": {
+            "input": 1357,
+            "output": 85,
+            "cacheHit": 1152,
+            "cacheMiss": 205
+          },
+          "cost_usd": 0.00010855600000000001,
+          "latency_ms": 1416
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:22.700Z"
+      }
+    ],
+    "outputs": {
+      "answer": "On 3 November 2026 (13:40, in your Postgres session), you asked me to **compare TernDB and ValeSQL Postgres hosting for a US Launch plan**.\n\nWhat I recorded at the time: TernDB Launch was $19 USD/month on monthly billing ([tern-old](https://tern-old.example/pricing)); ValeSQL was shortlisted but I had no confirmed old price for it.",
+      "route": "recall",
+      "citations": 1,
+      "selected_turn_ids": [
+        "pg-nov3"
+      ],
+      "model_calls": 1,
+      "input_tokens": 1357,
+      "output_tokens": 85,
+      "cost_usd": 0.000109,
+      "search_queries": []
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:22.701Z"
+  },
+  "run": null,
+  "traceId": "12ee8328-ad88-48b9-b08e-2f79d61e1168"
+}

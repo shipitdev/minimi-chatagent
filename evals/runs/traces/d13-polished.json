@@ -1,0 +1,183 @@
+{
+  "caseId": "d13-polished",
+  "project": "minimi-golden-v2",
+  "endpoint": "https://api.smith.langchain.com",
+  "langsmith": {
+    "enabled": false,
+    "error": "HTTP 403 from https://api.smith.langchain.com key preflight"
+  },
+  "root": {
+    "id": "74a4ae36-eb04-414f-b8e8-899fcc0bd246",
+    "name": "minimi.golden.case",
+    "run_type": "chain",
+    "start_time": "2026-11-11T19:20:52.246Z",
+    "inputs": {
+      "prompt": "What are JuniperSync's per-workspace transfer allowance and reset interval?",
+      "mode": "replay",
+      "timezone": "Asia/Kolkata",
+      "now": "2026-11-11T11:30:00Z",
+      "history_turns": 0
+    },
+    "metadata": {
+      "case_id": "d13-polished",
+      "split": "unknown",
+      "category": null,
+      "pair_id": null,
+      "prompt_style": null
+    },
+    "children": [
+      {
+        "id": "bdbda956-b15c-4087-b2dd-006caebbf2dd",
+        "name": "minimi.memory.import",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:52.246Z",
+        "inputs": {
+          "history_turns": 0,
+          "fixtures": 2
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "turns": 0,
+          "restarted": false
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:52.246Z"
+      },
+      {
+        "id": "03fa8818-cd97-49d5-a5b7-968ad247450f",
+        "name": "minimi.memory.recall",
+        "run_type": "retriever",
+        "start_time": "2026-11-11T19:20:52.246Z",
+        "inputs": {
+          "user_text": "What are JuniperSync's per-workspace transfer allowance and reset interval?",
+          "tz": "Asia/Kolkata",
+          "now": "2026-11-11T11:30:00.000Z"
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "selected_turn_ids": [],
+          "turns": 0,
+          "facts": 0,
+          "snapshots": 0,
+          "window": null
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:52.247Z"
+      },
+      {
+        "id": "bfa4ac4f-fe54-4992-b99c-c091f1451bf0",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:52.248Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 2,
+          "step": 0
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "web_search",
+              "arguments": "{\"queries\": [\"JuniperSync per-workspace transfer allowance reset interval\", \"JuniperSync pricing transfer quota\"], \"intent\": \"answer\"}"
+            }
+          ],
+          "usage": {
+            "input": 1130,
+            "output": 72,
+            "cacheHit": 896,
+            "cacheMiss": 234
+          },
+          "cost_usd": 0.00009816800000000001,
+          "latency_ms": 1334
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:53.582Z"
+      },
+      {
+        "id": "58e4bf2c-fda7-4f60-a487-1592cbfb54aa",
+        "name": "minimi.tool.web_search",
+        "run_type": "tool",
+        "start_time": "2026-11-11T19:20:53.582Z",
+        "inputs": {
+          "queries": [
+            {
+              "query": "JuniperSync per-workspace transfer allowance reset interval"
+            },
+            {
+              "query": "JuniperSync pricing transfer quota"
+            }
+          ],
+          "intent": "answer",
+          "batch": 1
+        },
+        "metadata": {},
+        "children": [],
+        "outputs": {
+          "citations": 4,
+          "facts": 0,
+          "missing": [],
+          "attempts": 4,
+          "evidence_tokens": 569
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:53.586Z"
+      },
+      {
+        "id": "826c39fc-8bc8-4c4f-85e4-d4eab0392bcb",
+        "name": "minimi.llm",
+        "run_type": "llm",
+        "start_time": "2026-11-11T19:20:53.586Z",
+        "inputs": {
+          "model": "deepseek-flash",
+          "messages": 4,
+          "step": 1
+        },
+        "metadata": {
+          "provider": "deepseek",
+          "model": "deepseek-flash"
+        },
+        "children": [],
+        "outputs": {
+          "content": "I found the allowance but not the reset interval.\n\n- **Transfer allowance:** 100 GB per workspace on the Basic plan [S1](https://juniper-help.example/pricing).\n- **Reset interval:** not stated in the sources I could retrieve. I can't confirm whether it resets monthly, annually, or on another cycle.\n\nOne caution: a separate result mentions \"500 GB of local disk space\" for downloads [S2](https://juniper-noise.example/pricing). That's a disk-space figure, not a transfer allowance, so it shouldn't be read as a second quota.\n\nIf you can tell me which plan tier you're on (Basic or another), I can check whether the reset interval is documented for that tier specifically.\n\n**Sources**\n- [S1](https://juniper-help.example/pricing) — Juniper Help, pricing page (published 2026-11-11)\n- [S2](https://juniper-noise.example/pricing) — Juniper Noise, pricing page (published 2026-11-11)",
+          "tool_calls": [],
+          "usage": {
+            "input": 1840,
+            "output": 220,
+            "cacheHit": 1664,
+            "cacheMiss": 176
+          },
+          "cost_usd": 0.00019443200000000002,
+          "latency_ms": 1831
+        },
+        "error": null,
+        "end_time": "2026-11-11T19:20:55.417Z"
+      }
+    ],
+    "outputs": {
+      "answer": "I found the allowance but not the reset interval.\n\n- **Transfer allowance:** 100 GB per workspace on the Basic plan [S1](https://juniper-help.example/pricing).\n- **Reset interval:** not stated in the sources I could retrieve. I can't confirm whether it resets monthly, annually, or on another cycle.\n\nOne caution: a separate result mentions \"500 GB of local disk space\" for downloads [S2](https://juniper-noise.example/pricing). That's a disk-space figure, not a transfer allowance, so it shouldn't be read as a second quota.\n\nIf you can tell me which plan tier you're on (Basic or another), I can check whether the reset interval is documented for that tier specifically.\n\n**Sources**\n- [S1](https://juniper-help.example/pricing) — Juniper Help, pricing page (published 2026-11-11)\n- [S2](https://juniper-noise.example/pricing) — Juniper Noise, pricing page (published 2026-11-11)",
+      "route": "research",
+      "citations": 2,
+      "selected_turn_ids": [],
+      "model_calls": 2,
+      "input_tokens": 2970,
+      "output_tokens": 292,
+      "cost_usd": 0.000293,
+      "search_queries": [
+        "JuniperSync per-workspace transfer allowance reset interval",
+        "JuniperSync pricing transfer quota"
+      ]
+    },
+    "error": null,
+    "end_time": "2026-11-11T19:20:55.418Z"
+  },
+  "run": null,
+  "traceId": "74a4ae36-eb04-414f-b8e8-899fcc0bd246"
+}
